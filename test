@@ -3,6 +3,11 @@
 #####
 #ssh-keygen -t rsa -C email
 #
+#[user]
+#	name = aeronano 
+#	email = email
+#[core]
+#	editor = vim
 ####
 echo "checking for requirements"
 if [ ! -f `which git` ] && [ ! -f `which curl` ]
@@ -32,7 +37,6 @@ else
 	git clone git@github.com:nvasilakis/immateriia.git .
 fi
 
-#FILES=".vimrc .bashrc .profile .bash_aliases .vim .gitconfig .screenrc .functions .xsession .Xdefaults .byobu .config/awesome"
 FILES=".vimrc .bashrc .zshrc .irbrc" 
 for i in $FILES; do 
         echo installing: ~/.vim/$i ~/$i
@@ -41,4 +45,3 @@ for i in $FILES; do
 done
 
 echo "installation complete"
-
