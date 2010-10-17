@@ -8,6 +8,11 @@
 #	email = email
 #[core]
 #	editor = vim
+#[color]
+#       diff = auto
+#       status = auto
+#       branch = auto
+#
 ####
 echo "checking for requirements"
 if [ ! -f `which git` ] && [ ! -f `which curl` ]
