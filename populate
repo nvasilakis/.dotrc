@@ -3,12 +3,6 @@
 #####
 #ssh-keygen -t rsa -C email
 ####
-git config --global user.name "nvasilakis"
-git config --global user.email "nikos.ailo@gmail.com"
-git config --global core.editor "vim"
-git config --global color.diff "auto"
-git config --global color.status "auto"
-git config --global color.branch "auto"
 
 echo "checking for requirements"
 if [ ! -f `which git` ] && [ ! -f `which curl` ]
@@ -25,6 +19,14 @@ then
 else
 	echo "requirements exist, proceeding to install phase..."
 fi
+
+echo "Adding Configuration.."
+git config --global user.name "nvasilakis"
+git config --global user.email "nikos.ailo@gmail.com"
+git config --global core.editor "vim"
+git config --global color.diff "auto"
+git config --global color.status "auto"
+git config --global color.branch "auto"
 
 if [ -d ~/.vim ]
 then
