@@ -2,17 +2,6 @@
 
 #####
 #ssh-keygen -t rsa -C email
-#
-#[user]
-#	name = aeronano 
-#	email = email
-#[core]
-#	editor = vim
-#[color]
-#       diff = auto
-#       status = auto
-#       branch = auto
-#
 ####
 git config --global user.name "nvasilakis"
 git config --global user.email "nikos.ailo@gmail.com"
