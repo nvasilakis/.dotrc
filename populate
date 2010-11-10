@@ -1,5 +1,15 @@
 #!/bin/sh
 
+#####
+#ssh-keygen -t rsa -C email
+####
+git config --global user.name "nvasilakis"
+git config --global user.email "nikos.ailo@gmail.com"
+git config --global core.editor "vim"
+git config --global color.diff "auto"
+git config --global color.status "auto"
+git config --global color.branch "auto"
+
 echo "checking for requirements"
 if [ ! -f `which git` ] && [ ! -f `which curl` ]
 then
@@ -16,25 +26,23 @@ else
 	echo "requirements exist, proceeding to install phase..."
 fi
 
-if [ -d ~/.dotfiles ]
+if [ -d ~/.vim ]
 then
-	echo "updating dotfiles..."
-	cd ~/.dotfiles
-	git pull
+        echo "updating dotfiles..."
+        cd ~/.vim
+	git clone git@github.com:nvasilakis/immateriia.git .
 else
-	echo "retrieving dotfiles..."
-	cd ~
-	git clone git://github.com/rrm/dotfiles.git .dotfiles
+	mkdir -p ~/.vim
+        echo "creating ~/.vim..."
+        cd ~/.vim
+	git clone git@github.com:nvasilakis/immateriia.git .
 fi
 
-echo "creating config directory..."
-mkdir -p ~/.config
-
-FILES=".vimrc .bashrc .profile .bash_aliases .vim .gitconfig .screenrc .functions .xsession .Xdefaults .byobu .config/awesome"
-for i in $FILES; do
-	echo installing: ~/.dotfiles/$i ~/$i
-	rm -rf ~/$i
-	ln -s ~/.dotfiles/$i ~/$i
+FILES=".vimrc .bashrc .zshrc .irbrc" 
+for i in $FILES; do 
+        echo installing: ~/.vim/$i ~/$i
+        rm -rf ~/$i
+        ln -s ~/.vim/$i ~/$i
 done
 
 echo "installation complete"
