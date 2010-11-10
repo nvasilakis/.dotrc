@@ -14,6 +14,13 @@
 #       branch = auto
 #
 ####
+git config --global user.name "nvasilakis"
+git config --global user.email "nikos.ailo@gmail.com"
+git config --global core.editor "vim"
+git config --global color.diff "auto"
+git config --global color.status "auto"
+git config --global color.branch "auto"
+
 echo "checking for requirements"
 if [ ! -f `which git` ] && [ ! -f `which curl` ]
 then
