@@ -7,6 +7,7 @@ endif
 :colors peaksea 
 :set number
 :set numberwidth=2
+:set hlsearch
 :helptags ~/.vim/doc
 " snipMate Plugin
 :filetype plugin on
@@ -35,3 +36,13 @@ map <F7> :FirstExplorerWindow<cr>
 map <F8> :BottomExplorerWindow<cr>
 map <F5> <c-w><c-w>
 map <c-w><c-t> :WMToggle<cr>
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+let g:ftplugin_sql_omni_key = '<C-C>'
