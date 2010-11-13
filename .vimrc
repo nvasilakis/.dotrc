@@ -1,3 +1,7 @@
+" """""""""""""""""""""""
+" TODO Add the SuperTab plugin and pathogen util
+" http://www.vim.org/scripts/script.php?script_id=1643
+" """""""""""""""""""""""
 if ! has("gui_running")
     set t_Co=256
 endif
@@ -66,3 +70,4 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 
 let g:ftplugin_sql_omni_key = '<C-C>'
+
