@@ -36,9 +36,6 @@ let g:miniBufExplSplitBelow=0
 "map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
 
 " WinManager mappings
-map <F7> :FirstExplorerWindow<cr>
-map <F8> :BottomExplorerWindow<cr>
-map <F5> <c-w><c-w>
 map <F2> :WMToggle<cr>
 
 " NERDTree mappings
