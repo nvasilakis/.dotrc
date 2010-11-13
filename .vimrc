@@ -11,7 +11,17 @@ endif
 :colors peaksea 
 :set number
 :set numberwidth=2
-:set hlsearch
+" Usability options
+" :set virtualedit=onemore         " allow for cursor beyond last character
+:set history=1000                " Store a ton of history (default is 20)
+:set backspace=indent,eol,start  " backspace for dummys
+:set incsearch                   " find as you type search
+:set hlsearch                    " highlight search terms
+:set ignorecase                  " case insensitive search
+:set smartcase                   " case sensitive when uc present
+:set wildmenu                    " show list instead of just completing
+:set wildmode=list:longest,full  " comand <Tab> completion, list matches,
+
 :helptags ~/.vim/doc
 " snipMate Plugin
 :filetype plugin on
@@ -40,6 +50,9 @@ map <F2> :WMToggle<cr>
 
 " NERDTree mappings
 map <F3> :NERDTreeToggle<CR>
+
+" SpellCheck
+map <F4> :set spell!<CR>
 
 " Window Mappings
 map <C-J> <C-W>j<C-W>10+
