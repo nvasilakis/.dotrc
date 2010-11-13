@@ -35,7 +35,10 @@ let g:miniBufExplSplitBelow=0
 map <F7> :FirstExplorerWindow<cr>
 map <F8> :BottomExplorerWindow<cr>
 map <F5> <c-w><c-w>
-map <c-w><c-t> :WMToggle<cr>
+map <F2> :WMToggle<cr>
+
+" NERDTree mappings
+map <F3> :NERDTreeToggle<CR>
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
