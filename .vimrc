@@ -41,19 +41,19 @@ map <F2> :WMToggle<cr>
 map <F3> :NERDTreeToggle<CR>
 
 " Window Mappings
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>_
-map <C-H> <C-W>h<C-W>_
-map <C-K> <C-W>k<C-W>_
+map <C-J> <C-W>j<C-W>10+
+map <C-K> <C-W>k<C-W>10+
+map <C-L> <C-W>l<C-W>10+
+map <C-H> <C-W>h<C-W>10+
+map <C-K> <C-W>k<C-W>10+
 
 " tab navigation like firefox
 :nmap <Tab> :tabnext<CR>
 :map <Tab> :tabnext<CR>
-:imap <Tab> <Esc>:tabnext<CR>i
+" :imap <Tab> <Esc>:tabnext<CR>i
 :nmap <S-Tab> :tabprevious<CR>
 :map <S-Tab> :tabprevious<CR>
-:imap <S-Tab> <Esc>:tabprevious<CR>i
+" :imap <S-Tab> <Esc>:tabprevious<CR>i
 :nmap <C-T> :tabnew<CR>
 :imap <C-T> <Esc>:tabnew<CR>
 
