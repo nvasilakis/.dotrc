@@ -40,6 +40,23 @@ map <F2> :WMToggle<cr>
 " NERDTree mappings
 map <F3> :NERDTreeToggle<CR>
 
+" Window Mappings
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <C-H> <C-W>h<C-W>_
+map <C-K> <C-W>k<C-W>_
+
+" tab navigation like firefox
+:nmap <Tab> :tabnext<CR>
+:map <Tab> :tabnext<CR>
+:imap <Tab> <Esc>:tabnext<CR>i
+:nmap <S-Tab> :tabprevious<CR>
+:map <S-Tab> :tabprevious<CR>
+:imap <S-Tab> <Esc>:tabprevious<CR>i
+:nmap <C-T> :tabnew<CR>
+:imap <C-T> <Esc>:tabnew<CR>
+
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
