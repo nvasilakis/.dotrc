@@ -2,9 +2,9 @@
 " TODO Add the SuperTab plugin and pathogen util
 " http://www.vim.org/scripts/script.php?script_id=1643
 " """""""""""""""""""""""
-if ! has("gui_running")
+" if ! has("gui_running")
     set t_Co=256
-endif
+" endif
 :syntax enable
 " feel free to choose :set background=light for a different style
 :set background=dark
