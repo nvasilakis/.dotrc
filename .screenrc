@@ -1,17 +1,20 @@
 # An alternative hardstatus to display a bar at the bottom listing the
 # windownames and highlighting the current windowname in blue. (This is only
 # enabled if there is no hardstatus setting for your terminal)
+shell zsh
 startup_message off
-hardstatus on
-hardstatus alwayslastline
+hardstatus off
+# hardstatus alwayslastline
 #caption     always        "%{+b r0}%H%{ck} |%c %{ck}%d.%m.%Y | %72=Load: %l %{wk}"
 #caption always "%?%F%{.RW}%?%3n %t%? [%h]%?"
+# Edw prepei na vlaw whoami gia to pou einai to script ka8e fora
 backtick 1 60 60 /home/nv/.vim/.ss
-caption always "%?%{= 9c}%-w%?%{= 9w}%n|%t%?(%u)%?%?%{= 9c}%+w%? %=%{= 9c}%H|%{+s c}%1`|%m/%d%c|%l"
+caption always "%?%{= 9c}%-w%?%{= 9w}%n %t%?(%u)%?%?%{= 9c}%+w%?  %=%{= 9c}%H|%{+s w}           %1`|%l"
+# BK caption always "%?%{= 9c}%-w%?%{= 9w}%n|%t%?(%u)%?%?%{= 9c}%+w%? %=%{= 9c}%H|%{+s w}%1`|%m/%d%c|%l"
 
 
 #hardstatus alwayslastline "%?%{9r}%-Lw%?%{99}%n*%f %t%?(%u)%?%?%{99}%+Lr%?"
-hardstatus alwayslastline "%?%{= 95}%-w%?%{= 9w}%n|%t%?(%u)%?%?%{= 95}%+w%?"
+###hardstatus alwayslastline "%?%{= 95}%-w%?%{= 9w}%n|%t%?(%u)%?%?%{= 95}%+w%?"
 #hardstatus alwayslastline "%{rk}%H %{gk}%c %{yk}%M%d %{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw%?"
 #hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
 #hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
