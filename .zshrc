@@ -12,13 +12,10 @@ compinit
 autoload -U promptinit
 promptinit
 
-
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 setopt CORRECTALL
 setopt HISTIGNORESPACE
-
-
 
 # End of lines added by compinstall
 local _myhosts
@@ -28,7 +25,26 @@ if [[ -f $HOME/.ssh/known_hosts ]]; then
 fi
 zstyle ':completion:*:kill:*:processes' command "ps x"
 
+# Handy Alias
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias jj='jobs'
+alias f='fg'
+alias b='bg'
+alias ai='sudo apt-get install'
+alias vim='vim -p'
+
+# Nice Exports
+export EDITOR="vim"
 
 
 
