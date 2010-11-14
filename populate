@@ -40,7 +40,7 @@ else
 	git clone git@github.com:nvasilakis/immateriia.git .
 fi
 
-FILES=".vimrc .bashrc .zshrc .irbrc .screenrc" 
+FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss" 
 for i in $FILES; do 
         echo installing: ~/.vim/$i ~/$i
         rm -rf ~/$i
