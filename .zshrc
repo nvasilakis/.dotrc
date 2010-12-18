@@ -102,7 +102,7 @@ if [ -n "$__CURRENT_GIT_BRANCH" ]; then
 		;;
 	esac
 	if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
-		s+="±'"
+		s+="±"
 	fi
 	s+="]"
 # Add color withing quotes %{$bold_color$fg[blue]%} 
@@ -139,7 +139,7 @@ precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
 
 # PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
-PROMPT=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:$(prompt_git_info)%{$bold_color$fg[blue]%}%~%{$reset_color%}%#'
+PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:$(prompt_git_info)%{$bold_color$fg[blue]%}%~%{$reset_color%}%#'
 
 # PROMPT=%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:$(prompt_git_info)%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
 # PS1=${debian_chroot:+($debian_chroot)}%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$(prompt_git_info)%}%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
