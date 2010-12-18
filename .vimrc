@@ -54,6 +54,9 @@ map <F3> :NERDTreeToggle<CR>
 " SpellCheck
 map <F4> :set spell!<CR>
 
+" Wrap
+map <F5> :set wrap!<CR>
+
 " Window Mappings
 map <C-J> <C-W>j<C-W>10+
 map <C-K> <C-W>k<C-W>10+
@@ -83,7 +86,17 @@ autocmd FileType ruby set omnifunc=rubycomplete#Complete
 highlight Pmenu ctermbg=238 gui=bold
 " Hucks for SQL completion
 let g:ftplugin_sql_omni_key = '<C-C>'
+
 " Options for Ruby Completion
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
+
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ? "\<lt>C-n>" : "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" . "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" . "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+" inoremap <expr> <C-Space> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <C-Space> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" imap <C-@> <C-Space>
