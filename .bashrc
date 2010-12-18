@@ -139,9 +139,10 @@ echo -n "\033[1;31m☢"
 }
 
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo -e '\e[1;31m·|'
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo '*'
 }
 function parse_git_branch {
   local branch=$(__git_ps1 "%s")
-  [[ $branch ]] && echo -e "\033[0;37m[$branch$(parse_git_dirty)$(vcs_status)\033[0;37m]"
+  [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
 }
+
