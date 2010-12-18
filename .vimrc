@@ -71,8 +71,8 @@ map <C-K> <C-W>k<C-W>10+
 :nmap <S-Tab> :tabprevious<CR>
 :map <S-Tab> :tabprevious<CR>
 " :imap <S-Tab> <Esc>:tabprevious<CR>i
-:nmap <C-T> :tabnew<CR>
-:imap <C-T> <Esc>:tabnew<CR>
+:nmap <C-T> :tabe
+:imap <C-T> <Esc>:tabe<CR>
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -96,3 +96,19 @@ imap <C-@> <C-Space>
 " HOW TO REMAP COMMENTS TO CTRL-/ AND CTRL-S-/
 inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
 " map <Leader>c ,c<space>
+
+" Fuzzy Finder 
+map <Leader>tb :FufBuffer<CR>
+map <Leader>tf :FufFile<CR>
+map <Leader>td :FufDir<CR>
+map <Leader>tmf :FufMruFile<CR>
+map <Leader>tm :FufMruCmd<CR>
+map <Leader>tb :FufBookmark<CR>
+map <Leader>tt :FufTag<CR>
+map <Leader>ttf :FufTaggedFile<CR>
+map <Leader>tj :FufJumpList<CR>
+map <Leader>tc :FufChangeList<CR>
+map <Leader>tq :FufQuickfix<CR>
+map <Leader>tl :FufLine<CR>
+map <Leader>th :FufHelp<CR>
+
