@@ -49,8 +49,13 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+RD='\033[0;31m'
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]$(parse_git_branch)\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:$(parse_git_branch)\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='$(test_ena)'${RED}'\$'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ '
 fi
@@ -104,13 +109,41 @@ fi
 
 export EDITOR="vim"
 
-RED='\e[0;31m'
-GREEN='\e[0;32m'
+function vcs_status {
+  if type -p __git_ps1; then
+branch=$(__git_ps1)
+  else
+branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
+  fi
+if [ $branch ]; then
+    # no changes
+    color="${txtpur}"
+    status=$(git status --porcelain 2> /dev/null)
+    # Untracked files (Green)
+    if $(echo "$status" | grep '?? ' &> /dev/null); then
+echo -n "\033[1;32m☨"
+    fi
+    # Stashed changes (Purple)
+    if $(echo "$status" | grep '^A ' &> /dev/null); then
+echo -n "\033[1;35m☀"
+    fi
+    # Modified files (Cyan)
+    if $(echo "$status" | grep '^ M ' &> /dev/null); then
+echo -n "\033[1;36m❇"
+    fi
+    # Deleted filed (Red)
+    if $(echo "$status" | grep '^ D ' &> /dev/null); then
+echo -n "\033[1;31m☢"
+    fi
+  fi
+}
+
 
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo '*'
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo '±'
 }
 function parse_git_branch {
   local branch=$(__git_ps1 "%s")
   [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
 }
+
