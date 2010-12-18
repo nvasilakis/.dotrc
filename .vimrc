@@ -78,6 +78,12 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
-
+autocmd FileType ruby set omnifunc=rubycomplete#Complete
+" improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
+" Hucks for SQL completion
 let g:ftplugin_sql_omni_key = '<C-C>'
-
+" Options for Ruby Completion
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
