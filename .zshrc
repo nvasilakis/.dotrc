@@ -53,69 +53,96 @@ alias vim='vim -p'
 # Nice Exports
 export EDITOR="vim"
 
-for COLOR in RED GREEN YELLOW WHITE BLACK CYAN; do
-    eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'         
-    eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
-done                                                 
-PR_RESET="%{${reset_color}%}";
+## simplex
+update_current_git_vars(){
+unset __CURRENT_GIT_BRANCH
+unset __CURRENT_GIT_BRANCH_STATUS
+unset __CURRENT_GIT_BRANCH_IS_DIRTY
 
-FMT_BRANCH="${PR_GREEN}%b%u%c${PR_RESET}" # e.g. master¹²
-FMT_ACTION="(${PR_CYAN}%a${PR_RESET}%)"   # e.g. (rebase-i)
-FMT_PATH="%R${PR_YELLOW}/%S"              # e.g. ~/repo/subdir
+local st="$(git status 2>/dev/null)"
+if [[ -n "$st" ]]; then
+	local -a arr
+	arr=(${(f)st})
 
-zstyle ':vcs_info:*:prompt:*' check-for-changes true
-zstyle ':vcs_info:*:prompt:*' unstagedstr '¹'  # display ¹ if there are unstaged changes
-zstyle ':vcs_info:*:prompt:*' stagedstr '²'    # display ² if there are staged changes
-zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}//" "${FMT_PATH}"
-zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}//"              "${FMT_PATH}"
-zstyle ':vcs_info:*:prompt:*' nvcsformats   ""                             "%~"
+	if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
+		__CURRENT_GIT_BRANCH='no-branch'
+	else
+		__CURRENT_GIT_BRANCH="${arr[1][(w)4]}";
+	fi
 
+	if [[ $arr[2] =~ 'Your branch is' ]]; then
+		if [[ $arr[2] =~ 'ahead' ]]; then
+			__CURRENT_GIT_BRANCH_STATUS='ahead'
+		elif [[ $arr[2] =~ 'diverged' ]]; then
+			__CURRENT_GIT_BRANCH_STATUS='diverged'
+		else
+			__CURRENT_GIT_BRANCH_STATUS='behind'
+		fi
+	fi
 
-function precmd {       
-    vcs_info 'prompt'          
-} 
-
-function lprompt {
-    local brackets=$1
-    local color1=$2  
-    local color2=$3  
-                     
-    local bracket_open="${color1}${brackets[1]}${PR_RESET}"
-    local bracket_close="${color1}${brackets[2]}"          
-                                                             
-    local git='$vcs_info_msg_0_'                           
-    local cwd="${color2}%B%1~%b"
-
-    PROMPT="${PR_RESET}${bracket_open}${git}${cwd}${bracket_close}%# ${PR_RESET}"
-}                                                                                        
-
-function rprompt {
-    local brackets=$1
-    local color1=$2  
-    local color2=$3  
-                     
-    local bracket_open="${color1}${brackets[1]}${PR_RESET}"
-    local bracket_close="${color1}${brackets[2]}${PR_RESET}"
-    local colon="${color1}:"                                
-    local at="${color1}@${PR_RESET}"                        
-                                                            
-    local user_host="${color2}%n${at}${color2}%m"                    
-    local vcs_cwd='${${vcs_info_msg_1_%%.}/$HOME/~}'        
-    local cwd="${color2}%B%20<..<${vcs_cwd}%<<%b"
-    local inner="${user_host}${colon}${cwd}"
-
-    RPROMPT="${PR_RESET}${bracket_open}${inner}${bracket_close}${PR_RESET}"
+	if [[ ! $st =~ 'nothing to commit' ]]; then
+		__CURRENT_GIT_BRANCH_IS_DIRTY='1'
+	fi
+fi
 }
 
-lprompt '[]' $BR_BRIGHT_BLACK $PR_WHITE
-rprompt '()' $BR_BRIGHT_BLACK $PR_WHITE
+prompt_git_info(){
+if [ -n "$__CURRENT_GIT_BRANCH" ]; then
+	local s="["
+	s+="$__CURRENT_GIT_BRANCH"
+	case "$__CURRENT_GIT_BRANCH_STATUS" in
+		ahead)
+		s+="↑"
+		;;
+		diverged)
+		s+="↕"
+		;;
+		behind)
+		s+="↓"
+		;;
+	esac
+	if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
+		s+="±'"
+	fi
+	s+="]"
+# Add color withing quotes %{$bold_color$fg[blue]%} 
+	printf "%s%s" "" $s
+fi
+}
+
+chpwd_update_git_vars() {
+update_current_git_vars
+}
+
+preexec_update_git_vars() {
+case "$1" in 
+	git*)
+	__EXECUTED_GIT_COMMAND=1
+	;;
+esac
+}
+
+precmd_update_git_vars(){
+if [ -n "$__EXECUTED_GIT_COMMAND" ]; then
+	update_current_git_vars
+	unset __EXECUTED_GIT_COMMAND
+fi
+}
 
 
+typeset -ga preexec_functions
+typeset -ga precmd_functions
+typeset -ga chpwd_functions
 
+preexec_functions+='preexec_update_git_vars'
+precmd_functions+='precmd_update_git_vars'
+chpwd_functions+='chpwd_update_git_vars'
 
+# PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
+PROMPT=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:$(prompt_git_info)%{$bold_color$fg[blue]%}%~%{$reset_color%}%#'
 
-
-
+# PROMPT=%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:$(prompt_git_info)%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
+# PS1=${debian_chroot:+($debian_chroot)}%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$(prompt_git_info)%}%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
 
 
 
@@ -159,7 +186,7 @@ parse_git_branch() {
 #     echo "${branch#refs/heads/}${state}"
 # }
 
-PS1=${debian_chroot:+($debian_chroot)}%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$(parse_git_branch)%}%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
+# PS1=${debian_chroot:+($debian_chroot)}%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$(parse_git_branch)%}%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
 #PS1=$(parse_git_branch)%#
 
 ##########################################################################
