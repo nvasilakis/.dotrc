@@ -99,8 +99,6 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <C-Space> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-imap <C-@> <C-Space>
-
 " HOW TO REMAP COMMENTS TO CTRL-/ AND CTRL-S-/
 inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
 " map <Leader>c ,c<space>
