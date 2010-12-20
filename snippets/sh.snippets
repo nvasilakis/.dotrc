@@ -1,7 +1,9 @@
 # #!/bin/bash
 snippet #!
 	#!/bin/bash
-	
+	# File:   ${1:comment}	
+	# Author: ${2:author}	
+	# email:  ${3:email}	
 snippet if
 	if [[ ${1:condition} ]]; then
 		${2:#statements}
@@ -12,6 +14,10 @@ snippet elif
 snippet for
 	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
 		${3:#statements}
+	done
+snippet forin
+	for ${2:file} in ${1:folder}; do
+		${3:#statements} $$2
 	done
 snippet wh
 	while [[ ${1:condition} ]]; do
