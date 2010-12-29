@@ -1,6 +1,9 @@
 # #!/usr/bin/ruby
 snippet #!
 	#!/usr/bin/ruby
+	# File:   ${1:comment}	
+	# Author: ${2:Nikos Vasilakis}	
+	# email:  ${3:n.c.vasilakis@gmail.com}	
 
 # New Block
 snippet =b
@@ -68,7 +71,7 @@ snippet cla class .. initialize .. end
 		def initialize(${2:args})
 			${3}
 		end
-
+		${4}
 
 	end
 snippet cla class .. < ParentClass .. initialize .. end
