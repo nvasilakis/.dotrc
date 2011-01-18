@@ -1,6 +1,7 @@
 " """""""""""""""""""""""
 " TODO Add the SuperTab plugin and pathogen util
 " http://www.vim.org/scripts/script.php?script_id=1643
+" Add plugins (last vimcasts) + double ",>,( etc + % for ' , > (
 " """""""""""""""""""""""
 " if ! has("gui_running")
     set t_Co=256
