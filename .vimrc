@@ -1,6 +1,7 @@
 " """""""""""""""""""""""
 " TODO Add the SuperTab plugin and pathogen util
 " http://www.vim.org/scripts/script.php?script_id=1643
+" Add plugins (last vimcasts) + double ",>,( etc + % for ' , > (
 " """""""""""""""""""""""
 " if ! has("gui_running")
     set t_Co=256
@@ -11,6 +12,7 @@
 :colors peaksea 
 :set number
 :set numberwidth=2
+:set ts=2 sts=2 sw=2 expandtab smartindent
 " Usability options
 " :set virtualedit=onemore         " allow for cursor beyond last character
 :set history=1000                " Store a ton of history (default is 20)
@@ -117,3 +119,33 @@ map <Leader>tc :FufChangeList<CR>
 map <Leader>tq :FufQuickfix<CR>
 map <Leader>tl :FufLine<CR>
 map <Leader>th :FufHelp<CR>
+
+
+" Set tabstop, softtabstop and shiftwidth to the same value
+command! -nargs=* Stab call Stab()
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+ 
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
+
