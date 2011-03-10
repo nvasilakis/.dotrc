@@ -1,0 +1,180 @@
+# set to yes if you want Conky to be forked in the background
+background yes
+
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+#xftfont sans:size=6
+xftfont Clean:size=6
+
+# Text alpha when using Xft
+xftalpha 0.9
+
+# Update interval in seconds
+update_interval 1
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+
+# If own_window is yes, you may use type normal, desktop or override
+#dock
+own_window_type normal
+
+# Use pseudo transparency with own_window?
+own_window_transparent yes
+
+# If own_window_transparent is set to no, you can set the background 
+colour here
+#own_window_colour black
+
+# If own_window is yes, these window manager hints may be used
+own_window_hints undecorated, below, sticky, skip_taskbar, skip_pager
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 200 400
+
+#Maximum width
+maximum_width 100
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around graphs
+draw_graph_borders no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+#stippled_borders 8
+
+# border margins
+#border_margin 1
+
+# border width
+#border_width 1
+
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+#alignment none
+#alignment top_middle
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 0
+gap_y 0
+
+# Subtract file system buffers from used memory?
+no_buffers no
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer no
+
+default_color cccccc
+default_shade_color cccccc
+default_outline_color cccccc
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+#${font size=11}$Nodename $kernel
+#${alignc}${font OpenLogos:pixelsize=30}J
+#${font weather:size=62}${execi 600 ~/.conkyscripts/conditions.sh}${color}${font}${voffset -25}  ${execi 1200 ~/.conkyscripts/pogodynka.sh}
+#${font monospace:pixelsize=48}${time %H:%M:%S}
+#${font monospace:size=14}${time %A %d %Y}
+#${font monospace:size=55}${time %H:%M}
+#${color}${cpugraph 444444 AAAAAAA}
+#${downspeedgraph eth0 16,100 444444 AAAAAA} $alignr${upspeedgraph eth0 16,100 444444 AAAAAA}
+#${downspeedgraph wlan0 16,100 444444 AAAAAA} $alignr${upspeedgraph wlan0 16,100 444444 AAAAAA}
+#StyleBats kai OpenLogos
+#($mem - $memmax)
+
+#v Up: ${upspeed wlan0} k/s
+#r Down: ${downspeed wlan0} k/s
+#M Up: ${totalup wlan0}
+#S Down: ${totaldown wlan0}
+
+#CPU Usage
+#Name            PID   CPU%  MEM%
+#${top name 1}${top pid 1}${top cpu 1}${top mem 1}
+#${top name 2}${top pid 2}${top cpu 2}${top mem 2}
+#${top name 3}${top pid 3}${top cpu 3}${top mem 3}
+
+#Memory Usage
+#${top_mem name 1}${top_mem pid 1}${top_mem cpu 1}${top_mem mem 1}
+#${top_mem name 2}${top_mem pid 2}${top_mem cpu 2}${top_mem mem 2}
+#${top_mem name 3}${top_mem pid 3}${top_mem cpu 3}${top_mem mem 3}
+
+
+TEXT
+${font monospace:pixelsize=11}
+$color${cpugraph cpu1 20,0 cccccc cccccc}$alignr
+${cpubar cpu1}
+C1: ${cpu cpu1}%
+$color${cpugraph cpu2 20,0 cccccc cccccc}$alignr
+${cpubar cpu2}
+C2: ${cpu cpu2}%
+$color${memgraph 20,0 cccccc cccccc}$alignr
+${membar}
+RM: $memperc%
+${diskiograph}
+HD: $diskio
+${swapbar}
+SW:$swapperc%
+${fs_bar /}
+H0:${fs_used_perc /}%
+${fs_bar /media/w7}
+W7:${fs_used_perc /media/w7}%
+
+${if_empty ${exec ifconfig eth0 | grep 'inet addr:'}}${addr wlan0}
+${wireless_link_bar 8,0 wlan0}
+${wireless_essid wlan0}:${wireless_link_qual wlan0}%
+${downspeedgraph wlan0 20,0 }
+DN:${downspeed wlan0}KBps
+${upspeedgraph wlan0 20,0 }
+UP:${upspeed wlan0}KBps
+${else}${addr eth0}
+${downspeedgraph eth0 20,0 }
+DN:${downspeed eth0}KBps
+${upspeedgraph eth0 20,0 }
+UP:${upspeed eth0}KBps${endif}
+
+GPU: ${exec nvidia-settings -query GPUCoreTemp | perl -ne 'print $1 if /GPUCoreTemp.*?: (\d+)./;'} °C
+#C01: ${exec sensors | grep -A 1 'CPU Temperature' | cut -c22-23 | sed '/^$/d'} °C
+MOB: ${exec sensors | grep -A 1 'MB Temperature' | cut -c22-23 | sed '/^$/d'} °C
+HDD: ${exec nc localhost 7634 | cut -c33-34;} °C
+
+CPU Usage
+Name            PID   CPU%  MEM%
+${top name 1}${top pid 1}${top cpu 1}${top mem 1}
+${top name 2}${top pid 2}${top cpu 2}${top mem 2}
+${top name 3}${top pid 3}${top cpu 3}${top mem 3}
+
+RAM Usage
+${top_mem name 1}${top_mem pid 1}${top_mem cpu 1}${top_mem mem 1}
+${top_mem name 2}${top_mem pid 2}${top_mem cpu 2}${top_mem mem 2}
+${top_mem name 3}${top_mem pid 3}${top_mem cpu 3}${top_mem mem 3}
+#$battery_bar
+#$battery
+
