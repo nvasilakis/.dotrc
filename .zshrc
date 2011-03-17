@@ -49,6 +49,7 @@ alias f='fg'
 alias b='bg'
 alias ai='sudo apt-get install'
 alias vim='vim -p'
+alias -g prj='/media/w7/Projects/'
 
 # Nice Exports
 export EDITOR="vim"
