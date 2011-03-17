@@ -28,6 +28,8 @@ git config --global color.diff "auto"
 git config --global color.status "auto"
 git config --global color.branch "auto"
 git config --global color.interactive "auto"
+git config --global diff.tool vimdiff
+git config --global difftool.prompt false
 
 if [ -d ~/.vim ]
 then
@@ -41,7 +43,7 @@ else
 	git clone git@github.com:nvasilakis/immateriia.git .
 fi
 
-FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss" 
+FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss .conkyrc" 
 for i in $FILES; do 
         echo installing: ~/.vim/$i ~/$i
         rm -rf ~/$i
