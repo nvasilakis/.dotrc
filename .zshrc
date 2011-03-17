@@ -50,6 +50,12 @@ alias b='bg'
 alias ai='sudo apt-get install'
 alias vim='vim -p'
 alias -g prj='/media/w7/Projects/'
+alias -g cv='/media/w7/Projects/cv/git/cv/'
+alias gga='git add'
+alias ggc='git commit'
+alias ggs='git status'
+alias ggl='git log --graph'
+
 
 # Nice Exports
 export EDITOR="vim"

@@ -90,6 +90,10 @@ alias f='fg'
 alias b='bg'
 alias ai='sudo apt-get install'
 alias vim='vim -p'
+alias gga='git add'
+alias ggc='git commit'
+alias ggs='git status'
+alias ggl='git log --graph'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
