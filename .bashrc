@@ -94,6 +94,7 @@ alias gga='git add'
 alias ggc='git commit'
 alias ggs='git status'
 alias ggl='git log --graph'
+alias ggp='git push'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

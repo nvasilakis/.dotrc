@@ -54,6 +54,7 @@ alias -g cv='/media/w7/Projects/cv/git/cv/'
 alias gga='git add'
 alias ggc='git commit'
 alias ggs='git status'
+alias ggp='git push'
 alias ggl='git log --graph'
 
 
