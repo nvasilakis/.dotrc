@@ -25,6 +25,14 @@ setopt HISTIGNORESPACE
 setopt prompt_subst
 
 # End of lines added by compinstall
+
+# Edit the current line in the $EDITOR
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^X^e' edit-command-line
+
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line
 local _myhosts
 if [[ -f $HOME/.ssh/known_hosts ]]; then
   _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
