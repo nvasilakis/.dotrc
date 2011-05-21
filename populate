@@ -1,8 +1,7 @@
 #!/bin/sh
 
-######
-#ssh-keygen -t rsa -C email
-####
+ssh-keygen -t rsa -C `whoami`@`uname -n`
+ssh-add ~/.ssh/id_rsa
 
 echo "checking for requirements"
 if [ ! -f `which git` ] && [ ! -f `which curl` ]
