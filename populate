@@ -1,25 +1,32 @@
 #!/bin/sh
 
+# Function used for debugging output
+e {
+  echo "[Output] $1";
+}
+
+e generating key pair
 ssh-keygen -t rsa -C `whoami`@`uname -n`
+e adding pair to ssh agent
 ssh-add ~/.ssh/id_rsa
 
-echo "checking for requirements"
+e checking for requirements
 if [ ! -f `which git` ] && [ ! -f `which curl` ]
 then
 	if [ -x /usr/bin/apt-get ]
 	then
-		echo "installing requiements..."
+		e installing requiements...
 		sudo apt-get install git-core curl
 	else
-		echo "could not install pre-requisites, please install them manually"
-		echo "required: git curl"
+		e could not install pre-requisites, please install them manually
+		e required: git curl
 		exit
 	fi
 else
-	echo "requirements exist, proceeding to install phase..."
+	e requirements exist, proceeding to install phase...
 fi
 
-echo "Adding Configuration.."
+e Adding Configuration..
 git config --global user.name "nvasilakis"
 git config --global user.email "nikos.ailo@gmail.com"
 git config --global core.editor "vim"
@@ -32,12 +39,12 @@ git config --global difftool.prompt false
 
 if [ -d ~/.vim ]
 then
-        echo "updating dotfiles..."
+        e updating dotfiles...
         cd ~/.vim
 	git clone git@github.com:nvasilakis/immateriia.git .
 else
 	mkdir -p ~/.vim
-        echo "creating ~/.vim..."
+        e creating ~/.vim...
         cd ~/.vim
 	git clone git@github.com:nvasilakis/immateriia.git .
 fi
@@ -49,4 +56,8 @@ for i in $FILES; do
         ln -s ~/.vim/$i ~/$i
 done
 
-echo "installation complete"
+e installation complete
+e *****************************************
+e * update your remote servers by running:*
+e * ssh-copy-id -i user@remotehost.smt    *
+e *****************************************
