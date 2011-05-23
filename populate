@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Function used for debugging output
+# Function used for debugging output.
 function e {
   echo "[Output] $1";
 }
