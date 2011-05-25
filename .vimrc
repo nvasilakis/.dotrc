@@ -1,3 +1,6 @@
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 " """""""""""""""""""""""
 " TODO Add the SuperTab plugin and pathogen util
 " http://www.vim.org/scripts/script.php?script_id=1643
@@ -48,7 +51,7 @@ let g:miniBufExplSplitBelow=0
 "map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
 
 " WinManager mappings
-map <F2> :WMToggle<cr>
+map <F2> :WMToggle<cr><C-W><C-W>
 
 " NERDTree mappings
 map <F3> :NERDTreeToggle<CR>
@@ -57,7 +60,10 @@ map <F3> :NERDTreeToggle<CR>
 map <F4> :set spell!<CR>
 
 " Wrap
-map <F5> :set wrap!<CR>
+"map <F5> :set wrap!<CR>
+
+" Gundo
+nnoremap <F5> :GundoToggle<CR>
 
 " Window Mappings
 map <C-J> <C-W>j<C-W>10+
