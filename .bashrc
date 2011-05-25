@@ -95,6 +95,8 @@ alias ggc='git commit'
 alias ggs='git status'
 alias ggl='git log --graph'
 alias ggp='git push'
+alias mam='nv@150.140.90.86'
+alias etp='etp@150.140.91.13'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
