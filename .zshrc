@@ -31,8 +31,6 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^X^e' edit-command-line
 
-zle -N edit-command-line
-bindkey '^Xe' edit-command-line
 local _myhosts
 if [[ -f $HOME/.ssh/known_hosts ]]; then
   _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
