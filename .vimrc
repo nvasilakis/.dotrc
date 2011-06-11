@@ -73,11 +73,11 @@ map <C-H> <C-W>h<C-W>10+
 map <C-K> <C-W>k<C-W>10+
 
 " tab navigation like firefox
-:nmap <Tab> :tabnext<CR>
-:map <Tab> :tabnext<CR>
+:nmap <C-N> :tabnext<CR>
+:map <C-N> :tabnext<CR>
 " :imap <Tab> <Esc>:tabnext<CR>i
-:nmap <S-Tab> :tabprevious<CR>
-:map <S-Tab> :tabprevious<CR>
+:nmap <C-P> :tabprevious<CR>
+:map <C-P> :tabprevious<CR>
 " :imap <S-Tab> <Esc>:tabprevious<CR>i
 :nmap <C-T> :tabe
 :imap <C-T> <Esc>:tabe<CR>
