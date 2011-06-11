@@ -54,7 +54,7 @@ e 'creating ~/.vim...'
 	git clone git@github.com:nvasilakis/immateriia.git .
 fi
 
-FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss .conkyrc" 
+FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss .conkyrc .pythonrc"
 for i in $FILES; do 
         echo installing: ~/.vim/$i ~/$i
         rm -rf ~/$i
