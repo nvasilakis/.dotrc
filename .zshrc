@@ -67,6 +67,7 @@ alias -g etp='etp@150.140.91.13'
 
 # Nice Exports
 export EDITOR="vim"
+export PYTHONSTARTUP=~/.pythonrc
 
 ## simplex
 update_current_git_vars(){

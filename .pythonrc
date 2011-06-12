@@ -1,13 +1,12 @@
 # ~/.pythonrc
 # enable syntax completion
-
-#try:
-#    import readline
-#except ImportError:
-#    print "Module readline not available."
-#else:
-
-
+try:
+    import readline
+except ImportError:
+    print "Module readline not available."
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
 # Imports we need
 import sys
 import os
@@ -95,5 +94,4 @@ def my_displayhook(value):
         pprint.pprint(value)
 sys.displayhook = my_displayhook
 
-import rlcompleter
-readline.parse_and_bind("tab: complete")
+
