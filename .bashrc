@@ -115,6 +115,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 export EDITOR="vim"
+export PYTHONSTARTUP=~/.pythonrc
 
 function vcs_status {
   if type -p __git_ps1; then
