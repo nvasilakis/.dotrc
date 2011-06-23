@@ -1,0 +1,4 @@
+:colorscheme ubuntu
+
+" autoignore mode on certain pages
+:autocmd PageLoad .* :js modes.passAllKeys = /gmail\.com/.test(buffer.URL)
