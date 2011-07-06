@@ -64,6 +64,7 @@ alias ggp='git push'
 alias ggl='git log --graph'
 alias -g mam='nv@150.140.90.86'
 alias -g etp='etp@150.140.91.13'
+alias -g is='root@vasilak.is'
 
 # Nice Exports
 export EDITOR="vim"
