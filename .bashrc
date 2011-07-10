@@ -155,3 +155,5 @@ function parse_git_branch {
   [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
 }
 
+bind '"\C-xs": forward-search-history'
+bind '"\C-xr": reverse-search-history'
