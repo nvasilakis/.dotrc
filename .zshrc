@@ -12,6 +12,8 @@ compinit
 autoload -U promptinit
 promptinit
 autoload -U colors && colors
+# Add a variable for my custom killing widget!
+marking=0
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -31,6 +33,8 @@ setopt extended_history
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^X^e' edit-command-line
+#autoload bash-backward-kill-word
+#zle -N backward-kill-word bash-backward-kill-word
 
 local _myhosts
 if [[ -f $HOME/.ssh/known_hosts ]]; then
@@ -181,9 +185,37 @@ parse_git_branch() {
     if [[ ${git_status} =~ ${pattern} ]]; then
       branch=${match[1]}
       echo -n "(${branch}${state})"
-      echo -n "WayOutWest"
     fi
 }
+
+function send-break {
+  marking=0
+  zle .send-break
+}
+zle -N send-break
+
+function accept-line {
+  marking=0
+  zle .accept-line
+}
+zle -N accept-line
+
+function set-mark-command {
+  marking=1
+  zle .set-mark-command
+}
+zle -N set-mark-command
+
+function backward-kill-word {
+  if (($marking == 1 ))
+  then
+    zle .kill-region
+  else
+    zle .backward-kill-word
+  fi
+  marking=0
+}
+zle -N backward-kill-word
 # parse_git_branch() {
 #     in_wd="$(git rev-parse --is-inside-work-tree 2>/dev/null)" || return
 #     test "$in_wd" = true || return
