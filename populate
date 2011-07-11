@@ -54,6 +54,9 @@ e 'creating ~/.vim...'
 	git clone git@github.com:nvasilakis/immateriia.git .
 fi
 
+e 'updating submodules'
+git submodule update --init
+
 FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss .conkyrc .pythonrc"
 for i in $FILES; do 
         echo installing: ~/.vim/$i ~/$i
