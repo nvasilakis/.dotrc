@@ -25,8 +25,7 @@ setopt HISTIGNORESPACE
 setopt prompt_subst
 #setopt auto_cd
 #setopt extended_glob
-
-# End of lines added by compinstall
+setopt extended_history
 
 # Edit the current line in the $EDITOR
 autoload edit-command-line
