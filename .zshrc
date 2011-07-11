@@ -23,6 +23,7 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 setopt CORRECTALL
 setopt HISTIGNORESPACE
 setopt prompt_subst
+setopt extended_history
 
 # End of lines added by compinstall
 
