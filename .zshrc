@@ -23,6 +23,7 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 setopt CORRECTALL
 setopt HISTIGNORESPACE
 setopt prompt_subst
+setopt extended_history
 
 # End of lines added by compinstall
 
@@ -64,6 +65,7 @@ alias ggp='git push'
 alias ggl='git log --graph'
 alias -g mam='nv@150.140.90.86'
 alias -g etp='etp@150.140.91.13'
+alias -g is='root@vasilak.is'
 
 # Nice Exports
 export EDITOR="vim"
