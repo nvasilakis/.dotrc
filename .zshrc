@@ -24,6 +24,7 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 setopt CORRECTALL
 setopt HISTIGNORESPACE
+setopt HISTIGNOREDUPS
 setopt prompt_subst
 #setopt auto_cd
 #setopt extended_glob
@@ -51,7 +52,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# some more ls aliases
+# some more aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -187,6 +188,8 @@ parse_git_branch() {
       echo -n "(${branch}${state})"
     fi
 }
+
+# Functions for killing text
 
 function send-break {
   marking=0
