@@ -89,11 +89,10 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 zstyle ':vcs_info:git*:*' get-revision true
 zstyle ':vcs_info:git*:*' check-for-changes true
 
-zstyle ':vcs_info:git:*' actionformats "(%s|%a) %12.12i %c%u %b%m"
-#zstyle ':vcs_info:git:*' formats       '[±|%b]'
-zstyle ':vcs_info:git*' formats "(%s) %12.12i %c%u %b%m"
+zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
+zstyle ':vcs_info:git*' formats "[±|%8.8i %b %{${fg[green]}%}%c%{${fg[red]}%}%u%{${fg[white]}%}%m]"
 
-zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
+zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-st 
 precmd () { vcs_info }
 
 # Show remote ref name and number of commits ahead-of or behind
@@ -116,7 +115,7 @@ function +vi-git-st() {
         behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
         (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
 
-        hook_com[branch]="${hook_com[branch]} [${remote} ${(j:/:)gitstatus}]"
+        hook_com[misc]="${(j:/:)gitstatus}${hook_com[misc]}"
     fi
 }
 
