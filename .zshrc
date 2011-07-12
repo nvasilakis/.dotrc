@@ -77,21 +77,20 @@ export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 
 # vcs_info
-# ☤ for mercurial
 # ☡ ∫ S  for subversion
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable hg git bzr svn
+zstyle ':vcs_info:(hg*|git*|bzr):*' get-revision true
+zstyle ':vcs_info:(hg*|git*|bzr):*' check-for-changes true
 zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats       '%F{5}[%f%s%F{5}%F{3}|%F{5}%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' unstagedstr "✘"
+zstyle ':vcs_info:*' stagedstr "✔"
 
 # ± for git
-zstyle ':vcs_info:git*:*' get-revision true
-zstyle ':vcs_info:git*:*' check-for-changes true
-
 zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
 zstyle ':vcs_info:git*' formats "[±|%8.8i %b %{${fg[green]}%}%c%{${fg[red]}%}%u%{${fg[white]}%}%m]"
-
 zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-st 
 precmd () { vcs_info }
 
@@ -128,6 +127,8 @@ function +vi-git-stash() {
         hook_com[misc]+=" (${stashes} stashed)"
     fi
 }
+
+# ☤ for mercurial
 
 ## simplex
 update_current_git_vars(){
