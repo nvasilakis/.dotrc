@@ -128,7 +128,38 @@ function +vi-git-stash() {
     fi
 }
 
-# ☤ for mercurial
+# ☤☿ for mercurial
+zstyle ':vcs_info:hg:*' actionformats "[☿ %a|%8.8i %b %c%u%m]"
+zstyle ':vcs_info:hg*' formats "[☿|%b %{${fg[green]}%}%c%{${fg[red]}%}%u%{${fg[white]}%}%m]"
+zstyle ':vcs_info:hg*:*' get-mq true
+zstyle ':vcs_info:hg*:*' get-unapplied true
+#zstyle ':vcs_info:hg*:*' patch-format "mq(%g):%n/%c%p"
+#zstyle ':vcs_info:hg*:*' nopatch-format "mq(%g):%n/%c%p"
+
+zstyle ':vcs_info:hg*:*' hgrevformat "%8.8h/%r" # only show local rev.
+zstyle ':vcs_info:hg*:*' branchformat "%b %r"
+#zstyle ':vcs_info:hg*+set-hgrev-format:*' hooks hg-hashfallback
+#zstyle ':vcs_info:hg*+set-message:*' hooks mq-vcs
+
+function +vi-hg-hashfallback() {
+    if [[ -z ${hook_com[localrev]} ]] ; then
+        local -a parents
+
+        parents=( ${(s:+:)hook_com[hash]} )
+        parents=( ${(@r:12:)parents} )
+        hook_com[rev-replace]="${(j:+:)parents}"
+
+        ret=1
+    fi
+}
+
+### Show when mq itself is under version control
+function +vi-mq-vcs() {
+    # if [[ -d ${hook_com[base]}/.hg/patches/.hg ]]; then
+        # hook_com[hg-mqpatch-string]="mq:${hook_com[hg-mqpatch-string]}"
+    # fi
+}
+
 
 ## simplex
 update_current_git_vars(){
