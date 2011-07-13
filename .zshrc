@@ -77,7 +77,9 @@ export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 
 # vcs_info
-# ☡ ∫ S  for subversion
+# ☡ ∫ S ⨌  for subversion
+# ❄ ✺ for Darcs
+#  for CVS
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable hg git bzr svn
 zstyle ':vcs_info:(hg*|git*|bzr):*' get-revision true
@@ -90,9 +92,11 @@ zstyle ':vcs_info:*' stagedstr "✔"
 
 # ± for git
 zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
-zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u%{${fg[white]}%}%m]"
+zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u%{$reset_color%}%m]"
 zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-st 
-precmd () { vcs_info }
+precmd () { 
+  vcs_info 
+}
 
 # Show remote ref name and number of commits ahead-of or behind
 function +vi-git-st() {
@@ -130,7 +134,7 @@ function +vi-git-stash() {
 
 # ☤☿ for mercurial
 zstyle ':vcs_info:hg:*' actionformats "[☿ %a|%8.8i %b %c%u%m]"
-zstyle ':vcs_info:hg*' formats "[☿|%b %{${fg[green]}%}%c%{${fg[red]}%}%u%{${fg[white]}%}%m]"
+zstyle ':vcs_info:hg*' formats "[☿|%b %{${fg[green]}%}%c%{${fg[red]}%}%u%{$reset_color%}%m]"
 zstyle ':vcs_info:hg*:*' get-mq true
 zstyle ':vcs_info:hg*:*' get-unapplied true
 #zstyle ':vcs_info:hg*:*' patch-format "mq(%g):%n/%c%p"
@@ -237,6 +241,19 @@ if [ -n "$__EXECUTED_GIT_COMMAND" ]; then
 fi
 }
 
+ena(){
+  #if [[ $(echo '%j') == "0" ]] ; then
+  if $(jobs | grep -v '^$' &> /dev/null) ; then
+    #echo '[%{$bold_color$fg[blue]%}%j%{$reset_color%}]'
+    echo '[%j]'
+  fi
+#  if [[%j == 0]]; then
+#    echo %j ena 
+#  fi
+}
+#  number=$(jobs)
+#  if [[ $number == "" ]]; then
+# .ena.duo' #%{$fg[blue]%}[%j])
 
 typeset -ga preexec_functions
 typeset -ga precmd_functions
@@ -249,7 +266,7 @@ chpwd_functions+='chpwd_update_git_vars'
 # PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
 PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%#'
 #RPS1=$'$(prompt_git_info)'
-RPS1=$'${vcs_info_msg_0_}'
+RPS1=$'${vcs_info_msg_0_}$(ena)'  #%($(ena).[%{$bold_color$fg[blue]%}%j%{$reset_color%}].)
 PS4=$'+%N:%i:%_>'
 
 # PROMPT=%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:$(prompt_git_info)%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
