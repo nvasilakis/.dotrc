@@ -2,6 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+DIRSTACKSIZE=10
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -29,6 +30,8 @@ setopt prompt_subst
 #setopt auto_cd
 #setopt extended_glob
 setopt extended_history
+# directory stack
+setopt autopushd auto_cd #pushdminus pushdsilent pushdtohome
 
 # Edit the current line in the $EDITOR
 autoload edit-command-line
@@ -71,6 +74,8 @@ alias ggl='git log --graph'
 alias -g mam='nv@150.140.90.86'
 alias -g etp='etp@150.140.91.13'
 alias -g is='root@vasilak.is'
+alias dh='dirs -v'
+alias go='dirs -v ; echo -n "..>" ; read n ; cd -$n'
 
 # Nice Exports
 export EDITOR="vim"
