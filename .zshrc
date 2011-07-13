@@ -90,7 +90,7 @@ zstyle ':vcs_info:*' stagedstr "✔"
 
 # ± for git
 zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
-zstyle ':vcs_info:git*' formats "[±|%8.8i %b %{${fg[green]}%}%c%{${fg[red]}%}%u%{${fg[white]}%}%m]"
+zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u%{${fg[white]}%}%m]"
 zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-st 
 precmd () { vcs_info }
 
