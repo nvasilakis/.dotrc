@@ -22,12 +22,15 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+setopt complete_in_word
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 #zstyle ':completion:*:default' menu 'select=0'
 zstyle ':completion:*:windows' menu on=0
-zstyle ':completion:::::' completer _complete _approximate
+zstyle ':completion:::::' completer _complete _prefix _approximate
+zstyle ':completion::prefix:::' completer _complete 
+zstyle ':completion:*:prefix:*' add-space true
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) )'
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
