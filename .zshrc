@@ -27,6 +27,12 @@ setopt CORRECTALL
 setopt HISTIGNORESPACE
 setopt HISTIGNOREDUPS
 setopt prompt_subst
+# set option for ext. globbing:
+# ^ - negated matches (not at the begining of a word)
+# ~ - pattern exceptions
+# # - multiple matches (not at the begining of a word)
+setopt extended_glob
+
 #setopt auto_cd
 #setopt extended_glob
 setopt extended_history
