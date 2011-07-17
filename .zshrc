@@ -15,6 +15,7 @@ promptinit
 autoload -U colors && colors
 # Add a variable for my custom killing widget!
 marking=0
+zmodload zsh/complist
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -23,21 +24,30 @@ fi
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*:default' menu 'select=0'
+zstyle ':completion:*:windows' menu on=0
+
+# Setting options
+# Advanced spell-checking
 setopt CORRECTALL
+# Do not append commands that start with space in history stack
 setopt HISTIGNORESPACE
+# Ignore duplucate history entries
 setopt HISTIGNOREDUPS
-setopt prompt_subst
+# Include variables and other usefull stuff in the prompt
+setopt PROMPTSUBST
 # set option for ext. globbing:
 # ^ - negated matches (not at the begining of a word)
 # ~ - pattern exceptions
 # # - multiple matches (not at the begining of a word)
-setopt extended_glob
-
-#setopt auto_cd
-#setopt extended_glob
-setopt extended_history
-# directory stack
-setopt autopushd auto_cd #pushdminus pushdsilent pushdtohome
+setopt EXTENDEDGLOB
+# Storing extra history information such as time etc
+setopt EXTENDEDHISTORY
+# Make use of the directory stack 
+setopt AUTOPUSHD #pushdminus pushdsilent pushdtohome
+# No need of the cd command
+setopt AUTOCD 
 
 # Edit the current line in the $EDITOR
 autoload edit-command-line
@@ -46,12 +56,14 @@ bindkey '^X^e' edit-command-line
 #autoload bash-backward-kill-word
 #zle -N backward-kill-word bash-backward-kill-word
 
+bindkey '\C-I' reverse-menu-complete
+
 local _myhosts
 if [[ -f $HOME/.ssh/known_hosts ]]; then
   _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
   zstyle ':completion:*' hosts $_myhosts
 fi
-zstyle ':completion:*:kill:*:processes' command "ps x"
+zstyle ':completion:*:kill:*:processes' command "ps ux"
 
 # Handy Alias
 alias ls='ls --color=auto'
