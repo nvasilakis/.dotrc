@@ -34,6 +34,10 @@ zstyle ':completion:*:prefix:*' add-space true
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) )'
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*'
+# tab completion for PID
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
+
 
 # Setting options
 # Advanced spell-checking
@@ -72,7 +76,7 @@ if [[ -f $HOME/.ssh/known_hosts ]]; then
   _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
   zstyle ':completion:*' hosts $_myhosts
 fi
-zstyle ':completion:*:kill:*:processes' command "ps ux"
+zstyle ':completion:*:kill:*:processes' command "ps u"
 
 # Handy Alias
 alias ls='ls --color=auto'
