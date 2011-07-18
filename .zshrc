@@ -33,6 +33,7 @@ zstyle ':completion::prefix:::' completer _complete
 zstyle ':completion:*:prefix:*' add-space true
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) )'
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*'
 
 # Setting options
 # Advanced spell-checking
