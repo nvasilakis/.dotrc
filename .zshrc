@@ -63,7 +63,7 @@ bindkey '^X^e' edit-command-line
 #autoload bash-backward-kill-word
 #zle -N backward-kill-word bash-backward-kill-word
 
-bindkey '\C-I' reverse-menu-complete
+#bindkey '\C-I' reverse-menu-complete
 
 local _myhosts
 if [[ -f $HOME/.ssh/known_hosts ]]; then
