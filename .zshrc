@@ -64,7 +64,7 @@ zle -N edit-command-line
 bindkey '^X^e' edit-command-line
 #autoload bash-backward-kill-word
 #zle -N backward-kill-word bash-backward-kill-word
-
+bindkey "\e[Z" reverse-menu-complete # Shift+Tab
 #bindkey '\C-I' reverse-menu-complete
 
 local _myhosts
