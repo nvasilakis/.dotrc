@@ -55,6 +55,8 @@ setopt EXTENDEDHISTORY
 setopt AUTOPUSHD #pushdminus pushdsilent pushdtohome
 # No need of the cd command
 setopt AUTOCD 
+# Option to complete aliases also
+setopt COMPLETEALIASES
 
 # Edit the current line in the $EDITOR
 autoload edit-command-line
