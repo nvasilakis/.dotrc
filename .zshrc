@@ -124,7 +124,7 @@ zstyle ':vcs_info:(hg*|git*|bzr):*' get-revision true
 zstyle ':vcs_info:(hg*|git*|bzr):*' check-for-changes true
 zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats       '%F{5}[%f%s%F{5}%F{3}|%F{5}%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:(svk|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 zstyle ':vcs_info:*' unstagedstr "✘"
 zstyle ':vcs_info:*' stagedstr "✔"
 
@@ -200,6 +200,41 @@ function +vi-mq-vcs() {
     # if [[ -d ${hook_com[base]}/.hg/patches/.hg ]]; then
         # hook_com[hg-mqpatch-string]="mq:${hook_com[hg-mqpatch-string]}"
     # fi
+}
+
+# ☡ ∫ S ⨌  for subversion
+zstyle ':vcs_info:svn:*' actionformats "[S %a|%8.8i %b %c%u%m]"
+zstyle ':vcs_info:svn*' formats "[S|%b %{${fg[green]}%}%c %{${fg[red]}%}%u %{$reset_color%}%m]"
+zstyle ':vcs_info:svn*:*' branchformat "%b %r"
+zstyle ':vcs_info:svn*+set-message:*' hooks svn-info
+
+# Show info regarding subversion
+function +vi-svn-info() {
+    svn_status="$(svn status 2> /dev/null | grep '^A[ ]*.*' )"
+    pattern="^A[ ]*.*"
+    #local -a gitstatus
+
+    if [ $svn_status ]; then
+      hook_com[misc]="A"
+    fi
+
+#    # Are we on a remote-tracking branch?
+#    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+#        --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+#
+#    if [[ -n ${remote} ]] ; then
+#        # for git prior to 1.7
+#        # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
+#        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+#        (( $ahead )) && gitstatus+=( "${c3}+${ahead}${c2}" )
+#
+#        # for git prior to 1.7
+#        # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
+#        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+#        (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
+#
+#        hook_com[misc]="${(j:/:)gitstatus}${hook_com[misc]}"
+#    fi
 }
 
 
