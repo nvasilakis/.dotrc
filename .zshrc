@@ -204,19 +204,38 @@ function +vi-mq-vcs() {
 
 # ☡ ∫ S ⨌  for subversion
 zstyle ':vcs_info:svn:*' actionformats "[S %a|%8.8i %b %c%u%m]"
-zstyle ':vcs_info:svn*' formats "[S|%b %{${fg[green]}%}%c %{${fg[red]}%}%u %{$reset_color%}%m]"
+zstyle ':vcs_info:svn*' formats "[S|%b %{${fg[green]}%} %m%{$reset_color%}]"
 zstyle ':vcs_info:svn*:*' branchformat "%b %r"
 zstyle ':vcs_info:svn*+set-message:*' hooks svn-info
 
 # Show info regarding subversion
 function +vi-svn-info() {
-    svn_status="$(svn status 2> /dev/null | grep '^A[ ]*.*' )"
+    svn_status="$(svn status 2> /dev/null )"
+    svn_add="$( echo ${svn_status} | grep '^A[ ]*.*' )"
+    svn_modify="$(echo ${svn_status} | grep '^M[ ]*.*' )"
+    svn_under="$(echo ${svn_status}  | grep '^\?[ ]*.*' )"
+    svn_deletion="$(echo ${svn_status} | grep '^D[ ]*.*' )"
+    svn_conflict="$(echo ${svn_status} | grep '^C[ ]*.*' )"
     pattern="^A[ ]*.*"
     #local -a gitstatus
 
-    if [ $svn_status ]; then
-      hook_com[misc]="A"
+    hook_com[misc]=''
+    if [ $svn_add ]; then
+      hook_com[misc]+="A"
     fi
+    if [ $svn_modify ]; then
+      hook_com[misc]+="M"
+    fi
+    if [ $svn_under ]; then
+      hook_com[misc]+="?"
+    fi
+    if [ $svn_deletion ]; then
+      hook_com[misc]+="D"
+    fi
+    if [ $svn_conflict ]; then
+      hook_com[misc]+="C"
+    fi
+
 
 #    # Are we on a remote-tracking branch?
 #    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
