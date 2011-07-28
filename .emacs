@@ -10,8 +10,14 @@
 (setq ac-modes (append ac-modes '(foo-mode)))
 (add-hook 'foo-mode-hook 'ac-l-setup)
 
-;(require ’tex-site)
+; Yasnipper Tricks
+(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/plugins/yasnippet/snippets")
 
+;(require ’tex-site)
+; LaTeX Tricks
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq TeX-save-query nil)
