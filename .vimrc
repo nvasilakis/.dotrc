@@ -111,6 +111,9 @@ inoremap <expr> <C-Space> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pu
 inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
 " map <Leader>c ,c<space>
 
+" latex plugin
+let g:tex_flavor='latex'
+
 " Fuzzy Finder 
 map <Leader>tb :FufBuffer<CR>
 map <Leader>tf :FufFile<CR>
