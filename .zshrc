@@ -71,12 +71,43 @@ bindkey '^X^e' edit-command-line
 bindkey "\e[Z" reverse-menu-complete # Shift+Tab
 #bindkey '\C-I' reverse-menu-complete
 
-local _myhosts
-if [[ -f $HOME/.ssh/known_hosts ]]; then
-  _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-  zstyle ':completion:*' hosts $_myhosts
-fi
+#local _myhosts
+#if [[ -f $HOME/.ssh/known_hosts ]]; then
+#  _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
+#  zstyle ':completion:*' hosts $_myhosts
+#fi
+
 zstyle ':completion:*:kill:*:processes' command "ps u"
+
+
+if [[ "$ZSH_VERSION_TYPE" == 'new' ]]; then
+  : ${(A)_etc_hosts:=${(s: :)${(ps:\t:)${${(f)~~"$(</etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}}
+else
+  # Older versions don't like the above cruft
+  _etc_hosts=()
+fi
+hosts=(
+	"$_etc_hosts[@]"
+	localhost
+  150.140.90.86
+  150.140.91.13 
+  vasilak.is 
+  diogenis.ceid.upatras.gr 
+  zenon.ceid.upatras.gr 
+)
+zstyle ':completion:*' hosts $hosts
+my_accounts=(
+	root@localhost
+  nv@150.140.90.86
+  etp@150.140.91.13 
+  root@vasilak.is 
+  basilakn@diogenis.ceid.upatras.gr 
+  basilakn@zenon.ceid.upatras.gr 
+)
+zstyle ':completion:*:my-accounts' users-hosts $my_accounts
+# tab completion for ssh
+zstyle ':completion:*:*:ssh:*' menu yes select
+zstyle ':completion:*:ssh:*' force-list always
 
 # Handy Alias
 alias ls='ls --color=auto'
