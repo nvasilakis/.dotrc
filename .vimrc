@@ -158,3 +158,13 @@ function! SummarizeTabs()
   endtry
 endfunction
 
+" Return to last edit position 
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+cmap w!! w !sudo tee >/dev/null %
+map ZS :w!!<CR>
+" do not forget custom file commands
+" :autocmd bufenter *.tex map <F1> :!latex %<CR>
