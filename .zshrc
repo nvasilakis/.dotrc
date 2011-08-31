@@ -94,6 +94,7 @@ hosts=(
   vasilak.is 
   diogenis.ceid.upatras.gr 
   zenon.ceid.upatras.gr 
+  eniac.seas.upenn.edu
 )
 zstyle ':completion:*' hosts $hosts
 my_accounts=(
@@ -103,6 +104,7 @@ my_accounts=(
   root@vasilak.is 
   basilakn@diogenis.ceid.upatras.gr 
   basilakn@zenon.ceid.upatras.gr 
+  nvas@eniac.seas.upenn.edu
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
