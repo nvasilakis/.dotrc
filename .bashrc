@@ -117,6 +117,7 @@ fi
 
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
+export CDPATH="/media/w7/Projects/"
 
 function vcs_status {
   if type -p __git_ps1; then

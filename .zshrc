@@ -147,7 +147,7 @@ alias go='dirs -v ; echo -n "..>" ; read n ; cd -$n'
 # Nice Exports
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
-
+export CDPATH="/media/w7/Projects/"
 # vcs_info
 # ☡ ∫ S ⨌  for subversion
 # ❄ ✺ for Darcs
