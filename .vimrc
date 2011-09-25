@@ -115,7 +115,7 @@ inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
 let g:tex_flavor='latex'
 
 " Fuzzy Finder 
-map <Leader>tb :FufBuffer<CR>
+map <C-e> :FufBuffer<CR>
 map <Leader>tf :FufFile<CR>
 map <Leader>td :FufDir<CR>
 map <Leader>tmf :FufMruFile<CR>
