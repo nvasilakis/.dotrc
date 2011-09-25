@@ -118,6 +118,11 @@ fi
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 export CDPATH="/media/w7/Projects/"
+# Adding export for KLEE in order to run
+# *.cde files only by invoking their name
+if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
+  export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
+fi
 
 function vcs_status {
   if type -p __git_ps1; then
