@@ -168,4 +168,3 @@ bind '"\C-xr": reverse-search-history'
 bind '"\C-x\C-x": exchange-point-and-mark'
 bind '"\M-w": copy-region-as-kill'
 
-screen

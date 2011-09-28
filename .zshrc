@@ -70,6 +70,7 @@ bindkey '^X^e' edit-command-line
 #zle -N backward-kill-word bash-backward-kill-word
 bindkey "\e[Z" reverse-menu-complete # Shift+Tab
 #bindkey '\C-I' reverse-menu-complete
+bindkey \^U backward-kill-line
 
 #local _myhosts
 #if [[ -f $HOME/.ssh/known_hosts ]]; then
@@ -77,7 +78,7 @@ bindkey "\e[Z" reverse-menu-complete # Shift+Tab
 #  zstyle ':completion:*' hosts $_myhosts
 #fi
 
-zstyle ':completion:*:kill:*:processes' command "ps u"
+zstyle ':completion:*:kill:*:processes' command "ps aux"
 
 
 if [[ "$ZSH_VERSION_TYPE" == 'new' ]]; then
@@ -150,9 +151,9 @@ export PYTHONSTARTUP=~/.pythonrc
 export CDPATH="/media/w7/Projects/"
 # Adding export for KLEE in order to run
 # *.cde files only by invoking their name
-if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
+#if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
   export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
-fi
+#fi
 
 
 # vcs_info
