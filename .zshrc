@@ -152,9 +152,12 @@ export CDPATH="/media/w7/Projects/"
 # Adding export for KLEE in order to run
 # *.cde files only by invoking their name
 #if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
-  export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
-#fi
-
+#  export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
+#
+# Adding export for KLEE in order to run
+#export PATH=/media/w7/Projects/klee-cde-package/bin:$PATH;
+#export PATH=/media/w7/Projects/blast-2.5_linux-bin-x86:$PATH;
+#export PATH=/media/w7/Projects/cvc-linux-1.0a/bin:$PATH;
 
 # vcs_info
 # ☡ ∫ S ⨌  for subversion
