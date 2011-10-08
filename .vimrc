@@ -26,6 +26,8 @@ call pathogen#helptags()
 :set smartcase                   " case sensitive when uc present
 :set wildmenu                    " show list instead of just completing
 :set wildmode=list:longest,full  " comand <Tab> completion, list matches,
+" Using , as a map leader -- Define ",," to equal a current ,!
+:let mapleader = ","
 
 :helptags ~/.vim/doc
 " snipMate Plugin
@@ -115,8 +117,8 @@ inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
 let g:tex_flavor='latex'
 
 " Fuzzy Finder 
-map <C-e> :FufBuffer<CR>
-map <Leader>tf :FufFile<CR>
+map <Leader>e :FufBuffer<CR>
+map <Leader>f :FufFile<CR>
 map <Leader>td :FufDir<CR>
 map <Leader>tmf :FufMruFile<CR>
 map <Leader>tm :FufMruCmd<CR>
