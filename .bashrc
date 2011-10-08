@@ -120,6 +120,7 @@ export PYTHONSTARTUP=~/.pythonrc
 export CDPATH="/media/w7/Projects/"
 # Adding export for KLEE in order to run
 # *.cde files only by invoking their name
+# TODO: ADD a lib folder in programs
 if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
   export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
 fi

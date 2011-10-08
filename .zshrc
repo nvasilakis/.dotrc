@@ -152,6 +152,7 @@ export CDPATH="/media/w7/Projects/"
 # Adding export for KLEE in order to run
 # *.cde files only by invoking their name
 #if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
+
 #  export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
 #
 # Adding export for KLEE in order to run
