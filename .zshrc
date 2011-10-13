@@ -66,11 +66,12 @@ setopt COMPLETEALIASES
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^X^e' edit-command-line
-#autoload bash-backward-kill-word
-#zle -N backward-kill-word bash-backward-kill-word
+autoload bash-backward-kill-word
+zle -N backward-kill-word bash-backward-kill-word
 bindkey "\e[Z" reverse-menu-complete # Shift+Tab
 #bindkey '\C-I' reverse-menu-complete
 bindkey \^U backward-kill-line
+zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 
 #local _myhosts
 #if [[ -f $HOME/.ssh/known_hosts ]]; then
@@ -453,12 +454,15 @@ function set-mark-command {
 zle -N set-mark-command
 
 function backward-kill-word {
+  RESTORE=$WORDCHARS
+  WORDCHARS=${WORDCHARS//\/}
   if (($marking == 1 ))
   then
     zle .kill-region
   else
     zle .backward-kill-word
   fi
+  WORDCHARS=$RESTORE
   marking=0
 }
 zle -N backward-kill-word
