@@ -31,7 +31,7 @@ call pathogen#helptags()
 
 :helptags ~/.vim/doc
 " snipMate Plugin
-:filetype plugin on
+:filetype plugin indent on
 
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
