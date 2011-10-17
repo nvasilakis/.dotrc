@@ -67,6 +67,15 @@ map <F4> :set spell!<CR>
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
 
+" Ctags
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_WinWidth = 40
+map <F6> :TlistToggle<cr><C-h>
+map <F7> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" TODO
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
+
 " Window Mappings
 map <C-J> <C-W>j<C-W>10+
 map <C-K> <C-W>k<C-W>10+
@@ -74,15 +83,15 @@ map <C-L> <C-W>l<C-W>10+
 map <C-H> <C-W>h<C-W>10+
 map <C-K> <C-W>k<C-W>10+
 
-" tab navigation like firefox
+" tab navigation a la firefox
 :nmap <C-N> :tabnext<CR>
 :map <C-N> :tabnext<CR>
 " :imap <Tab> <Esc>:tabnext<CR>i
 :nmap <C-P> :tabprevious<CR>
 :map <C-P> :tabprevious<CR>
 " :imap <S-Tab> <Esc>:tabprevious<CR>i
-:nmap <C-T> :tabe
-:imap <C-T> <Esc>:tabe<CR>
+" :nmap <C-T> :tabe
+" :imap <C-T> <Esc>:tabe<CR>
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -119,17 +128,17 @@ let g:tex_flavor='latex'
 " Fuzzy Finder 
 map <Leader>e :FufBuffer<CR>
 map <Leader>f :FufFile<CR>
-map <Leader>td :FufDir<CR>
-map <Leader>tmf :FufMruFile<CR>
-map <Leader>tm :FufMruCmd<CR>
-map <Leader>tb :FufBookmark<CR>
-map <Leader>tt :FufTag<CR>
-map <Leader>ttf :FufTaggedFile<CR>
-map <Leader>tj :FufJumpList<CR>
-map <Leader>tc :FufChangeList<CR>
-map <Leader>tq :FufQuickfix<CR>
-map <Leader>tl :FufLine<CR>
-map <Leader>th :FufHelp<CR>
+map <Leader>d :FufDir<CR>
+map <Leader>mf :FufMruFile<CR>
+map <Leader>m :FufMruCmd<CR>
+map <Leader>b :FufBookmark<CR>
+map <Leader>t :FufTag<CR>
+map <Leader>rf :FufTaggedFile<CR>
+map <Leader>j :FufJumpList<CR>
+map <Leader>c :FufChangeList<CR>
+map <Leader>q :FufQuickfix<CR>
+map <Leader>l :FufLine<CR>
+map <Leader>h :FufHelp<CR>
 
 
 " Set tabstop, softtabstop and shiftwidth to the same value
