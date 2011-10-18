@@ -71,7 +71,6 @@ zle -N backward-kill-word bash-backward-kill-word
 bindkey "\e[Z" reverse-menu-complete # Shift+Tab
 #bindkey '\C-I' reverse-menu-complete
 bindkey \^U backward-kill-line
-zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 
 #local _myhosts
 #if [[ -f $HOME/.ssh/known_hosts ]]; then
