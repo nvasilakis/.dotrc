@@ -1,3 +1,4 @@
 bundle/gundo/doc/tags
 .netrwhist
 bundle/vim-latex/ftplugin/latex-suite/*
+*.swp
