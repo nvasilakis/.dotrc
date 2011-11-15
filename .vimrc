@@ -96,6 +96,9 @@ map <C-S-J> a<CR><Esc>k$
 " :nmap <C-T> :tabe
 " :imap <C-T> <Esc>:tabe<CR>
 
+" AWESOME IDEA!
+:imap <F1> <Esc>a
+
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
