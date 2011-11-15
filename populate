@@ -41,6 +41,7 @@ git config --global color.branch "auto"
 git config --global color.interactive "auto"
 git config --global diff.tool vimdiff
 git config --global difftool.prompt false
+git config --global core.excludesfile ~/.vim/.gitignore
 
 if [ -d ~/.vim ]
 then
