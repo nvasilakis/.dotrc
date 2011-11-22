@@ -96,6 +96,7 @@ hosts=(
   diogenis.ceid.upatras.gr 
   zenon.ceid.upatras.gr 
   eniac.seas.upenn.edu
+  biglab.seas.upenn.edu
 )
 zstyle ':completion:*' hosts $hosts
 my_accounts=(
@@ -106,6 +107,7 @@ my_accounts=(
   basilakn@diogenis.ceid.upatras.gr 
   basilakn@zenon.ceid.upatras.gr 
   nvas@eniac.seas.upenn.edu
+  nvas@biglab.seas.upenn.edu
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
@@ -145,6 +147,7 @@ alias -g diogenis='basilakn@diogenis.ceid.upatras.gr'
 alias -g zenon='basilakn@zenon.ceid.upatras.gr'
 alias dh='dirs -v'
 # I shoud add functionality for go seas, ceid, rdesktop
+# if [[ $n -eq 'seas']]; then echo "ssh seas.." fi;
 alias go='dirs -v ; echo -n "..>" ; read n ; cd -$n'
 alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 
