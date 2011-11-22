@@ -53,6 +53,9 @@ RED='\e[0;31m'
 GREEN='\e[0;32m'
 RD='\033[0;31m'
 
+echo "maybe enable screen?"
+echo
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:$(parse_git_branch)\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1='$(test_ena)'${RED}'\$'
