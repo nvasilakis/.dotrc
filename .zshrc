@@ -144,7 +144,9 @@ alias -g is='root@vasilak.is'
 alias -g diogenis='basilakn@diogenis.ceid.upatras.gr'
 alias -g zenon='basilakn@zenon.ceid.upatras.gr'
 alias dh='dirs -v'
+# I shoud add functionality for go seas, ceid, rdesktop
 alias go='dirs -v ; echo -n "..>" ; read n ; cd -$n'
+alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 
 # Nice Exports
 export EDITOR="vim"
