@@ -155,6 +155,9 @@ alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 export CDPATH="/media/w7/Projects/"
+if [[ `hostname` == 'nv' ]]; then 
+  export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
+fi;
 # Adding export for KLEE in order to run
 # *.cde files only by invoking their name
 #if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
