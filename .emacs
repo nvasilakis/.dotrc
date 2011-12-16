@@ -1,3 +1,4 @@
+;; ai auctex
 (add-to-list 'load-path "~/.emacs.d/")
 ;;load the auto complete path here, if you havent done it
 (require 'auto-complete-config)
