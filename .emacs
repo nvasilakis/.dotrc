@@ -20,6 +20,9 @@
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/plugins/yasnippet/snippets")
 
+;; Some nice snippets https://github.com/rejeep/yasnippets
+;;(add-hook 'shell-script-mode-hook'(lambda ()(yas/minor-mode-on)))
+
 ;(require ’tex-site)
 ; LaTeX Tricks
 (setq TeX-auto-save t)
