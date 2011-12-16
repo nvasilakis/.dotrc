@@ -5,6 +5,9 @@
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 
+;;where to keep backup files
+(setq backup-directory-alist `(("." . "~/.vim/.saves")))
+
 (require 'auto-complete-latex)
 
 ; necessary, add the following into your init file.
