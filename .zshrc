@@ -126,7 +126,7 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
-alias j='jobs'
+alias j='jobs -l'
 alias f='fg'
 alias b='bg'
 alias ai='sudo apt-get install'
@@ -148,7 +148,7 @@ alias -g zenon='basilakn@zenon.ceid.upatras.gr'
 alias dh='dirs -v'
 # I shoud add functionality for go seas, ceid, rdesktop
 # if [[ $n -eq 'seas']]; then echo "ssh seas.." fi;
-alias go='dirs -v ; echo -n "..>" ; read n ; cd -$n'
+alias go='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
 alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 
 # Nice Exports
@@ -474,6 +474,35 @@ function backward-kill-word {
   marking=0
 }
 zle -N backward-kill-word
+
+# Set Hadoop-related environment variables
+export HADOOP_HOME=/usr/local/hadoop
+
+# Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
+export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_26
+
+# Some convenient aliases and functions for running Hadoop-related commands
+unalias fs &> /dev/null
+alias fs="hadoop fs"
+unalias hls &> /dev/null
+alias hls="fs -ls"
+
+# If you have LZO compression enabled in your Hadoop cluster and
+# compress job outputs with LZOP (not covered in this tutorial):
+# Conveniently inspect an LZOP compressed file from the command
+# line; run via:
+#
+# $ lzohead /hdfs/path/to/lzop/compressed/file.lzo
+#
+# Requires installed 'lzop' command.
+#
+lzohead () {
+    hadoop fs -cat $1 | lzop -dc | head -1000 | less
+}
+
+# Add Hadoop bin/ directory to PATH
+export PATH=$PATH:$HADOOP_HOME/bin
+
 # parse_git_branch() {
 #     in_wd="$(git rev-parse --is-inside-work-tree 2>/dev/null)" || return
 #     test "$in_wd" = true || return

@@ -88,7 +88,7 @@ fi
 alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
-alias j='jobs'
+alias j='jobs -l'
 alias f='fg'
 alias b='bg'
 alias ai='sudo apt-get install'
