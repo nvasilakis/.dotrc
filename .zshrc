@@ -97,6 +97,7 @@ hosts=(
   zenon.ceid.upatras.gr 
   eniac.seas.upenn.edu
   biglab.seas.upenn.edu
+  speclab.seas.upenn.edu
 )
 zstyle ':completion:*' hosts $hosts
 my_accounts=(
