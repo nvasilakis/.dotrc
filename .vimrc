@@ -149,6 +149,7 @@ map ; :
 noremap ;; ;
 " edit command-line
 map q; q:
+imap <C-c> <Esc>
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
