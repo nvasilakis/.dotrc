@@ -145,7 +145,10 @@ map <Leader>c :FufChangeList<CR>
 map <Leader>q :FufQuickfix<CR>
 map <Leader>l :FufLine<CR>
 map <Leader>h :FufHelp<CR>
-
+map ; :
+noremap ;; ;
+" edit command-line
+map q; q:
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
