@@ -154,6 +154,8 @@ map q; q:
 " This is for pasting
 " We need to add for spelling etc
 :set pastetoggle=<Leader>p  
+" Add for real esc in insert mode
+imap <C-c> <Esc>
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
