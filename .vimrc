@@ -132,6 +132,7 @@ inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
 let g:tex_flavor='latex'
 
 " Fuzzy Finder 
+" ctags -R --extra=+f .
 map <Leader>e :FufBuffer<CR>
 map <Leader>f :FufFile<CR>
 map <Leader>d :FufDir<CR>
@@ -145,10 +146,14 @@ map <Leader>c :FufChangeList<CR>
 map <Leader>q :FufQuickfix<CR>
 map <Leader>l :FufLine<CR>
 map <Leader>h :FufHelp<CR>
+" remaping ; to :
 map ; :
 noremap ;; ;
 " edit command-line
 map q; q:
+" This is for pasting
+" We need to add for spelling etc
+:set pastetoggle=<Leader>p  
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
