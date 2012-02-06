@@ -155,20 +155,19 @@ alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 # Nice Exports
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
-export CDPATH="/media/w7/Projects/"
 if [[ `hostname` == 'nv' ]]; then 
+  # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
   export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
+  # Set Hadoop-related environment variables
+  export HADOOP_HOME=/usr/local/hadoop
+  # Now we can cd from anywhere
+  export CDPATH="/media/w7/Projects/"
+  # Add Hadoop bin/ directory to PATH
+  export PATH=$PATH:$HADOOP_HOME/bin
+elif [[ `hostname` == 'cis555-vim' ]] ; then
+  export PATH=$PATH:/home/cis555/555/.tools
+  export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 fi;
-# Adding export for KLEE in order to run
-# *.cde files only by invoking their name
-#if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
-
-#  export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
-#
-# Adding export for KLEE in order to run
-#export PATH=/media/w7/Projects/klee-cde-package/bin:$PATH;
-#export PATH=/media/w7/Projects/blast-2.5_linux-bin-x86:$PATH;
-#export PATH=/media/w7/Projects/cvc-linux-1.0a/bin:$PATH;
 
 # vcs_info
 # ☡ ∫ S ⨌  for subversion
@@ -476,12 +475,6 @@ function backward-kill-word {
 }
 zle -N backward-kill-word
 
-# Set Hadoop-related environment variables
-export HADOOP_HOME=/usr/local/hadoop
-
-# Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
-export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_26
-
 # Some convenient aliases and functions for running Hadoop-related commands
 unalias fs &> /dev/null
 alias fs="hadoop fs"
@@ -500,9 +493,6 @@ alias hls="fs -ls"
 lzohead () {
     hadoop fs -cat $1 | lzop -dc | head -1000 | less
 }
-
-# Add Hadoop bin/ directory to PATH
-export PATH=$PATH:$HADOOP_HOME/bin
 
 # parse_git_branch() {
 #     in_wd="$(git rev-parse --is-inside-work-tree 2>/dev/null)" || return

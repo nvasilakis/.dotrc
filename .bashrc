@@ -120,11 +120,17 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+#Nice Exports
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 export CDPATH="/media/w7/Projects/"
 if [[ `hostname` == 'nv' ]]; then 
+  # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
   export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
+  # Set Hadoop-related environment variables
+  export HADOOP_HOME=/usr/local/hadoop
+  # Now we can cd from anywhere
+  export CDPATH="/media/w7/Projects/"
 fi;
 
 # Adding export for KLEE in order to run
