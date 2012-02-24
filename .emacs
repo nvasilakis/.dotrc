@@ -1,3 +1,36 @@
+(defun terminal-init-gnome ()
+  "Terminal initialization function for gnome-terminal."
+
+  ;; This is a dirty hack that I accidentally stumbled across:
+  ;;  initializing "rxvt" first and _then_ "xterm" seems
+  ;;  to make the colors work... although I have no idea why.
+  (tty-run-terminal-initialization (selected-frame) "rxvt")
+
+  (tty-run-terminal-initialization (selected-frame) "xterm"))
+
+(defun terminal-init-screen ()
+  "Terminal initialization function for screen."
+   ;; Use the xterm color initialization code.
+   (xterm-register-default-colors)
+   (tty-set-up-initial-frame-faces))
+
+;; I want no-gui even in gui version
+;; turn off toolbar
+(unless window-system
+  (menu-bar-mode -1))
+(scroll-bar-mode -1)  
+(tool-bar-mode -1)
+
+
+
+(add-to-list 'load-path "~/.emacs.d/emacs-colors-solarized/")
+;; it's NOT emacs24, so use color-theme
+(load-file "~/.emacs.d/emacs-colors-solarized/color-theme-solarized.el")
+(require 'color-theme)
+;; (color-theme-initialize)
+;; (require 'color-theme-solarized)
+(color-theme-solarized-dark)
+
 ;; ai auctex
 (add-to-list 'load-path "~/.emacs.d/")
 ;;load the auto complete path here, if you havent done it

@@ -151,6 +151,7 @@ alias dh='dirs -v'
 # if [[ $n -eq 'seas']]; then echo "ssh seas.." fi;
 alias go='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
 alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
+alias emacs='emacs -nw'
 
 # Nice Exports
 export EDITOR="vim"

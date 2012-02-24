@@ -1,16 +1,15 @@
 # main()
 snippet main
-	int main(int argc, const char *argv[])
-	{
+	int main(int argc, char *argv[]) {
 		${1}
 		return 0;
 	}
-snippet mainn
-	int main(void)
-	{
-		${1}
-		return 0;
-	}
+# snippet mainn
+# 	int main(void)
+# 	{
+# 		${1}
+# 		return 0;
+# 	}
 # #include <...>
 snippet inc
 	#include <${1:stdio}.h>${2}
@@ -80,12 +79,12 @@ snippet fun
 		${4:/* code */}
 	}
 # Function Declaration
-snippet fund
+snippet fd
 	${1:void} ${2:function_name}(${3});${4}
 # Typedef
 snippet td
 	typedef ${1:int} ${2:MyCustomType};${3}
-# Struct
+# Struct Declaration
 snippet st
 	struct ${1:`Filename('$1_t', 'name')`} {
 		${2:/* data */}
