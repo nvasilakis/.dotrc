@@ -131,7 +131,7 @@ if [[ `hostname` == 'nv' ]]; then
   export HADOOP_HOME=/usr/local/hadoop
   # Now we can cd from anywhere
   export CDPATH="/media/w7/Projects/"
-elif [[ `hostname` == 'cis555-vim' ]] ; then
+elif [[ `hostname` == 'cis555-vm' ]] ; then
   export PATH=$PATH:/home/cis555/555/.tools
   export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 fi;
