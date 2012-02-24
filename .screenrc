@@ -30,6 +30,7 @@ attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 # erase background with current bg color
 defbce "on"
+vbell "off"
 
 #xterm understands both im/ic and doesn't have a status line.
 ##Note: Do not specify im and ic in the real termcap/info file as

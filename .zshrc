@@ -165,7 +165,18 @@ if [[ `hostname` == 'nv' ]]; then
   export CDPATH="/media/w7/Projects/"
   # Add Hadoop bin/ directory to PATH
   export PATH=$PATH:$HADOOP_HOME/bin
-elif [[ `hostname` == 'cis555-vim' ]] ; then
+
+  xrandr --newmode "1920x1080" 172.80 1920 2040 2248 2576 1080 1081 1084 1118
+  xrandr --addmode VBOX0 "1920x1080"
+  # xrandr -s 1920x1080
+
+  fbsetbg ~/Downloads/1680x1050.jpg
+  # vim .inputrc
+  # mv X.defaults .Xdefaults
+  # vim .Xdefaults
+  # xrdb -load ~/.Xdefaults
+
+elif [[ `hostname` == 'cis555-vm' ]] ; then
   export PATH=$PATH:/home/cis555/555/.tools
   export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 fi;
