@@ -26,6 +26,9 @@ call pathogen#helptags()
 :set smartcase                   " case sensitive when uc present
 :set wildmenu                    " show list instead of just completing
 :set wildmode=list:longest,full  " comand <Tab> completion, list matches,
+:set formatprg=par\ -jreq                " par formatter
+:set formatoptions+=t
+:set textwidth=75
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
 
