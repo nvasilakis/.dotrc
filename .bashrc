@@ -134,16 +134,20 @@ if [[ `hostname` == 'nv' ]]; then
 elif [[ `hostname` == 'cis555-vm' ]] ; then
   export PATH=$PATH:/home/cis555/555/.tools
   export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
-
-  xrandr --newmode "1920x1080" 172.80 1920 2040 2248 2576 1080 1081 1084 1118
-  xrandr --addmode VBOX0 "1920x1080"
-  # xrandr -s 1920x1080
-
-  fbsetbg ~/Downloads/1680x1050.jpg
-  # vim .inputrc
-  # mv X.defaults .Xdefaults
-  # vim .Xdefaults
-  # xrdb -load ~/.Xdefaults
+  ### Run the following at least once in a session ###
+#  xrandr --newmode "1920x1080" 172.80 1920 2040 2248 2576 1080 1081 1084 1118
+#  xrandr --addmode VBOX0 "1920x1080"
+#  # xrandr -s 1920x1080
+#  # fbsetbg ~/Downloads/1680x1050.jpg
+#  # vim .inputrc
+#  # mv X.defaults .Xdefaults
+#  # vim .Xdefaults
+#  # xrdb -load ~/.Xdefaults
+#  xrandr --newmode "1280x800@60" 83.46 1280 1344 1480 1680 800 801 804
+#  xrandr --addmode VBOX0 "1280x800@60"
+#  xrandr -s 1280x800@60
+  set meta-flag on
+  set convert-meta off
 fi;
 
 # Adding export for KLEE in order to run
