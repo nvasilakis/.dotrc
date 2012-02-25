@@ -17,18 +17,18 @@ call pathogen#helptags()
 :set numberwidth=2
 :set ts=2 sts=2 sw=2 expandtab smartindent
 " Usability options
-" :set virtualedit=onemore         " allow for cursor beyond last character
-:set history=1000                " Store a ton of history (default is 20)
-:set backspace=indent,eol,start  " backspace for dummys
-:set incsearch                   " find as you type search
-:set hlsearch                    " highlight search terms
-:set ignorecase                  " case insensitive search
-:set smartcase                   " case sensitive when uc present
-:set wildmenu                    " show list instead of just completing
-:set wildmode=list:longest,full  " comand <Tab> completion, list matches,
-:set formatprg=par\ -jreq                " par formatter
-:set formatoptions+=t
-:set textwidth=75
+" :set virtualedit=onemore          " allow for cursor beyond last character
+:set history=1000                 " Store a ton of history (default is 20)
+:set backspace=indent,eol,start   " backspace for dummys
+:set incsearch                    " find as you type search
+:set hlsearch                     " highlight search terms
+:set ignorecase                   " case insensitive search
+:set smartcase                    " case sensitive when uc present
+:set wildmenu                     " show list instead of just completing
+:set wildmode=list:longest,full   " comand <Tab> completion, list matches,
+:set formatprg=par\ -jreq         " par formatter
+:set formatoptions+=t             " autoformat from vim's formatter
+:set textwidth=72                 " for vim's auto formatter
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
 
