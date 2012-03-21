@@ -156,6 +156,8 @@ alias emacs='emacs -nw'
 # Nice Exports
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
+export EC2_PRIVATE_KEY=~/.ec2/access.pem
+export EC2_CERT=~/.ec2/cert.pem
 if [[ `hostname` == 'nv' ]]; then 
   # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
   export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
