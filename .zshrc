@@ -116,19 +116,19 @@ zstyle ':completion:*:*:ssh:*' menu yes select
 zstyle ':completion:*:ssh:*' force-list always
 
 # Handy Alias
-if [ -x /usr/bin/dircolors ]; then
-  if [[ `uname` -ne 'Darwin' ]]; then 
+if [[ `uname` -ne 'Darwin' ]]; then 
+  if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-  else 
-    export CLICOLOR=1
-    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-    alias ls='ls -G'
   fi
+else 
+  export CLICOLOR=1
+  export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+  alias ls='ls -G'
 fi
 
 # some more aliases
