@@ -74,7 +74,8 @@ xterm*|rxvt*)
 esac
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [[ `uname` -ne 'Darwin' ]]; then 
+  if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
@@ -82,6 +83,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+  fi
+else 
+  export CLICOLOR=1
+  export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+  alias ls='ls -G'
 fi
 
 # some more ls aliases
@@ -125,6 +131,8 @@ fi
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 export CDPATH="/media/w7/Projects/"
+export EC2_PRIVATE_KEY=~/.ec2/access.pem
+export EC2_CERT=~/.ec2/cert.pem
 if [[ `hostname` == 'nv' ]]; then 
   # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
   export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";

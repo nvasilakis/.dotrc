@@ -116,12 +116,20 @@ zstyle ':completion:*:*:ssh:*' menu yes select
 zstyle ':completion:*:ssh:*' force-list always
 
 # Handy Alias
-alias ls='ls --color=auto'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+if [[ `uname` -ne 'Darwin' ]]; then 
+  if [ -x /usr/bin/dircolors ]; then
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+  fi
+else 
+  export CLICOLOR=1
+  export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+  alias ls='ls -G'
+fi
 
 # some more aliases
 alias ll='ls -alhF'
@@ -156,6 +164,8 @@ alias emacs='emacs -nw'
 # Nice Exports
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
+export EC2_PRIVATE_KEY=~/.ec2/access.pem
+export EC2_CERT=~/.ec2/cert.pem
 if [[ `hostname` == 'nv' ]]; then 
   # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
   export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
