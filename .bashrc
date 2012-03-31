@@ -151,12 +151,13 @@ elif [[ `hostname` == 'cis555-vm' ]] ; then
 #  # vim .inputrc
 #  # mv X.defaults .Xdefaults
 #  # vim .Xdefaults
-#  # xrdb -load ~/.Xdefaults
-#  xrandr --newmode "1280x800@60" 83.46 1280 1344 1480 1680 800 801 804
-#  xrandr --addmode VBOX0 "1280x800@60"
-#  xrandr -s 1280x800@60
+#   xrandr --newmode "1280x800@60" 83.46 1280 1344 1480 1680 800 801 804 828
+#   xrandr --addmode VBOX0 "1280x800@60"
+#   xrandr -s 1280x800@60
   set meta-flag on
   set convert-meta off
+  set output-meta on
+  xrdb -load ~/.Xdefaults
 fi;
 
 # Adding export for KLEE in order to run
