@@ -25,7 +25,7 @@ call pathogen#helptags()
 :set ignorecase                   " case insensitive search
 :set smartcase                    " case sensitive when uc present
 :set wildmenu                     " show list instead of just completing
-:set wildmode=list:longest,full   " comand <Tab> completion, list matches,
+:set wildmode=list:longest,full   " command <Tab> completion, list matches,
 :set formatprg=par\ -jreq         " par formatter
 :set formatoptions+=t             " autoformat from vim's formatter
 :set textwidth=72                 " for vim's auto formatter
@@ -198,3 +198,9 @@ cmap w!! w !sudo tee >/dev/null %
 map ZS :w!!<CR>
 " do not forget custom file commands
 " :autocmd bufenter *.tex map <F1> :!latex %<CR>
+
+command! Gcc call Gcc()
+func! Gcc()
+  exec "w"
+  exec "!gcc % -o %<"
+endfunc
