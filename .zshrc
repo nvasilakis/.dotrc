@@ -116,7 +116,7 @@ zstyle ':completion:*:*:ssh:*' menu yes select
 zstyle ':completion:*:ssh:*' force-list always
 
 # Handy Alias
-if [[ `uname` -ne 'Darwin' ]]; then 
+if [[ `uname` == 'Linux' ]]; then 
   if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
