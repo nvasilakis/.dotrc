@@ -11,11 +11,13 @@ snippet main
 # 		return 0;
 # 	}
 # #include <...>
-snippet inc
-	#include <${1:stdio}.h>${2}
+snippet inc #1 library
+	#include <${1:stdio}.h>
+	${2}
 # #include "..."
-snippet Inc
-	#include "${1:`Filename("$1.h")`}"${2}
+snippet inc #2 filename
+	#include "${1:`Filename("$1.h")`}"
+	${2}
 # #ifndef ... #define ... #endif
 snippet Def
 	#ifndef $1
@@ -46,8 +48,8 @@ snippet if
 		${2:/* code */}
 	}
 snippet el
-	else {
-		${1}
+	else${1: if} {
+		${2}
 	}
 # Ternary conditional
 snippet t
@@ -74,9 +76,15 @@ snippet forr
 	}
 # Function
 snippet fun
-	${1:void} ${2:function_name}(${3})
+	/**
+	 * ${1: doc}
+	 *
+	 * @param ${2:argument}
+	 * @return ${3:return}
+	 **/
+	${4:void} ${5:function_name}(${2})
 	{
-		${4:/* code */}
+		${6:/* code */}
 	}
 # Function Declaration
 snippet fd
@@ -110,3 +118,17 @@ snippet fpr
 # This is kind of convenient
 snippet .
 	[${1}]${2}
+# For Doxygen
+snippet //
+	/**
+	 * @file
+	 * @author ${1: Nikos Vasilakis}
+	 * @version ${2:0.1}
+	 *
+	 * @section Description
+	 *
+	 * ${3: Short}
+	 *
+	 **/
+	
+	${4}
