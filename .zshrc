@@ -26,8 +26,8 @@ setopt complete_in_word
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-#zstyle ':completion:*:default' menu 'select=0'
-zstyle ':completion:*:windows' menu on=0
+zstyle ':completion:*:default' menu 'select=0'
+#zstyle ':completion:*:windows' menu on=0
 zstyle ':completion:::::' completer _complete _prefix _approximate
 zstyle ':completion::prefix:::' completer _complete 
 zstyle ':completion:*:prefix:*' add-space true
@@ -37,6 +37,9 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*'
 # tab completion for PID
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
+# Tab completion for pkill
+zstyle ':completion:*:*:killall:*' menu yes select
+zstyle ':completion:*:killall:*' force-list always
 
 
 # Setting options
@@ -78,7 +81,9 @@ bindkey \^U backward-kill-line
 #  zstyle ':completion:*' hosts $_myhosts
 #fi
 
+compdef pkill=killall
 zstyle ':completion:*:kill:*:processes' command "ps aux"
+zstyle ':completion:*:killall:*:processes' command "ps aux"
 
 
 if [[ "$ZSH_VERSION_TYPE" == 'new' ]]; then
