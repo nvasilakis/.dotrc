@@ -84,6 +84,14 @@ if [[ `uname` == 'Linux' ]]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
   fi
+  # Less Colors for Man Pages
+  # export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+  # export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+  # export LESS_TERMCAP_me=$'\E[0m'           # end mode
+  # export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+  # export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+  # export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+  # export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 else 
   export CLICOLOR=1
   #export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -134,6 +142,13 @@ export PYTHONSTARTUP=~/.pythonrc
 export CDPATH="/media/w7/Projects/"
 export EC2_PRIVATE_KEY=~/.ec2/access.pem
 export EC2_CERT=~/.ec2/cert.pem
+export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+    vim -R -c 'set ft=man nomod nonumber nolist' -c 'map q :q<CR>' \
+    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' -\" \
+    "
+    # Add this line above the above to remap K
+    #-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\"\
+
 if [[ `hostname` == 'nv' ]]; then 
   # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
   export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
