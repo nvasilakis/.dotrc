@@ -32,6 +32,47 @@ call pathogen#helptags()
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
 
+" Use vim as a pager, not less
+"fun! SetPager()
+    " Don't strip on these filetypes
+    "if &ft =~ 'man'
+    "    return
+    "endif
+    :let $PAGER=''
+    " Map the K key to the ReadMan function:
+    map K :call ReadMan()<CR>
+"endfun
+
+" Only for old files, this switches man read to a new tab
+" If the file is new, it stays on the same tab
+fun! ReadMan()
+  " Assign current word under cursor to a script variable:
+  let s:man_word = expand('<cword>')
+  " Open a new tab:
+  if bufname("%") != 'man-page'
+    :exe ":tabe man-page"
+    let s:bool_man = "new"
+  else
+    :exe ":set modified"
+    let s:bool_man = "old"
+  endif
+  " Read in the manpage for man_word (col -b is for formatting):
+  :exe ":%d"
+  :exe ":r!man " . s:man_word . " | col -b"
+  " Goto first line...
+  :exe ":goto"
+  " and delete it:
+  :exe ":delete"
+  " finally set file type to 'man':
+  :exe ":set filetype=man nomod nomodified nonumber nolist autoread"
+  ":exe "<CR>"
+endfun
+
+autocmd BufWritePre * call SetPager()
+autocmd FileType man exe ":f man-page"
+autocmd FileType man exe ":set modified"
+autocmd FileType man exe ":set modifiable"
+
 :helptags ~/.vim/doc
 " snipMate Plugin
 :filetype plugin indent on
