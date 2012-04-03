@@ -32,16 +32,19 @@ call pathogen#helptags()
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
 
-" Use vim as a pager, not less
 "fun! SetPager()
-    " Don't strip on these filetypes
+    " Don't do on these filetypes
     "if &ft =~ 'man'
     "    return
     "endif
-    :let $PAGER=''
-    " Map the K key to the ReadMan function:
-    map K :call ReadMan()<CR>
+    " do something for other filetypes
 "endfun
+
+" Use vim as a pager, not less
+" Discard pager
+:let $PAGER=''
+" Map the K key to the ReadMan function:
+map K :call ReadMan()<CR>
 
 " Only for old files, this switches man read to a new tab
 " If the file is new, it stays on the same tab
@@ -68,7 +71,6 @@ fun! ReadMan()
   ":exe "<CR>"
 endfun
 
-autocmd BufWritePre * call SetPager()
 autocmd FileType man exe ":f man-page"
 autocmd FileType man exe ":set modified"
 autocmd FileType man exe ":set modifiable"
