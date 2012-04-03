@@ -42,7 +42,7 @@ call pathogen#helptags()
 
 " Use vim as a pager, not less
 " Discard pager
-:let $PAGER=''
+:let $MANPAGER=''
 " Map the K key to the ReadMan function:
 map K :call ReadMan()<CR>
 
