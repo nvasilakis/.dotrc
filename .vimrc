@@ -29,6 +29,7 @@ call pathogen#helptags()
 :set formatprg=par\ -jreq         " par formatter
 :set formatoptions+=t             " autoformat from vim's formatter
 :set textwidth=72                 " for vim's auto formatter
+:set spell                        " spell on the fly -- now default!
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
 
