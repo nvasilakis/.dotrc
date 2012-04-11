@@ -1,0 +1,18 @@
+[user]
+	name = nvasilakis
+	email = nikos.ailo@gmail.com
+[core]
+	editor = vim
+	excludesfile = $HOME/.vim/.gitignore
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
+  p = pull --rebase
