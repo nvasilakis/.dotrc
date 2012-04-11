@@ -58,7 +58,7 @@ fi
 e 'updating submodules'
 git submodule update --init
 
-FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss .conkyrc .pythonrc"
+FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss .conkyrc .pythonrc .gitconfig"
 for i in $FILES; do 
         echo installing: ~/.vim/$i ~/$i
         rm -rf ~/$i
