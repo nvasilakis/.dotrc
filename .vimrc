@@ -102,26 +102,29 @@ let g:miniBufExplSplitBelow=0
 "autocmd BufRead,BufNew :call UMiniBufExplorer
 "map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
 
-" WinManager mappings
+:imap <F1> <Esc>a " AWESOME IDEA!
+
 map <F2> :WMToggle<cr><C-W><C-W>
-
-" NERDTree mappings
 map <F3> :NERDTreeToggle<CR>
-
-" SpellCheck
-map <F4> :set spell!<CR>
-
-" Wrap
-"map <F5> :set wrap!<CR>
-
-" Gundo
-nnoremap <F5> :GundoToggle<CR>
-
-" Ctags
+map <F4> :GundoToggle<CR>
+map <F5> :TlistToggle<CR>
+" = not used anymore
+"map <F7> :TlistShowPrototype<cr><C-h>
+"map <F5> :set wrap!<CR>" Wrap
+"
+" TagList options
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_WinWidth = 40
-map <F6> :TlistToggle<cr><C-h>
-map <F7> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+let Tlist_WinWidth = 40                 "taglist window width
+let Tlist_Close_On_Select = 1           "close taglist window once we selected something
+let Tlist_Exit_OnlyWindow = 1           "if taglist window is the only window left, exit vim
+let Tlist_Show_Menu = 1                 "show Tags menu in gvim
+let Tlist_Show_One_File = 1             "show tags of only one file
+let Tlist_GainFocus_On_ToggleOpen = 1   "automatically switch to taglist window
+let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
+let Tlist_Process_File_Always = 1       "even without taglist window, create tags file, required for displaying tag in statusline
+"let Tlist_Use_Right_Window = 1          "display taglist window on the right
+let Tlist_Display_Prototype = 1         "display full prototype instead of just function name
+
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " TODO
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
@@ -143,7 +146,6 @@ map <C-K> <C-W>k<C-W>10+
 
 map <C-S-J> a<CR><Esc>k$
 
-
 " tab navigation a la firefox
 :nmap <C-N> :tabnext<CR>
 :map <C-N> :tabnext<CR>
@@ -154,8 +156,6 @@ map <C-S-J> a<CR><Esc>k$
 " :nmap <C-T> :tabe
 " :imap <C-T> <Esc>:tabe<CR>
 
-" AWESOME IDEA!
-:imap <F1> <Esc>a
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
