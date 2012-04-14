@@ -77,6 +77,7 @@ endfun
 autocmd FileType man exe ":f man-page"
 autocmd FileType man exe ":set modified"
 autocmd FileType man exe ":set modifiable"
+autocmd FileType * call GitTags()
 
 :helptags ~/.vim/doc
 " snipMate Plugin
@@ -124,6 +125,14 @@ map <F7> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " TODO
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
+" Grab ctags from folder root; we could use --show-toplevel 
+" let g:gitroot="`git rev-parse --show-cdup`"
+fun! GitTags()
+  let g:gitroot = system("git rev-parse --show-toplevel 2>/dev/null")
+" Strip trailing newline and escape
+  let g:gitroot = substitute(g:gitroot, "\\n*$","","")
+  execute "set tags=" . g:gitroot . "/.git/tags"
+endf
 
 " Window Mappings
 map <C-J> <C-W>j<C-W>10+
