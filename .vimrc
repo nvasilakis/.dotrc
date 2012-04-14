@@ -30,6 +30,7 @@ call pathogen#helptags()
 :set formatoptions+=t             " autoformat from vim's formatter
 :set textwidth=72                 " for vim's auto formatter
 :set spell                        " spell on the fly -- now default!
+:set cursorline                   " show where the line is
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
 
@@ -176,7 +177,7 @@ inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
 " map <Leader>c ,c<space>
 
 " latex plugin
-let g:tex_flavor='latex'
+" let g:tex_flavor='latex'
 
 " Fuzzy Finder 
 " ctags -R --extra=+f .
@@ -248,3 +249,5 @@ func! Gcc()
   exec "w"
   exec "!gcc % -o %<"
 endfunc
+
+map <leader>2 :Gcc<CR>
