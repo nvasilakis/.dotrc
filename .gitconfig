@@ -16,3 +16,6 @@
 [alias]
 	d = difftool
   p = pull --rebase
+	ctags = !.git/hooks/ctags
+[init]
+	templatedir = ~/.git_template
