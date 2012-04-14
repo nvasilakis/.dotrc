@@ -143,8 +143,9 @@ map <C-K> <C-W>k<C-W>10+
 map <C-L> <C-W>l<C-W>10+
 map <C-H> <C-W>h<C-W>10+
 map <C-K> <C-W>k<C-W>10+
-
-map <C-S-J> a<CR><Esc>k$
+map o o<Esc>
+map O O<Esc>
+" map <C-S-J> a<CR><Esc>k$
 
 " tab navigation a la firefox
 :nmap <C-N> :tabnext<CR>
