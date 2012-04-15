@@ -3,7 +3,9 @@ snippet main
 	/**
 	 * ${1:Entry point}
 	 **/
-	int main(int argc, char *argv[]) {
+	int
+	main(int argc, char *argv[])
+	{
 		${2}
 		return 0;
 	}
@@ -39,7 +41,6 @@ snippet #if
 # Header Include-Guard
 snippet once
 	#ifndef ${1:`toupper(Filename('$1_H', 'UNTITLED_H'))`}
-
 	#define $1
 
 	${2}
@@ -47,11 +48,13 @@ snippet once
 	#endif /* end of include guard: $1 */
 # If Condition
 snippet if
-	if (${1:/* condition */}) {
+	if (${1:/* condition */})
+	{
 		${2:/* code */}
 	} ${3}
 snippet el
-	else${1: if} {
+	else${1: if}
+	{
 		${2}
 	}
 # Ternary conditional
@@ -59,22 +62,26 @@ snippet t
 	${1:/* condition */} ? ${2:a} : ${3:b}
 # Do While Loop
 snippet do
-	do {
+	do
+	{
 		${2:/* code */}
 	} while (${1:/* condition */});
 # While Loop
 snippet wh
-	while (${1:/* condition */}) {
+	while (${1:/* condition */})
+	{
 		${2:/* code */}
 	}
 # For Loop
 snippet for
-	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	for (${2:i} = 0; $2 < ${1:count}; $2${3:++})
+	{
 		${4:/* code */}
 	}
 # Custom For Loop
 snippet forr
-	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
+	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++})
+	{
 		${5:/* code */}
 	}
 # Function
@@ -85,7 +92,8 @@ snippet fun
 	 * @param ${2:param-name} ${3:param-description}
 	 * @return ${4:return}
 	 **/
-	${5:void} ${6:function_name}(${7:type} $2)
+	${5:void}
+	${6:function_name}(${7:type} $2)
 	{
 		${8:/* code */}
 	}
@@ -102,12 +110,17 @@ snippet st
 	}${3: /* optional variable list */};${4}
 # Typedef struct
 snippet tds
-	typedef struct ${2:_$1 }{
-		${3:/* data */}
-	} ${1:`Filename('$1_t', 'name')`};
+	/**
+	 * A structure to represent ${1:something}
+	 */
+	typedef struct ${3:_$2 }
+	{
+		${4:/* data */}
+	} ${2:`Filename('$1_t', 'name')`};
 # Typdef enum
 snippet tde
-	typedef enum {
+	typedef enum
+	{
 		${1:/* data */}
 	} ${2:foo};
 # printf
@@ -122,7 +135,7 @@ snippet fpr
 snippet .
 	[${1}]${2}
 # For Doxygen
-snippet //
+snippet ///
 	/**
 	 * @file
 	 * @author ${1: Nikos Vasilakis}
@@ -131,7 +144,12 @@ snippet //
 	 * @section Description
 	 *
 	 * ${3: Short}
-	 *
 	 **/
 	
 	${4}
+# Simple Doxygen
+snippet //
+	/**
+	 * ${1:}
+	 */
+	${2}
