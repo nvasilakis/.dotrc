@@ -115,7 +115,7 @@ map <F5> :TlistToggle<CR>
 " TagList options
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 let Tlist_WinWidth = 40                 "taglist window width
-let Tlist_Close_On_Select = 1           "close taglist window once we selected something
+"let Tlist_Close_On_Select = 1           "close taglist window once we selected something
 let Tlist_Exit_OnlyWindow = 1           "if taglist window is the only window left, exit vim
 let Tlist_Show_Menu = 1                 "show Tags menu in gvim
 let Tlist_Show_One_File = 1             "show tags of only one file
@@ -143,8 +143,8 @@ map <C-K> <C-W>k<C-W>10+
 map <C-L> <C-W>l<C-W>10+
 map <C-H> <C-W>h<C-W>10+
 map <C-K> <C-W>k<C-W>10+
-map o o<Esc>
-map O O<Esc>
+map <leader>o o<Esc>
+map <leader>O O<Esc>
 " map <C-S-J> a<CR><Esc>k$
 
 " tab navigation a la firefox
@@ -156,7 +156,6 @@ map O O<Esc>
 " :imap <S-Tab> <Esc>:tabprevious<CR>i
 " :nmap <C-T> :tabe
 " :imap <C-T> <Esc>:tabe<CR>
-
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
