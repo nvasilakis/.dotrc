@@ -4,3 +4,4 @@ bundle/vim-latex/ftplugin/latex-suite/*
 *.swp
 .saves/*
 \#*
+spell/*
