@@ -145,6 +145,7 @@ map <C-H> <C-W>h<C-W>10+
 map <C-K> <C-W>k<C-W>10+
 map <leader>o o<Esc>
 map <leader>O O<Esc>
+map <leader>m i<C-M><Esc>
 " map <C-S-J> a<CR><Esc>k$
 
 " tab navigation a la firefox
@@ -195,7 +196,7 @@ map <Leader>e :FufBuffer<CR>
 map <Leader>f :FufFile<CR>
 map <Leader>d :FufDir<CR>
 map <Leader>mf :FufMruFile<CR>
-map <Leader>m :FufMruCmd<CR>
+"map <Leader>m :FufMruCmd<CR>
 map <Leader>b :FufBookmark<CR>
 map <Leader>t :FufTag<CR>
 map <Leader>rf :FufTaggedFile<CR>
