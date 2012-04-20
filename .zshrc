@@ -85,7 +85,6 @@ compdef pkill=killall
 zstyle ':completion:*:kill:*:processes' command "ps aux"
 zstyle ':completion:*:killall:*:processes' command "ps aux"
 
-
 if [[ "$ZSH_VERSION_TYPE" == 'new' ]]; then
   : ${(A)_etc_hosts:=${(s: :)${(ps:\t:)${${(f)~~"$(</etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}}
 else

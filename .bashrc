@@ -139,6 +139,17 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Autocomplete git aliases
+complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
+      || complete -o default -o nospace -F _git g
+complete -o default -o nospace -F _git_add gga 
+complete -o default -o nospace -F _git_commit ggc 
+complete -o default -o nospace -F _git_checkout ggh 
+complete -o default -o nospace -F _git_branch ggb 
+complete -o default -o nospace -F _git_log ggl 
+complete -o default -o nospace -F _git_diff ggd 
+complete -o default -o nospace -F _git_push ggp
+
 #Nice Exports
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
