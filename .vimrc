@@ -31,7 +31,7 @@ call pathogen#helptags()
 :set textwidth=72                 " for vim's auto formatter
 :set spell                        " spell on the fly -- now default!
 :set cursorline                   " show where the line is
-:hi CursorLine   cterm=NONE ctermbg=black ctermfg=white guibg=black guifg=white
+:hi CursorLine   cterm=NONE ctermbg=black guibg=black 
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
 
