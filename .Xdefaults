@@ -1,0 +1,6 @@
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
+xterm*Background:               black
+xterm*Foreground:               #cccccc
+xterm*cursorColor:              LightBlue
+xterm*pointerColor:             #cccccc
