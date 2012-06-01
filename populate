@@ -58,7 +58,8 @@ fi
 e 'updating submodules'
 git submodule update --init
 
-FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss .conkyrc .pythonrc .gitconfig"
+# run sudo xrdb ~/.Xdefaults to complete installation for fluxbox
+FILES=".vimrc .bashrc .zshrc .irbrc .screenrc .ss .conkyrc .pythonrc .gitconfig .Xdefaults"
 for i in $FILES; do 
         echo installing: ~/.vim/$i ~/$i
         rm -rf ~/$i
