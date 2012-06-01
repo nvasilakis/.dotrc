@@ -28,6 +28,8 @@ caption always "%?%{= 9K}%-w%?%{= 9w}%n %t%?(%u)%?%?%{= 9K}%+w%?  %=%{= 9K}%H|%{
 attrcolor b ".I"
 # tell screen how to set colors. AB = background, AF=foreground
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# set TERM
+term screen-256color-bce
 # erase background with current bg color
 defbce "on"
 vbell "off"
