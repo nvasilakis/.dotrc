@@ -122,6 +122,8 @@ alias etp='etp@150.140.91.13'
 alias is='root@vasilak.is'
 alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 alias emacs='emacs -nw'
+# A trick for faster nautilus
+alias here='nautilus --no-desktop --browser .'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

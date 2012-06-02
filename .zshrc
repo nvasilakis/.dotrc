@@ -170,6 +170,8 @@ alias dh='dirs -v'
 alias go='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
 alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 alias emacs='emacs -nw'
+# A trick for faster nautilus
+alias here='nautilus --no-desktop --browser .'
 
 # Nice Exports
 export EDITOR="vim"
