@@ -172,6 +172,7 @@ alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 alias emacs='emacs -nw'
 # A trick for faster nautilus
 alias here='nautilus --no-desktop --browser .'
+alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 
 # Nice Exports
 export EDITOR="vim"
@@ -580,4 +581,3 @@ lzohead () {
 # push-line: ^Q
 # run-help: M-h
 # spelling correction: M-s
-

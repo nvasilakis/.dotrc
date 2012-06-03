@@ -124,6 +124,7 @@ alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 alias emacs='emacs -nw'
 # A trick for faster nautilus
 alias here='nautilus --no-desktop --browser .'
+alias dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -242,4 +243,3 @@ bind '"\C-xs": forward-search-history'
 bind '"\C-xr": reverse-search-history'
 bind '"\C-x\C-x": exchange-point-and-mark'
 bind '"\M-w": copy-region-as-kill'
-
