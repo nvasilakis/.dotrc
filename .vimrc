@@ -184,7 +184,8 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>
 inoremap <expr> <C-Space> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " HOW TO REMAP COMMENTS TO CTRL-/ AND CTRL-S-/
-inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
+" inoremap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
+
 " map <Leader>c ,c<space>
 
 " latex plugin
@@ -201,7 +202,7 @@ map <Leader>b :FufBookmark<CR>
 map <Leader>t :FufTag<CR>
 map <Leader>rf :FufTaggedFile<CR>
 map <Leader>j :FufJumpList<CR>
-map <Leader>c :FufChangeList<CR>
+map <Leader>mc :FufChangeList<CR>
 map <Leader>q :FufQuickfix<CR>
 map <Leader>l :FufLine<CR>
 map <Leader>h :FufHelp<CR>
@@ -216,6 +217,13 @@ map q; q:
 " Add for real esc in insert mode
 imap <C-c> <Esc>
 
+" Copy between different vim sessions
+:map <Leader>C :'a,.w! /tmp/t^v^m
+:map <Leader>V :.r /tmp/t^v^m
+
+:map <Leader>c "+y
+:map <Leader>v "+p
+"
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
 function! Stab()
