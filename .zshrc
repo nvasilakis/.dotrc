@@ -173,6 +173,8 @@ alias emacs='emacs -nw'
 # A trick for faster nautilus
 alias here='nautilus --no-desktop --browser .'
 alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
+# Instead of adding something to /usr/bin
+alias idea="/media/w7/Projects/idea-IU-107.587/bin/idea.sh"
 
 # Nice Exports
 export EDITOR="vim"
