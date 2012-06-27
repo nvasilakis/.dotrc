@@ -18,4 +18,4 @@
   p = pull --rebase
 	ctags = !.git/hooks/ctags
 [init]
-	templatedir = ~/.git_template
+	templatedir = ~/.vim/.git_template
