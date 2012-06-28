@@ -102,6 +102,10 @@ hosts=(
   eniac.seas.upenn.edu
   biglab.seas.upenn.edu
   speclab.seas.upenn.edu
+  uranus1.jefferson.edu
+  uranus2.jefferson.edu
+  gaia1.jefferson.edu
+  gaia2.jefferson.edu
 )
 zstyle ':completion:*' hosts $hosts
 my_accounts=(
@@ -113,6 +117,7 @@ my_accounts=(
   basilakn@zenon.ceid.upatras.gr 
   nvas@eniac.seas.upenn.edu
   nvas@biglab.seas.upenn.edu
+  nikostemp@uranus1.jefferson.edu
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
