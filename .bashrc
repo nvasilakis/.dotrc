@@ -157,6 +157,7 @@ complete -o default -o nospace -F _git_push ggp
 
 #Nice Exports
 export EDITOR="vim"
+export SVN_EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 export CDPATH="/media/w7/Projects/"
 export EC2_PRIVATE_KEY=~/.ec2/access.pem

@@ -183,6 +183,7 @@ alias idea="/media/w7/Projects/idea-IU-107.587/bin/idea.sh"
 
 # Nice Exports
 export EDITOR="vim"
+export SVN_EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 export EC2_PRIVATE_KEY=~/.ec2/access.pem
 export EC2_CERT=~/.ec2/cert.pem
