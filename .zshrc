@@ -452,7 +452,7 @@ precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
 
 # PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
-PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%#'
+PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%# '
 #RPS1=$'$(prompt_git_info)'
 RPS1=$'${vcs_info_msg_0_}$(ena)'  #%($(ena).[%{$bold_color$fg[blue]%}%j%{$reset_color%}].)
 PS4=$'+%N:%i:%_>'
