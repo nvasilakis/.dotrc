@@ -538,6 +538,19 @@ function backward-kill-word {
 }
 zle -N backward-kill-word
 
+function help {
+  if [[ $1=="gz" ]]; then
+    echo '[-]->: tar xzvf < >.tar.gz [-C wh/er/e]'
+    echo '[<]--: tar czvf < >.tar.gz /dir/'
+  elif [[ $1=="bz" ]]; then
+    echo '[-]->: tar xjvf < >.tar.bz2 [-C wh/er/e]'
+    echo '[<]--: tar cjvf < >.tar.bz2 /dir/'
+  elif [[ $1=="7z" ]]; then
+    echo '[-]->: 7z a -t7z < >.7z'
+    echo '[<]--: 7z x      < >.7z   /dir/'
+  fi
+}
+
 # Some convenient aliases and functions for running Hadoop-related commands
 unalias fs &> /dev/null
 alias fs="hadoop fs"
