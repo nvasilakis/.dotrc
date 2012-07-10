@@ -126,7 +126,7 @@ alias emacs='emacs -nw'
 alias here='nautilus --no-desktop --browser .'
 alias dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 # Instead of adding something to /usr/bin
-alias idea="/media/w7/Projects/idea-IU-107.587/bin/idea.sh"
+alias idea="/media/w7/Projects/idea/bin/idea.sh"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
