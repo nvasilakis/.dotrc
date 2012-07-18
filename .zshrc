@@ -185,6 +185,8 @@ alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 alias emacs='emacs -nw'
 # A trick for faster nautilus
 alias here='nautilus --no-desktop --browser .'
+alias jhf='cd ~/Work/oceanus/handsfree/git/'
+alias jto='cd ~/Work/apache-tomcat-6.0.35/'
 alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 # Instead of adding something to /usr/bin
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
