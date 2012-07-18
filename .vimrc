@@ -31,9 +31,15 @@ call pathogen#helptags()
 :set textwidth=72                 " for vim's auto formatter
 :set spell                        " spell on the fly -- now default!
 :set cursorline                   " show where the line is
-:hi CursorLine   cterm=NONE ctermbg=black guibg=black 
+:hi CursorLine   cterm=NONE ctermbg=235 guibg=black " 8 24 235|51
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
+
+map <leader>s :call WriteAndLoad()<CR>
+fun WriteAndLoad()
+  :exe ":w"
+  :exe ":so ~/.vimrc"
+endf
 
 "fun! SetPager()
     " Don't do on these filetypes
