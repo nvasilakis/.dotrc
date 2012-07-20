@@ -9,15 +9,34 @@
 # escape ^Qq
 shell zsh
 startup_message off
-hardstatus off
+# * hardstatus off
 # hardstatus alwayslastline
 #caption     always        "%{+b r0}%H%{ck} |%c %{ck}%d.%m.%Y | %72=Load: %l %{wk}"
 #caption always "%?%F%{.RW}%?%3n %t%? [%h]%?"
 # Edw prepei na vlaw whoami gia to pou einai to script ka8e fora
 backtick 1 60 60 ./.ss
-caption always "%?%{= 9K}%-w%?%{= 9w}%n %t%?(%u)%?%?%{= 9K}%+w%?  %=%{= 9K}%H|%{+s w}           %1`|%l"
-# BK caption always "%?%{= 9c}%-w%?%{= 9w}%n|%t%?(%u)%?%?%{= 9c}%+w%? %=%{= 9c}%H|%{+s w}%1`|%m/%d%c|%l"
+# caption always "%?%{= 9K}%-w%?%{= 9w}%n %t%?(%u)%?%?%{= 9K}%+w%?  %=%{= 9K}%H|%{+s w}           %1`|%l"
+#hardstatus alwayslastline "%{= kR} %-Lw%{=b Kk} %n%f %t %{-}%+Lw %=%{= dd}"
+# caption always           "%?%F%{= Kk}%:%{=u kR}%?  %h %-024=%{+b} %C%a %D %d %M %Y%{= db}"
 
+# Timeout for displaying messages
+msgwait 100
+activity "         Activity has appeared in window      %n - %t"
+      
+## #taskbar
+## backtick 1 0 0 /usr/bin/cpuusage
+## hardstatus alwayslastline
+## hardstatus string '%{= kG} %{G}%H %{g}[%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}] %1`%% CPU %{W}%c %{g}'
+## 
+## #dynamic title
+shelltitle "$ |zsh"
+
+# caption always "%3n %t%? (%u)%?%?: %h%?"
+hardstatus alwayslastline '%{= kd}%?%E%{= .Y}%:%{= .g}%?%H%{-} %L=%-w%45L>%{= g.}%n %h%{-}%+w %-17<%=%{= .y}(%l) | %m/%d %02c:%s '
+#When your ssh connection dies, screen is autodetached
+autodetach on 
+
+# BK caption always "%?%{= 9c}%-w%?%{= 9w}%n|%t%?(%u)%?%?%{= 9c}%+w%? %=%{= 9c}%H|%{+s w}%1`|%m/%d%c|%l"
 
 #hardstatus alwayslastline "%?%{9r}%-Lw%?%{99}%n*%f %t%?(%u)%?%?%{99}%+Lr%?"
 ###hardstatus alwayslastline "%?%{= 95}%-w%?%{= 9w}%n|%t%?(%u)%?%?%{= 95}%+w%?"
