@@ -269,3 +269,23 @@ bind '"\C-xs": forward-search-history'
 bind '"\C-xr": reverse-search-history'
 bind '"\C-x\C-x": exchange-point-and-mark'
 bind '"\M-w": copy-region-as-kill'
+
+
+# Set the screen title
+case $TERM in
+  screen*)
+    # This is the escape sequence ESC k \w ESC \
+    #Use path as titel
+    #SCREENTITLE='\[\ek\w\e\\\]'
+    #Use program name as titel
+    # SCREENTITLE='\[\ek\w\e\\\]'
+    SCREENTITLEPROCESS='\[\ek\e\\\]'
+    ;;
+  *)
+    SCREENTITLE=''
+    SCREENTITLEPROCESS=''
+    ;;
+esac
+
+# PS1="${SCREENTITLEPROCESS}${SCREENTITLE}${PS1}"
+PS1="${SCREENTITLEPROCESS}${SCREENTITLE}${PS1}"
