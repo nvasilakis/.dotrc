@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 DIRSTACKSIZE=10
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -49,6 +49,10 @@ setopt CORRECTALL
 setopt HISTIGNORESPACE
 # Ignore duplucate history entries
 setopt HISTIGNOREDUPS
+# Share history between screen windows (tabs)
+setopt SHARE_HISTORY
+# Append history instead of overwriting
+setopt APPEND_HISTORY
 # Include variables and other usefull stuff in the prompt
 setopt PROMPTSUBST
 # set option for ext. globbing:
