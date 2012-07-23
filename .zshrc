@@ -110,6 +110,7 @@ hosts=(
   uranus2.jefferson.edu
   gaia1.jefferson.edu
   gaia2.jefferson.edu
+  128.91.113.91 # Wharton
 )
 zstyle ':completion:*' hosts $hosts
 my_accounts=(
@@ -125,6 +126,7 @@ my_accounts=(
   nxv009@uranus2.jefferson.edu
   nxv009@gaia1.jefferson.edu
   nxv009@gaia2.jefferson.edu
+  ssh nv@128.91.113.91 # Wharton
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
