@@ -258,6 +258,12 @@ function! SummarizeTabs()
   endtry
 endfunction
 
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:➟\ ,eol:⤦
+
 " Return to last edit position 
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
