@@ -198,6 +198,8 @@ alias jto='cd ~/Work/apache-tomcat-6.0.35/'
 alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 # Instead of adding something to /usr/bin
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
+alias pushwork='tar cvzf ~/work.tar.gz ~/Work/; rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~'
+alias pullwork='rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .; cp ~/Work/ ~/Work_BK; tar xvzf ~/work.tar.gz ~/Work/'
 
 # Nice Exports
 export EDITOR="vim"
