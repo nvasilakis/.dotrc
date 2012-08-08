@@ -201,6 +201,12 @@ alias idea="/media/w7/Projects/idea/bin/idea.sh"
 alias pushwork='tar cvzf ~/work.tar.gz ~/Work/; rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~'
 alias pullwork='rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .; cp ~/Work/ ~/Work_BK; tar xvzf ~/work.tar.gz ~/Work/'
 
+# Suffix aliases
+alias -s xlx= libreoffice
+alias -s xls= libreoffice
+alias -s doc= libreoffice
+alias -s docx= libreoffice
+
 # Nice Exports
 export EDITOR="vim"
 export SVN_EDITOR="vim"
