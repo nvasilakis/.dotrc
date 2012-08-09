@@ -200,7 +200,7 @@ alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 # Instead of adding something to /usr/bin
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
 alias pushwork='tar cvzf ~/work.tar.gz ~/Work/; rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~'
-alias pullwork='rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .; cp ~/Work/ ~/Work_BK; tar xvzf ~/work.tar.gz ~/Work/'
+alias pullwork='rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .; echo -n "Backing up work.."; cp -r ~/Work/ ~/Work_BK; echo "..done!"; tar xvzf ~/work.tar.gz '
 
 # Suffix aliases
 alias -s xlx= libreoffice
