@@ -107,7 +107,7 @@ else
 fi
 
 # some more ls aliases
-alias ll='ls -alhF'
+alias ll='ls -lhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias j='jobs -l'
