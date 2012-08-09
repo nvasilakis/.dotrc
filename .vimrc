@@ -175,7 +175,7 @@ autocmd FileType ruby set omnifunc=rubycomplete#Complete
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 " Hacks for SQL completion
-let g:ftplugin_sql_omni_key = '<C-C>'
+" let g:ftplugin_sql_omni_key = '<C-C>'
 
 " Options for Ruby Completion
 let g:rubycomplete_buffer_loading = 1
