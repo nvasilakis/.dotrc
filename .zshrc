@@ -694,3 +694,7 @@ lzohead () {
     screen_set $tab_title $tab_hardstatus
     vcs_info 
   }
+
+function cd {
+  builtin cd $* && ls
+}

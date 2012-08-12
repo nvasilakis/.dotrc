@@ -289,3 +289,7 @@ esac
 
 # PS1="${SCREENTITLEPROCESS}${SCREENTITLE}${PS1}"
 PS1="${SCREENTITLEPROCESS}${SCREENTITLE}${PS1}"
+
+function cd {
+  builtin cd $* && ls
+}
