@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Remove this file
+
 # Function used for debugging output.
 function e {
   echo "[Output] $1";
