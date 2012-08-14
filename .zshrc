@@ -252,8 +252,10 @@ zstyle ':vcs_info:*' unstagedstr "✘"
 zstyle ':vcs_info:*' stagedstr "✔"
 
 # ± for git
-zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
-zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u%{$reset_color%}%m]"
+# zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
+zstyle ':vcs_info:*' actionformats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u %{${bg[red]}%{${fg_bold[white]}%}%}%a%{$reset_color%}%m]"
+zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u %a %{$reset_color%}%m]"
+# zstyle ':vcs_info:*' formats "($green%b%u%c$default:$blue%s$default)"
 zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-st 
 
 # Show remote ref name and number of commits ahead-of or behind
@@ -275,6 +277,7 @@ function +vi-git-st() {
         # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
         behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
         (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
+        gitstatus=$( echo $gitstatus | sed -e 's/[ \t]*//g' -e 's/^[ \t]*//;s/[ \t]*$//' )
 
         hook_com[misc]="${(j:/:)gitstatus}${hook_com[misc]}"
     fi
@@ -455,17 +458,15 @@ fi
 
 # Set the screen environment for work or home
 en(){
-case $1 in
-  work)
-    screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
-    screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
-    screen -t "tomcat" cd ~/Work/apache-tomcat-6.0.35/
-    ;;
-esac
-
-
-
+  case $1 in
+    work)
+      screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
+      screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
+      screen -t "tomcat" cd ~/Work/apache-tomcat-6.0.35/
+      ;;
+  esac
 }
+
 # Show the number of background jobs -- only if there are any
 show-jobs(){
   #if [[ $(echo '%j') == "0" ]] ; then
