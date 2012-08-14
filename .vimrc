@@ -286,3 +286,7 @@ func! Gcc()
 endfunc
 
 map <leader>2 :Gcc<CR>
+
+" abbreviations
+:ab gu Update
+
