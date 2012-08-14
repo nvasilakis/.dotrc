@@ -293,3 +293,7 @@ PS1="${SCREENTITLEPROCESS}${SCREENTITLE}${PS1}"
 function cd {
   builtin cd $* && ls
 }
+
+## TODO: IF ON FLUXBOX
+# fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
+# gnome-keyboard-properties
