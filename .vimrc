@@ -34,6 +34,7 @@ call pathogen#helptags()
 :set autochdir                    " change directory automagically
 :set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%04.8b]\ [HEX=\%04.4B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 :set laststatus=2                 " set the status line visible at all times
+:set list                         " show invisibles
 :hi CursorLine   cterm=NONE ctermbg=235 guibg=black " 8 24 235|51
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
