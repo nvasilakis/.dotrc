@@ -1,4 +1,18 @@
 #!/bin/bash
+  
+##
+# 2012, Nikos Vasilakis
+# n.c.vasilakis@gmail.com
+#
+# A script that populates the repo
+#
+# Usage: ./populate.sh
+#
+# TODO:
+#        *  Need to remove it
+##
+
+# TODO: Remove this file
 
 # Function used for debugging output.
 function e {
