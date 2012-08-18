@@ -182,7 +182,7 @@ alias ggs='git status -sb'
 alias ggp='git push'
 alias ggh='git checkout'
 alias ggb='git branch'
-alias ggl='git log --graph --decorate --oneline'
+alias ggl='git log --graph --decorate --oneline | head -n 20'
 alias ggd='git diff --word-diff'
 alias -g mam='nv@150.140.90.86'
 alias -g etp='etp@150.140.91.13'
@@ -205,12 +205,19 @@ alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
 alias pushwork='tar cvzf ~/work.tar.gz ~/Work/; rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~'
 alias pullwork='rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .; echo -n "Backing up work.."; cp -r ~/Work/ ~/Work_BK; echo "..done!"; tar xvzf ~/work.tar.gz '
+# The usual stuff
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
 
 # Suffix aliases
-alias -s xlx= libreoffice
-alias -s xls= libreoffice
-alias -s doc= libreoffice
-alias -s docx= libreoffice
+alias -s xlx=libreoffice
+alias -s xls=libreoffice
+alias -s doc=libreoffice
+alias -s docx=libreoffice
+alias -s tex=vim
+alias -s html=w3m
+alias -s org=w3m
 
 # Nice Exports
 export EDITOR="vim"
@@ -702,4 +709,7 @@ lzohead () {
 
 function cd {
   builtin cd $* && ls
+}
+function mkdir () {
+  builtin mkdir -p $* && cd $*
 }
