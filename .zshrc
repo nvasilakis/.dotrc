@@ -706,6 +706,6 @@ fi
 function cd {
   builtin cd $* && ls
 }
-function mkdir () {
-  builtin mkdir -p $* && cd $*
+function mkd() {
+  mkdir -p $* && cd $*
 }

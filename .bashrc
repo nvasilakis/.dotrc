@@ -300,6 +300,9 @@ function cd {
   builtin cd $* && ls
 }
 
+function mkd() {
+  mkdir -p $* && cd $*
+}
 ## TODO: IF ON FLUXBOX
 # fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
 # gnome-keyboard-properties
