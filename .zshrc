@@ -653,14 +653,12 @@ lzohead () {
 # run-help: M-h
 # spelling correction: M-s
 
-
-
-
 # ~/.zshrc
-# if using GNU screen, let the zsh tell screen what the title and hardstatus
-# of the tab window should be.
+# if  using GNU  screen, let  the  zsh tell  screen what  the title  and
+# hardstatus of the tab window should be. I grab this with a regex since
+# I usually use screen-256-etc.
+if [[ $TERM =~ "screen" ]]; then
   _GET_PATH='echo $PWD | sed "s/^\/Users\//~/;s/^~$USER/~/"'
-
   # use the current user as the prefix of the current tab title (since that's
   # fairly important, and I change it fairly often)
   TAB_TITLE_PREFIX='"`'$_GET_PATH' | sed "s:..*/::"`$PROMPT_CHAR "'
@@ -670,7 +668,6 @@ lzohead () {
   # when running a command, show the title of the command as the rest of the
   # title (truncate to drop the path to the command)
   TAB_TITLE_EXEC='$cmd[1]:t'
-
   # use the current path (with standard ~ replacement) in square brackets as the
   # prefix of the tab window hardstatus.
   TAB_HARDSTATUS_PREFIX='"[`'$_GET_PATH'`] "'
@@ -680,13 +677,11 @@ lzohead () {
   # when running a command, show the command name and arguments as the rest of
   # the title
   TAB_HARDSTATUS_EXEC='$cmd'
-
   # tell GNU screen what the tab window title ($1) and the hardstatus($2) should be
   function screen_set()
   {
     # set the tab window title (%t) for screen
     print -nR $'\033k'$1$'\033'\\\
-
     # set hardstatus of tab window (%h) for screen
     print -nR $'\033]0;'$2$'\a'
   }
@@ -706,6 +701,7 @@ lzohead () {
     screen_set $tab_title $tab_hardstatus
     vcs_info 
   }
+fi
 
 function cd {
   builtin cd $* && ls
