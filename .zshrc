@@ -40,6 +40,10 @@ zstyle ':completion:*:kill:*' force-list always
 # Tab completion for pkill
 zstyle ':completion:*:*:killall:*' menu yes select
 zstyle ':completion:*:killall:*' force-list always
+# Some functions, like _apt and _dpkg, are very slow, so we cache them 
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
 
 
 # Setting options
