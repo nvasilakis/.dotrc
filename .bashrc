@@ -178,8 +178,8 @@ export CDPATH="/media/w7/Projects/"
 export EC2_PRIVATE_KEY=~/.ec2/access.pem
 export EC2_CERT=~/.ec2/cert.pem
 export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-    vim -R -c 'set ft=man nomod nonumber nolist' -c 'map q :q<CR>' \
-    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' -\" \
+    vim -R -c 'set ft=man nomod nonumber nolist' -c 'noremap q ZQ' \
+    -c 'map <SPACE> <C-D>' -\" \
     "
     # Add this line above the above to remap K
     #-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\"\
