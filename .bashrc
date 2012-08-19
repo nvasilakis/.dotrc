@@ -117,8 +117,6 @@ alias ll='ls -lhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias j='jobs -l'
-alias f='fg'
-alias b='bg'
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
 alias vim='vim -p'
@@ -303,6 +301,16 @@ function cd {
 function mkd() {
   mkdir -p $* && cd $*
 }
+
+# Job control functions
+function f {
+  fg %$*
+}
+
+function b {
+  bg %$*
+}
+
 ## TODO: IF ON FLUXBOX
 # fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
 # gnome-keyboard-properties

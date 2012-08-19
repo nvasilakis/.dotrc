@@ -169,8 +169,6 @@ alias ll='ls -lhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias j='jobs -l'
-alias f='fg'
-alias b='bg'
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
 alias vim='vim -p'
@@ -216,6 +214,7 @@ alias -s xls=libreoffice
 alias -s doc=libreoffice
 alias -s docx=libreoffice
 alias -s tex=vim
+alias -s pdf=evince
 alias -s html=w3m
 alias -s org=w3m
 
@@ -706,6 +705,16 @@ fi
 function cd {
   builtin cd $* && ls
 }
-function mkd() {
+
+function mkd {
   mkdir -p $* && cd $*
+}
+
+# Job control functions
+function f {
+  fg %$*
+}
+
+function b {
+  bg %$*
 }
