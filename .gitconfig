@@ -1,14 +1,14 @@
 [user]
-	name = nvasilakis
+	name = Nikos Vasilakis
 	email = nikos.ailo@gmail.com
 [core]
 	editor = vim
 	excludesfile = $HOME/.vim/.gitignore
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
+	diff = always
+	status = always
+	branch = always
+	interactive = always
 [diff]
 	tool = vimdiff
 [difftool]

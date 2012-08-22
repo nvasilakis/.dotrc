@@ -23,7 +23,11 @@ snippet if
 snippet elif
 	elif [[ ${1:condition} ]]; then
 		${2:#statements}
-snippet for
+snippet for file in *
+	for ${1:file} in ${2:*.extension}; do
+		${3:#statements}
+	done
+snippet for i in [0,10)
 	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
 		${3:#statements}
 	done

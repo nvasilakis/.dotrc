@@ -31,6 +31,10 @@ call pathogen#helptags()
 :set textwidth=72                 " for vim's auto formatter
 :set spell                        " spell on the fly -- now default!
 :set cursorline                   " show where the line is
+:set autochdir                    " change directory automagically
+:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%04.8b]\ [HEX=\%04.4B]\ [LEN=%L]\ [POS=%04l,%04v][%p%%]
+:set laststatus=2                 " set the status line visible at all times
+:set list                         " show invisibles
 :hi CursorLine   cterm=NONE ctermbg=235 guibg=black " 8 24 235|51
 " Using , as a map leader -- Define ",," to equal a current ,!
 :let mapleader = ","
@@ -175,7 +179,7 @@ autocmd FileType ruby set omnifunc=rubycomplete#Complete
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 " Hacks for SQL completion
-let g:ftplugin_sql_omni_key = '<C-C>'
+" let g:ftplugin_sql_omni_key = '<C-C>'
 
 " Options for Ruby Completion
 let g:rubycomplete_buffer_loading = 1
@@ -258,6 +262,12 @@ function! SummarizeTabs()
   endtry
 endfunction
 
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:➟\ ,eol:⤦
+
 " Return to last edit position 
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -276,3 +286,7 @@ func! Gcc()
 endfunc
 
 map <leader>2 :Gcc<CR>
+
+" abbreviations
+:ab u Update
+

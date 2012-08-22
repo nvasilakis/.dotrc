@@ -40,6 +40,10 @@ zstyle ':completion:*:kill:*' force-list always
 # Tab completion for pkill
 zstyle ':completion:*:*:killall:*' menu yes select
 zstyle ':completion:*:killall:*' force-list always
+# Some functions, like _apt and _dpkg, are very slow, so we cache them 
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
 
 
 # Setting options
@@ -161,12 +165,10 @@ else
 fi
 
 # some more aliases
-alias ll='ls -alhF'
+alias ll='ls -lhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias j='jobs -l'
-alias f='fg'
-alias b='bg'
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
 alias vim='vim -p'
@@ -178,7 +180,7 @@ alias ggs='git status -sb'
 alias ggp='git push'
 alias ggh='git checkout'
 alias ggb='git branch'
-alias ggl='git log --graph --decorate --oneline'
+alias ggl='git log --graph --decorate --oneline | head -n 20'
 alias ggd='git diff --word-diff'
 alias -g mam='nv@150.140.90.86'
 alias -g etp='etp@150.140.91.13'
@@ -195,9 +197,26 @@ alias emacs='emacs -nw'
 alias here='nautilus --no-desktop --browser .'
 alias jhf='cd ~/Work/oceanus/handsfree/git/'
 alias jto='cd ~/Work/apache-tomcat-6.0.35/'
+alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribution/Handsfree-beta.war /oceanus/www/webapps;'
 alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 # Instead of adding something to /usr/bin
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
+alias pushwork='tar cvzf ~/work.tar.gz ~/Work/; rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~'
+alias pullwork='rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .; echo -n "Backing up work.."; cp -r ~/Work/ ~/Work_BK; echo "..done!"; tar xvzf ~/work.tar.gz '
+# The usual stuff
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+
+# Suffix aliases
+alias -s xlx=libreoffice
+alias -s xls=libreoffice
+alias -s doc=libreoffice
+alias -s docx=libreoffice
+alias -s tex=vim
+alias -s pdf=evince
+alias -s html=w3m
+alias -s org=w3m
 
 # Nice Exports
 export EDITOR="vim"
@@ -206,8 +225,8 @@ export PYTHONSTARTUP=~/.pythonrc
 export EC2_PRIVATE_KEY=~/.ec2/access.pem
 export EC2_CERT=~/.ec2/cert.pem
 export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-    vim -R -c 'set ft=man nomod nonumber nolist' -c 'map q :q<CR>' \
-    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' -\" \
+    vim -R -c 'set ft=man nomod nonumber nolist' -c 'noremap q ZQ' \
+    -c 'map <SPACE> <C-D>' -\" \
     "
 #export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 #    vim -R -c 'set ft=man nomod modified nonumber nolist autoread' -c 'map q :q<CR>' \
@@ -243,8 +262,10 @@ zstyle ':vcs_info:*' unstagedstr "✘"
 zstyle ':vcs_info:*' stagedstr "✔"
 
 # ± for git
-zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
-zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u%{$reset_color%}%m]"
+# zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
+zstyle ':vcs_info:*' actionformats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u %{${bg[red]}%{${fg_bold[white]}%}%}%a%{$reset_color%}%m]"
+zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u %a %{$reset_color%}%m]"
+# zstyle ':vcs_info:*' formats "($green%b%u%c$default:$blue%s$default)"
 zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-st 
 
 # Show remote ref name and number of commits ahead-of or behind
@@ -266,6 +287,7 @@ function +vi-git-st() {
         # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
         behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
         (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
+        gitstatus=$( echo $gitstatus | sed -e 's/[ \t]*//g' -e 's/^[ \t]*//;s/[ \t]*$//' )
 
         hook_com[misc]="${(j:/:)gitstatus}${hook_com[misc]}"
     fi
@@ -446,17 +468,15 @@ fi
 
 # Set the screen environment for work or home
 en(){
-case $1 in
-  work)
-    screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
-    screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
-    screen -t "tomcat" cd ~/Work/apache-tomcat-6.0.35/
-    ;;
-esac
-
-
-
+  case $1 in
+    work)
+      screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
+      screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
+      screen -t "tomcat" cd ~/Work/apache-tomcat-6.0.35/
+      ;;
+  esac
 }
+
 # Show the number of background jobs -- only if there are any
 show-jobs(){
   #if [[ $(echo '%j') == "0" ]] ; then
@@ -632,14 +652,12 @@ lzohead () {
 # run-help: M-h
 # spelling correction: M-s
 
-
-
-
 # ~/.zshrc
-# if using GNU screen, let the zsh tell screen what the title and hardstatus
-# of the tab window should be.
+# if  using GNU  screen, let  the  zsh tell  screen what  the title  and
+# hardstatus of the tab window should be. I grab this with a regex since
+# I usually use screen-256-etc.
+if [[ $TERM =~ "screen" ]]; then
   _GET_PATH='echo $PWD | sed "s/^\/Users\//~/;s/^~$USER/~/"'
-
   # use the current user as the prefix of the current tab title (since that's
   # fairly important, and I change it fairly often)
   TAB_TITLE_PREFIX='"`'$_GET_PATH' | sed "s:..*/::"`$PROMPT_CHAR "'
@@ -649,7 +667,6 @@ lzohead () {
   # when running a command, show the title of the command as the rest of the
   # title (truncate to drop the path to the command)
   TAB_TITLE_EXEC='$cmd[1]:t'
-
   # use the current path (with standard ~ replacement) in square brackets as the
   # prefix of the tab window hardstatus.
   TAB_HARDSTATUS_PREFIX='"[`'$_GET_PATH'`] "'
@@ -659,13 +676,11 @@ lzohead () {
   # when running a command, show the command name and arguments as the rest of
   # the title
   TAB_HARDSTATUS_EXEC='$cmd'
-
   # tell GNU screen what the tab window title ($1) and the hardstatus($2) should be
   function screen_set()
   {
     # set the tab window title (%t) for screen
     print -nR $'\033k'$1$'\033'\\\
-
     # set hardstatus of tab window (%h) for screen
     print -nR $'\033]0;'$2$'\a'
   }
@@ -685,3 +700,21 @@ lzohead () {
     screen_set $tab_title $tab_hardstatus
     vcs_info 
   }
+fi
+
+function cd {
+  builtin cd $* && ls
+}
+
+function mkd {
+  mkdir -p $* && cd $*
+}
+
+# Job control functions
+function f {
+  fg %$*
+}
+
+function b {
+  bg %$*
+}
