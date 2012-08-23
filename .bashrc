@@ -315,8 +315,8 @@ function b {
 }
 
 function mem {
-  echo "In use: $(free | grep Mem | awk '{print $3/$2 * 100.0}')%"
-  echo "Free:   $(free | grep Mem | awk '{print $4/$2 * 100.0}')%"
+  echo "In use:\t\e[00;31m$(free | grep Mem | awk '{print $3/$2 * 100.0}')\e[00m\t%"
+  echo "Free:\t\e[00;31m$(free | grep Mem | awk '{print $4/$2 * 100.0}')\e[00m\t%"
 }
 ## TODO: IF ON FLUXBOX
 # fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
