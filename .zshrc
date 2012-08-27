@@ -266,7 +266,7 @@ zstyle ':vcs_info:*' stagedstr "✔"
 # ± for git
 # zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
 zstyle ':vcs_info:*' actionformats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u %{${bg[red]}%{${fg_bold[white]}%}%}%a%{$reset_color%}%m]"
-zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u %a %{$reset_color%}%m]"
+zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u%a%{$reset_color%}%m]"
 # zstyle ':vcs_info:*' formats "($green%b%u%c$default:$blue%s$default)"
 zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-st 
 
@@ -300,8 +300,8 @@ function +vi-git-stash() {
     local -a stashes
 
     if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
-        stashes=$(git stash list 2>/dev/null | wc -l)
-        hook_com[misc]+=" (${stashes} stashed)"
+      stashes=$(git stash list 2>/dev/null | wc -l | sed 's/[ \t]*//g')
+        hook_com[misc]+="(${stashes} stashed)"
     fi
 }
 
@@ -400,52 +400,52 @@ unset __CURRENT_GIT_BRANCH_IS_DIRTY
 
 local st="$(git status 2>/dev/null)"
 if [[ -n "$st" ]]; then
-	local -a arr
-	arr=(${(f)st})
+  local -a arr
+  arr=(${(f)st})
 
-	if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
-		__CURRENT_GIT_BRANCH='no-branch'
-	else
-		__CURRENT_GIT_BRANCH="${arr[1][(w)4]}";
-	fi
+  if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
+    __CURRENT_GIT_BRANCH='no-branch'
+  else
+    __CURRENT_GIT_BRANCH="${arr[1][(w)4]}";
+  fi
 
-	if [[ $arr[2] =~ 'Your branch is' ]]; then
-		if [[ $arr[2] =~ 'ahead' ]]; then
-			__CURRENT_GIT_BRANCH_STATUS='ahead'
-		elif [[ $arr[2] =~ 'diverged' ]]; then
-			__CURRENT_GIT_BRANCH_STATUS='diverged'
-		else
-			__CURRENT_GIT_BRANCH_STATUS='behind'
-		fi
-	fi
+  if [[ $arr[2] =~ 'Your branch is' ]]; then
+    if [[ $arr[2] =~ 'ahead' ]]; then
+      __CURRENT_GIT_BRANCH_STATUS='ahead'
+    elif [[ $arr[2] =~ 'diverged' ]]; then
+      __CURRENT_GIT_BRANCH_STATUS='diverged'
+    else
+      __CURRENT_GIT_BRANCH_STATUS='behind'
+    fi
+  fi
 
-	if [[ ! $st =~ 'nothing to commit' ]]; then
-		__CURRENT_GIT_BRANCH_IS_DIRTY='1'
-	fi
+  if [[ ! $st =~ 'nothing to commit' ]]; then
+    __CURRENT_GIT_BRANCH_IS_DIRTY='1'
+  fi
 fi
 }
 
 prompt_git_info(){
 if [ -n "$__CURRENT_GIT_BRANCH" ]; then
-	local s="["
-	s+="$__CURRENT_GIT_BRANCH"
-	case "$__CURRENT_GIT_BRANCH_STATUS" in
-		ahead)
-		s+="↑"
-		;;
-		diverged)
-		s+="↕"
-		;;
-		behind)
-		s+="↓"
-		;;
-	esac
-	if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
-		s+="±"
-	fi
-	s+="]"
+  local s="["
+  s+="$__CURRENT_GIT_BRANCH"
+  case "$__CURRENT_GIT_BRANCH_STATUS" in
+    ahead)
+    s+="↑"
+    ;;
+    diverged)
+    s+="↕"
+    ;;
+    behind)
+    s+="↓"
+    ;;
+  esac
+  if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
+    s+="±"
+  fi
+  s+="]"
 # Add color withing quotes %{$bold_color$fg[blue]%} 
-	printf "%s%s" "" $s
+  printf "%s%s" "" $s
 fi
 }
 
@@ -455,16 +455,16 @@ update_current_git_vars
 
 preexec_update_git_vars() {
 case "$1" in 
-	git*)
-	__EXECUTED_GIT_COMMAND=1
-	;;
+  git*)
+  __EXECUTED_GIT_COMMAND=1
+  ;;
 esac
 }
 
 precmd_update_git_vars(){
 if [ -n "$__EXECUTED_GIT_COMMAND" ]; then
-	update_current_git_vars
-	unset __EXECUTED_GIT_COMMAND
+  update_current_git_vars
+  unset __EXECUTED_GIT_COMMAND
 fi
 }
 
