@@ -203,8 +203,6 @@ alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribu
 alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 # Instead of adding something to /usr/bin
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
-alias pushwork='tar cvzf ~/work.tar.gz ~/Work/; rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~'
-alias pullwork='rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .; echo -n "Backing up work.."; cp -r ~/Work/ ~/Work_BK; echo "..done!"; tar xvzf ~/work.tar.gz '
 # The usual stuff
 alias -g ...='../..'
 alias -g ....='../../..'
@@ -724,4 +722,19 @@ function b {
 function mem {
   echo "In use:\t\e[00;31m$(free | grep Mem | awk '{print $3/$2 * 100.0}')\e[00m\t%"
   echo "Free:\t\e[00;31m$(free | grep Mem | awk '{print $4/$2 * 100.0}')\e[00m\t%"
+}
+
+function pushwork {
+  tar cvzf ~/work.tar.gz ~/Work/; 
+  rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~
+}
+
+function pullwork {
+  cd $HOME;
+  rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .;
+  echo -n "Backing up work..";
+  cp -r ~/Work/ ~/Work_BK; 
+  echo "..done!"; 
+  tar xvzf ~/work.tar.gz
+  cd $OLDPWD;
 }
