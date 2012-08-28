@@ -184,7 +184,7 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
     "
     # Add this line above the above to remap K
     #-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\"\
-
+check=""
 if [[ `hostname` == 'nv' ]]; then 
   # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
   export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
@@ -192,6 +192,9 @@ if [[ `hostname` == 'nv' ]]; then
   export HADOOP_HOME=/usr/local/hadoop
   # Now we can cd from anywhere
   export CDPATH="/media/w7/Projects/"
+  gnome-keyboard-properties &
+  check=$!
+  fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
 elif [[ `hostname` == 'cis555-vm' ]] ; then
   export PATH=$PATH:/home/cis555/555/.tools
   export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
@@ -199,6 +202,9 @@ elif [[ `hostname` == 'cis555-vm' ]] ; then
 #  xrandr --newmode "1920x1080" 172.80 1920 2040 2248 2576 1080 1081 1084 1118
 #  xrandr --addmode VBOX0 "1920x1080"
 #  # xrandr -s 1920x1080
+  # gnome-keyboard-properties &
+  # check=$!
+  # fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
 #  # fbsetbg ~/Downloads/1680x1050.jpg
 #  # vim .inputrc
 #  # mv X.defaults .Xdefaults
@@ -321,3 +327,4 @@ function mem {
 ## TODO: IF ON FLUXBOX
 # fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
 # gnome-keyboard-properties
+# kill $check
