@@ -1,3 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/")
+
 (defun terminal-init-gnome ()
   "Terminal initialization function for gnome-terminal."
 
@@ -34,7 +36,6 @@
     (color-theme-solarized-dark)))
 
 ;; ai auctex
-(add-to-list 'load-path "~/.emacs.d/")
 ;;load the auto complete path here, if you havent done it
 (require 'auto-complete-config)
 (ac-config-default)
