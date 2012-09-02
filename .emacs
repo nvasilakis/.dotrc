@@ -21,15 +21,17 @@
 (scroll-bar-mode -1)  
 (tool-bar-mode -1)
 
-
-
-(add-to-list 'load-path "~/.emacs.d/emacs-colors-solarized/")
-;; it's NOT emacs24, so use color-theme
-(load-file "~/.emacs.d/emacs-colors-solarized/color-theme-solarized.el")
-(require 'color-theme)
-;; (color-theme-initialize)
-;; (require 'color-theme-solarized)
-(color-theme-solarized-dark)
+(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+(if
+    (equal 0 (string-match "^24" emacs-version))
+    ;; it's emacs24, so use built-in theme
+    (require 'solarized-dark-theme)
+  ;; it's NOT emacs24, so use color-theme
+  (progn
+    (require 'color-theme)
+    (color-theme-initialize)
+    (require 'color-theme-solarized)
+    (color-theme-solarized-dark)))
 
 ;; ai auctex
 (add-to-list 'load-path "~/.emacs.d/")
