@@ -1,21 +1,22 @@
 [user]
-	name = Nikos Vasilakis
-	email = nikos.ailo@gmail.com
+  name = Nikos Vasilakis
+  email = nikos.ailo@gmail.com
 [core]
-	editor = vim
-	excludesfile = $HOME/.vim/.gitignore
+  editor = vim
+  excludesfile = $HOME/.vim/.gitignore
+  filemode = false
 [color]
-	diff = always
-	status = always
-	branch = always
-	interactive = always
+  diff = always
+  status = always
+  branch = always
+  interactive = always
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [difftool]
-	prompt = false
+  prompt = false
 [alias]
-	d = difftool
+  d = difftool
   p = pull --rebase
-	ctags = !.git/hooks/ctags
+  ctags = !.git/hooks/ctags
 [init]
-	templatedir = ~/.vim/.git_template
+  templatedir = ~/.vim/.git_template
