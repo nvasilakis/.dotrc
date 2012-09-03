@@ -72,7 +72,7 @@ setopt AUTOPUSHD #pushdminus pushdsilent pushdtohome
 setopt AUTOCD 
 # Option to complete aliases also
 setopt COMPLETEALIASES
-
+setopt no_complete_aliases
 # Edit the current line in the $EDITOR
 autoload edit-command-line
 zle -N edit-command-line
@@ -167,6 +167,7 @@ else
 fi
 
 # some more aliases
+alias rsc='rsync -av --progress'
 alias ll='ls -lhF'
 alias la='ls -A'
 alias l='ls -CF'

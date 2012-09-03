@@ -116,6 +116,7 @@ else
 fi
 
 # some more ls aliases
+alias rsc='rsync -av --progress'
 alias ll='ls -lhF'
 alias la='ls -A'
 alias l='ls -CF'
