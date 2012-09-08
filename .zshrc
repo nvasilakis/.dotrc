@@ -22,6 +22,8 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+LACONIC="no"
+
 setopt complete_in_word
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
@@ -43,7 +45,6 @@ zstyle ':completion:*:killall:*' force-list always
 # Some functions, like _apt and _dpkg, are very slow, so we cache them 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-
 
 
 # Setting options
@@ -253,7 +254,7 @@ fi;
 # ❄ ✺ for Darcs
 #  for CVS
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable hg git bzr svn
+zstyle ':vcs_info:*' enable git hg bzr svn
 zstyle ':vcs_info:(hg*|git*|bzr):*' get-revision true
 zstyle ':vcs_info:(hg*|git*|bzr):*' check-for-changes true
 zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
@@ -389,95 +390,95 @@ function +vi-svn-info() {
 #        hook_com[misc]="${(j:/:)gitstatus}${hook_com[misc]}"
 #    fi
 }
-
-
-## simplex
-update_current_git_vars(){
-unset __CURRENT_GIT_BRANCH
-unset __CURRENT_GIT_BRANCH_STATUS
-unset __CURRENT_GIT_BRANCH_IS_DIRTY
-
-local st="$(git status 2>/dev/null)"
-if [[ -n "$st" ]]; then
-  local -a arr
-  arr=(${(f)st})
-
-  if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
-    __CURRENT_GIT_BRANCH='no-branch'
-  else
-    __CURRENT_GIT_BRANCH="${arr[1][(w)4]}";
-  fi
-
-  if [[ $arr[2] =~ 'Your branch is' ]]; then
-    if [[ $arr[2] =~ 'ahead' ]]; then
-      __CURRENT_GIT_BRANCH_STATUS='ahead'
-    elif [[ $arr[2] =~ 'diverged' ]]; then
-      __CURRENT_GIT_BRANCH_STATUS='diverged'
-    else
-      __CURRENT_GIT_BRANCH_STATUS='behind'
-    fi
-  fi
-
-  if [[ ! $st =~ 'nothing to commit' ]]; then
-    __CURRENT_GIT_BRANCH_IS_DIRTY='1'
-  fi
-fi
-}
-
-prompt_git_info(){
-if [ -n "$__CURRENT_GIT_BRANCH" ]; then
-  local s="["
-  s+="$__CURRENT_GIT_BRANCH"
-  case "$__CURRENT_GIT_BRANCH_STATUS" in
-    ahead)
-    s+="↑"
-    ;;
-    diverged)
-    s+="↕"
-    ;;
-    behind)
-    s+="↓"
-    ;;
-  esac
-  if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
-    s+="±"
-  fi
-  s+="]"
-# Add color withing quotes %{$bold_color$fg[blue]%} 
-  printf "%s%s" "" $s
-fi
-}
-
-chpwd_update_git_vars() {
-update_current_git_vars
-}
-
-preexec_update_git_vars() {
-case "$1" in 
-  git*)
-  __EXECUTED_GIT_COMMAND=1
-  ;;
-esac
-}
-
-precmd_update_git_vars(){
-if [ -n "$__EXECUTED_GIT_COMMAND" ]; then
-  update_current_git_vars
-  unset __EXECUTED_GIT_COMMAND
-fi
-}
-
-# Set the screen environment for work or home
-en(){
-  case $1 in
-    work)
-      screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
-      screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
-      screen -t "tomcat" cd ~/Work/apache-tomcat-6.0.35/
-      ;;
-  esac
-}
-
+# 
+# 
+# ## simplex
+# update_current_git_vars(){
+# unset __CURRENT_GIT_BRANCH
+# unset __CURRENT_GIT_BRANCH_STATUS
+# unset __CURRENT_GIT_BRANCH_IS_DIRTY
+# 
+# local st="$(git status 2>/dev/null)"
+# if [[ -n "$st" ]]; then
+#   local -a arr
+#   arr=(${(f)st})
+# 
+#   if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
+#     __CURRENT_GIT_BRANCH='no-branch'
+#   else
+#     __CURRENT_GIT_BRANCH="${arr[1][(w)4]}";
+#   fi
+# 
+#   if [[ $arr[2] =~ 'Your branch is' ]]; then
+#     if [[ $arr[2] =~ 'ahead' ]]; then
+#       __CURRENT_GIT_BRANCH_STATUS='ahead'
+#     elif [[ $arr[2] =~ 'diverged' ]]; then
+#       __CURRENT_GIT_BRANCH_STATUS='diverged'
+#     else
+#       __CURRENT_GIT_BRANCH_STATUS='behind'
+#     fi
+#   fi
+# 
+#   if [[ ! $st =~ 'nothing to commit' ]]; then
+#     __CURRENT_GIT_BRANCH_IS_DIRTY='1'
+#   fi
+# fi
+# }
+# 
+# prompt_git_info(){
+# if [ -n "$__CURRENT_GIT_BRANCH" ]; then
+#   local s="["
+#   s+="$__CURRENT_GIT_BRANCH"
+#   case "$__CURRENT_GIT_BRANCH_STATUS" in
+#     ahead)
+#     s+="↑"
+#     ;;
+#     diverged)
+#     s+="↕"
+#     ;;
+#     behind)
+#     s+="↓"
+#     ;;
+#   esac
+#   if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
+#     s+="±"
+#   fi
+#   s+="]"
+# # Add color withing quotes %{$bold_color$fg[blue]%} 
+#   printf "%s%s" "" $s
+# fi
+# }
+# 
+# chpwd_update_git_vars() {
+#   update_current_git_vars
+# }
+# 
+# preexec_update_git_vars() {
+#   case "$1" in 
+#     git*)
+#     __EXECUTED_GIT_COMMAND=1
+#     ;;
+#   esac
+# }
+# 
+# precmd_update_git_vars(){
+#   if [ -n "$__EXECUTED_GIT_COMMAND" ]; then
+#     update_current_git_vars
+#     unset __EXECUTED_GIT_COMMAND
+#   fi
+# }
+# 
+# # Set the screen environment for work or home
+# en(){
+#   case $1 in
+#     work)
+#       screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
+#       screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
+#       screen -t "tomcat" cd ~/Work/apache-tomcat-6.0.35/
+#       ;;
+#   esac
+# }
+# 
 # Show the number of background jobs -- only if there are any
 show-jobs(){
   #if [[ $(echo '%j') == "0" ]] ; then
@@ -492,15 +493,15 @@ show-jobs(){
 #  number=$(jobs)
 #  if [[ $number == "" ]]; then
 # .ena.duo' #%{$fg[blue]%}[%j])
-
-typeset -ga preexec_functions
-typeset -ga precmd_functions
-typeset -ga chpwd_functions
-
-preexec_functions+='preexec_update_git_vars'
-precmd_functions+='precmd_update_git_vars'
-chpwd_functions+='chpwd_update_git_vars'
-
+# 
+# typeset -ga preexec_functions
+# typeset -ga precmd_functions
+# typeset -ga chpwd_functions
+# 
+# preexec_functions+='preexec_update_git_vars'
+# precmd_functions+='precmd_update_git_vars'
+# chpwd_functions+='chpwd_update_git_vars'
+# 
 # PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
 PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%# '
 #RPS1=$'$(prompt_git_info)'
@@ -699,16 +700,18 @@ if [[ $TERM =~ "screen" ]]; then
     eval "tab_title=$TAB_TITLE_PREFIX$TAB_TITLE_PROMPT"
     eval "tab_hardstatus=$TAB_HARDSTATUS_PREFIX$TAB_HARDSTATUS_PROMPT"
     screen_set $tab_title $tab_hardstatus
-    vcs_info 
+    if [[ "${LACONIC}" == "no" ]]; then
+      vcs_info 
+    fi
   }
 fi
 
 function cd {
-  builtin cd $* && ls
+  builtin cd "$*" && ls
 }
 
 function mkd {
-  mkdir -p $* && cd $*
+  mkdir -p "$*" && cd "$*"
 }
 
 # Job control functions
@@ -738,4 +741,14 @@ function pullwork {
   echo "..done!"; 
   tar xvzf ~/work.tar.gz
   cd $OLDPWD;
+}
+
+function slow () {
+  LACONIC="no"
+  RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
+}
+
+function fast () {
+  LACONIC="yes"
+  RPS1=$'$(show-jobs)'
 }
