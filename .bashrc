@@ -193,6 +193,7 @@ if [[ `hostname` == 'nv' ]]; then
   export HADOOP_HOME=/usr/local/hadoop
   # Now we can cd from anywhere
   export CDPATH="/media/w7/Projects/"
+  export PATH="/home/nikos/.cabal/bin:$PATH"
   gnome-keyboard-properties &
   check=$!
   fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg

@@ -4,7 +4,7 @@
 [core]
   editor = vim
   excludesfile = $HOME/.vim/.gitignore
-  filemode = false
+  fileMode = false
 [color]
   diff = always
   status = always

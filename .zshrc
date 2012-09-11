@@ -243,6 +243,7 @@ if [[ `hostname` == 'nv' ]]; then
   export CDPATH="/media/w7/Projects/"
   # Add Hadoop bin/ directory to PATH
   export PATH=$PATH:$HADOOP_HOME/bin
+  export PATH="/home/nikos/.cabal/bin:$PATH"
 
 elif [[ `hostname` == 'cis555-vm' ]] ; then
   export PATH=$PATH:/home/cis555/555/.tools
