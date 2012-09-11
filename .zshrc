@@ -207,6 +207,9 @@ alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 alias breeze='/media/w7/Projects/UPenn/SAFE/SAFE/breeze/breeze-interpreter/src/dist/build/breeze/breeze'
 # Instead of adding something to /usr/bin
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
+# At last, shutdown
+alias off="echo HALTING SYSTEM; sudo shutdown -h now"
+
 # The usual stuff
 alias -g ...='../..'
 alias -g ....='../../..'
