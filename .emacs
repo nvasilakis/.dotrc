@@ -7,7 +7,6 @@
   ;;  initializing "rxvt" first and _then_ "xterm" seems
   ;;  to make the colors work... although I have no idea why.
   (tty-run-terminal-initialization (selected-frame) "rxvt")
-
   (tty-run-terminal-initialization (selected-frame) "xterm"))
 
 (defun terminal-init-screen ()
@@ -15,13 +14,14 @@
    ;; Use the xterm color initialization code.
    (xterm-register-default-colors)
    (tty-set-up-initial-frame-faces))
-
+(require 'linum)
+(global-linum-mode 1)
 ;; I want no-gui even in gui version
 ;; turn off toolbar
 (unless window-system
   (menu-bar-mode -1))
-(scroll-bar-mode -1)  
-(tool-bar-mode -1)
+;; (scroll-bar-mode -1)  
+;; (tool-bar-mode -1)
 
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
 (if
@@ -37,64 +37,64 @@
 
 ;; ai auctex
 ;;load the auto complete path here, if you havent done it
-(require 'auto-complete-config)
-(ac-config-default)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-
-;;where to keep backup files
-(setq backup-directory-alist `(("." . "~/.vim/.saves")))
-
-(require 'auto-complete-latex)
-
-; necessary, add the following into your init file.
-(setq ac-modes (append ac-modes '(foo-mode)))
-(add-hook 'foo-mode-hook 'ac-l-setup)
-
-; Yasnipper Tricks
-(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
-(require 'yasnippet) ;; not yasnippet-bundle
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/plugins/yasnippet/snippets")
-
-;; Some nice snippets https://github.com/rejeep/yasnippets
-;;(add-hook 'shell-script-mode-hook'(lambda ()(yas/minor-mode-on)))
-
-;(require ’tex-site)
-; LaTeX Tricks
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq TeX-save-query nil)
-
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
-(setq TeX-PDF-mode t)
-
-(defun my-backward-kill-word (&optional arg)
-  "Replacement for the backward-kill-word command
-If the region is active, then invoke kill-region.  Otherwise, use
-the following custom backward-kill-word procedure.
-If the previous word is on the same line, then kill the previous
-word.  Otherwise, if the previous word is on a prior line, then kill
-to the beginning of the line.  If point is already at the beginning
-of the line, then kill to the end of the previous line.
-
-With argument ARG and region inactive, do this that many times."
-  (interactive "p")
-  (if (use-region-p)
-      (kill-region (mark) (point))
-    (let (count)
-      (dotimes (count arg)
-        (if (bolp)
-            (delete-backward-char 1)
-          (kill-region (max (save-excursion (backward-word)(point))
-                            (line-beginning-position))
-                       (point)))))))
-
-(global-set-key "\C-w" 'backward-kill-word)
-
-(define-key (current-global-map) [remap backward-kill-word]
-  'my-backward-kill-word)
-
+;; ; (require 'auto-complete-config)
+;; ; (ac-config-default)
+;; ; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+;; ; 
+;; ; ;;where to keep backup files
+;; ; (setq backup-directory-alist `(("." . "~/.vim/.saves")))
+;; ; 
+;; ; (require 'auto-complete-latex)
+;; ; 
+;; ; ; necessary, add the following into your init file.
+;; ; (setq ac-modes (append ac-modes '(foo-mode)))
+;; ; (add-hook 'foo-mode-hook 'ac-l-setup)
+;; ; 
+;; ; ; Yasnipper Tricks
+;; ; (add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
+;; ; (require 'yasnippet) ;; not yasnippet-bundle
+;; ; (yas/initialize)
+;; ; (yas/load-directory "~/.emacs.d/plugins/yasnippet/snippets")
+;; ; 
+;; ; ;; Some nice snippets https://github.com/rejeep/yasnippets
+;; ; ;;(add-hook 'shell-script-mode-hook'(lambda ()(yas/minor-mode-on)))
+;; ; 
+;; ; ;(require ’tex-site)
+;; ; ; LaTeX Tricks
+;; ; (setq TeX-auto-save t)
+;; ; (setq TeX-parse-self t)
+;; ; (setq TeX-save-query nil)
+;; ; 
+;; ; (load "auctex.el" nil t t)
+;; ; (load "preview-latex.el" nil t t)
+;; ; (setq TeX-PDF-mode t)
+;; ; 
+;; ; (defun my-backward-kill-word (&optional arg)
+;; ;   "Replacement for the backward-kill-word command
+;; ; If the region is active, then invoke kill-region.  Otherwise, use
+;; ; the following custom backward-kill-word procedure.
+;; ; If the previous word is on the same line, then kill the previous
+;; ; word.  Otherwise, if the previous word is on a prior line, then kill
+;; ; to the beginning of the line.  If point is already at the beginning
+;; ; of the line, then kill to the end of the previous line.
+;; ; 
+;; ; With argument ARG and region inactive, do this that many times."
+;; ;   (interactive "p")
+;; ;   (if (use-region-p)
+;; ;       (kill-region (mark) (point))
+;; ;     (let (count)
+;; ;       (dotimes (count arg)
+;; ;         (if (bolp)
+;; ;             (delete-backward-char 1)
+;; ;           (kill-region (max (save-excursion (backward-word)(point))
+;; ;                             (line-beginning-position))
+;; ;                        (point)))))))
+;; ; 
+;; ; (global-set-key "\C-w" 'backward-kill-word)
+;; ; 
+;; ; (define-key (current-global-map) [remap backward-kill-word]
+;; ;   'my-backward-kill-word)
+;; ; 
 ;(require 'flymake)
 ;(defun flymake-get-tex-args (file-name) (list “pdflatex” (list “-file-line-error” “-draftmode” “-interaction=nonstopmode” file-name)))
 ;(add-hook ‘LaTeX-mode-hook ‘flymake-mode)
