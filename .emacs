@@ -46,6 +46,11 @@
     (require 'color-theme-solarized)
     (color-theme-solarized-dark)))
 
+(load "~/.emacs.d/haskell-mode/haskell-site-file")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
    '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
