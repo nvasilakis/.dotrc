@@ -14,6 +14,8 @@
    ;; Use the xterm color initialization code.
    (xterm-register-default-colors)
    (tty-set-up-initial-frame-faces))
+
+;; Add line numbers
 (require 'linum)
 (global-linum-mode 1)
 ;; I want no-gui even in gui version
@@ -22,6 +24,11 @@
   (menu-bar-mode -1))
 ;; (scroll-bar-mode -1)  
 ;; (tool-bar-mode -1)
+
+;; Interactively Do Things
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
 
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
 (if
