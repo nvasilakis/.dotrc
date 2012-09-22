@@ -1,5 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
+;; Initianlize for gnome-terminal
 (defun terminal-init-gnome ()
   "Terminal initialization function for gnome-terminal."
 
@@ -30,6 +31,9 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
+;; auto indent
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
 (if
     (equal 0 (string-match "^24" emacs-version))
@@ -42,15 +46,18 @@
     (require 'color-theme-solarized)
     (color-theme-solarized-dark)))
 
+;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+(custom-set-variables
+   '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+     '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+;; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
+
 ;; ai auctex
 ;;load the auto complete path here, if you havent done it
 ;; ; (require 'auto-complete-config)
 ;; ; (ac-config-default)
 ;; ; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-;; ; 
-;; ; ;;where to keep backup files
-;; ; (setq backup-directory-alist `(("." . "~/.vim/.saves")))
-;; ; 
 ;; ; (require 'auto-complete-latex)
 ;; ; 
 ;; ; ; necessary, add the following into your init file.
