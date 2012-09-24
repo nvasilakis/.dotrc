@@ -51,6 +51,9 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;;   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
+;; Overwrite haskell save buffer to include goodies
+(define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
+
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
    '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
