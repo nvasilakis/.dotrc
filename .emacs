@@ -30,7 +30,13 @@
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
-
+;; This tab override shouldn't be necessary given ido's default
+;; configuration, but minibuffer-complete otherwise dominates the
+;; tab binding because of my custom tab-completion-everywhere
+;; configuration.
+(add-hook 'ido-setup-hook
+	  (lambda ()
+	    (define-key ido-completion-map [tab] 'ido-complete)))
 ;; auto indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -52,7 +58,7 @@
 ;;   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
 ;; Overwrite haskell save buffer to include goodies
-(define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
+;; (define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
 
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
