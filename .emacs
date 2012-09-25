@@ -23,8 +23,8 @@
 ;; turn off toolbar
 (unless window-system
   (menu-bar-mode -1))
-;; (scroll-bar-mode -1)  
-;; (tool-bar-mode -1)
+(scroll-bar-mode -1)  
+(tool-bar-mode -1)
 
 ;; Interactively Do Things
 (ido-mode 1)
