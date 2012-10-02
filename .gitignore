@@ -5,3 +5,4 @@ bundle/vim-latex/ftplugin/latex-suite/*
 .saves/*
 \#*
 spell/*
+*.pyc
