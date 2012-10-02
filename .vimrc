@@ -177,6 +177,11 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType ruby set omnifunc=rubycomplete#Complete
+
+augroup filetype
+  au! BufRead,BufNewFile *.br     set filetype=breeze
+augroup END
+
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 " Hacks for SQL completion

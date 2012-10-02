@@ -146,6 +146,8 @@ alias jto='cd ~/Work/apache-tomcat-6.0.35/'
 alias dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
 # Instead of adding something to /usr/bin
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
+# At last, shutdown
+alias off="echo HALTING SYSTEM; sudo shutdown -h now"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -332,3 +334,4 @@ function mem {
 # fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
 # gnome-keyboard-properties
 # kill $check
+alias breeze='/media/w7/Projects/UPenn/SAFE/SAFE/breeze/breeze-interpreter/src/dist/build/breeze/breeze'

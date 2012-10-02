@@ -204,8 +204,13 @@ alias jhf='cd ~/Work/oceanus/handsfree/git/'
 alias jto='cd ~/Work/apache-tomcat-6.0.35/'
 alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribution/Handsfree-beta.war /oceanus/www/webapps;'
 alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
+# Breeze interpreter
+alias breeze='/media/w7/Projects/UPenn/SAFE/SAFE/breeze/breeze-interpreter/src/dist/build/breeze/breeze'
 # Instead of adding something to /usr/bin
 alias idea="/media/w7/Projects/idea/bin/idea.sh"
+# At last, shutdown
+alias off="echo HALTING SYSTEM; sudo shutdown -h now"
+
 # The usual stuff
 alias -g ...='../..'
 alias -g ....='../../..'
@@ -221,6 +226,8 @@ alias -s pdf=evince
 alias -s html=w3m
 alias -s org=w3m
 
+# Named directories
+code=/media/w7/Projects
 # Nice Exports
 export EDITOR="vim"
 export SVN_EDITOR="vim"
@@ -754,3 +761,4 @@ function fast () {
   LACONIC="yes"
   RPS1=$'$(show-jobs)'
 }
+
