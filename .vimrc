@@ -295,4 +295,5 @@ map <leader>2 :Gcc<CR>
 
 " abbreviations
 :ab u Update
+:ab la \lambda{}sh
 
