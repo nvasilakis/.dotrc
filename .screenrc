@@ -9,6 +9,8 @@
 # escape ^Qq
 shell zsh
 startup_message off
+defscrollback 1000
+scrollback 1000
 # * hardstatus off
 # hardstatus alwayslastline
 #caption     always        "%{+b r0}%H%{ck} |%c %{ck}%d.%m.%Y | %72=Load: %l %{wk}"
