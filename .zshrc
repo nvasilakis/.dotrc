@@ -161,7 +161,7 @@ else
   export GREP_OPTIONS='--color=auto';
   export GREP_COLOR='00;31;5;157';
   alias breeze='/Users/nv/Projects/UPenn/Research/svn-safe/breeze/breeze'
-
+  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
   ## Open everything up for work
   #screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
   #screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
@@ -197,7 +197,7 @@ alias dh='dirs -v'
 # if [[ $n -eq 'seas']]; then echo "ssh seas.." fi;
 alias go='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
 alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
-alias emacs='emacs -nw'
+#alias emacs='emacs -nw'
 # A trick for faster nautilus
 alias here='nautilus --no-desktop --browser .'
 alias jhf='cd ~/Work/oceanus/handsfree/git/'

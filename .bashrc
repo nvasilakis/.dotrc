@@ -103,6 +103,7 @@ else
   . /usr/local/git/contrib/completion/git-completion.bash
 
   alias breeze='/Users/nv/Projects/UPenn/Research/svn-safe/breeze/breeze'
+  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
   export CLICOLOR=1
   #export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -138,7 +139,7 @@ alias mam='nv@150.140.90.86'
 alias etp='etp@150.140.91.13'
 alias is='root@vasilak.is'
 alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
-alias emacs='emacs -nw'
+#alias emacs='emacs -nw'
 # A trick for faster nautilus
 alias here='nautilus --no-desktop --browser .'
 alias jhf='cd ~/Work/oceanus/handsfree/git/'
