@@ -103,7 +103,7 @@ else
   . /usr/local/git/contrib/completion/git-completion.bash
 
   alias breeze='/Users/nv/Projects/UPenn/Research/svn-safe/breeze/breeze'
-  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+  alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
   export CLICOLOR=1
   #export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

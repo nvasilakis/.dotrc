@@ -161,7 +161,7 @@ else
   export GREP_OPTIONS='--color=auto';
   export GREP_COLOR='00;31;5;157';
   alias breeze='/Users/nv/Projects/UPenn/Research/svn-safe/breeze/breeze'
-  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+  alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
   ## Open everything up for work
   #screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
   #screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
