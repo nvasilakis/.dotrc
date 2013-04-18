@@ -242,6 +242,7 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 #    vim -R -c 'set ft=man nomod modified nonumber nolist autoread' -c 'map q :q<CR>' \
 #    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' -\" \
 
+export PATH="$PATH:$HOME/scripts" # include home-grown tools
 if [[ `hostname` == 'nv' ]]; then 
   # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
   export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
@@ -757,8 +758,7 @@ function slow () {
   RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
 }
 
-function fast () {
+function fast {
   LACONIC="yes"
   RPS1=$'$(show-jobs)'
 }
-

@@ -181,7 +181,7 @@ complete -o default -o nospace -F _git_push ggp
 export EDITOR="vim"
 export SVN_EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
-export CDPATH="/media/w7/Projects/"
+export PATH="$PATH:$HOME/scripts" # include home-grown tools
 export EC2_PRIVATE_KEY=~/.ec2/access.pem
 export EC2_CERT=~/.ec2/cert.pem
 export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
