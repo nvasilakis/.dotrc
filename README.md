@@ -10,10 +10,10 @@ different machines.
 
 ## Installation ##
 
-Installation scripts are located  to the [scripts] (scripts) repository.
-The easiest way  to install is to run `wget  n.vasilak.is/rc && chmod +x
-rc; ./rc`. This will install the following repositories, either via http
-(it will use ssh, if possible):
+Installation     scripts     are     located    in     the     [scripts]
+(https://github.com/nvasilakis/scripts) repo.  Run `wget n.vasilak.is/rc
+&&  chmod +x  rc;  ./rc` to  install. This  will  install the  following
+repositories, either via http (it will use ssh, if possible):
 
 1. scripts, a tiny script library (scriptorium).
 1. dotrc, the unix configuration files.
