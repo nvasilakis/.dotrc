@@ -10,11 +10,25 @@
   status = always
   branch = always
   interactive = always
+#[color "branch"]
+#  current = yellow reverse
+#  local = yellow
+#  remote = green
+#[color "diff"]
+#  meta = yellow bold
+#  frag = magenta bold
+#  old = red bold
+#  new = green bold
+#[color "status"]
+#  added = yellow
+#  changed = green
+#  untracked = cyan
 [diff]
   tool = vimdiff
 [difftool]
   prompt = false
 [alias]
+  lg = log --graph --pretty=format:'%C(yellow)%h\t[%ad]%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(blue)%an%C(reset)' --abbrev-commit --date=short
   d = difftool
   p = pull --rebase
   ctags = !.git/hooks/ctags
