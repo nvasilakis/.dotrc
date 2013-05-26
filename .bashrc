@@ -104,6 +104,7 @@ else
 
   alias breeze='/Users/nv/Projects/UPenn/Research/svn-safe/breeze/breeze'
   alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
+  alias ctags='/usr/local/bin/ctags'
 
   export CLICOLOR=1
   #export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

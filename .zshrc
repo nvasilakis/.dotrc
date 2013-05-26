@@ -162,6 +162,7 @@ else
   export GREP_COLOR='00;31;5;157';
   alias breeze='/Users/nv/Projects/UPenn/Research/svn-safe/breeze/breeze'
   alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
+  alias ctags='/usr/local/bin/ctags'
   ## Open everything up for work
   #screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
   #screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
