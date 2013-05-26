@@ -122,9 +122,16 @@ map <F5> :TlistToggle<CR>
 " = not used anymore
 "map <F7> :TlistShowPrototype<cr><C-h>
 "map <F5> :set wrap!<CR>" Wrap
-"
+
 " TagList options
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+" detect unix and mac osx (darwin)
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin"
+    let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+  endif
+endif
 let Tlist_WinWidth = 40                 "taglist window width
 "let Tlist_Close_On_Select = 1           "close taglist window once we selected something
 let Tlist_Exit_OnlyWindow = 1           "if taglist window is the only window left, exit vim
