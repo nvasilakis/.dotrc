@@ -26,3 +26,7 @@ Note : Only for this repository, one can use a manual clone and setup.
 ## TODO list ##
 
 Split all directories
+
+Have to split based on
+-> OS: Linux, OS X, Linux with Windows partition
+-> Shell: bash, zsh
