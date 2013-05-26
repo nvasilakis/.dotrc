@@ -128,13 +128,9 @@ map <F5> :TlistToggle<CR>
 if has("unix")
   let uname = substitute(system("uname"),"\n","","g")
   if uname == "Darwin"
-    echom 1
     let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
-    echom system("ctags --version")
   else
-    echom 2
     let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-    echom system("ctags --version")
   endif
 endif
 let Tlist_WinWidth = 40                 "taglist window width
