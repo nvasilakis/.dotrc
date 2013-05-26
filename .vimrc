@@ -124,12 +124,13 @@ map <F5> :TlistToggle<CR>
 "map <F5> :set wrap!<CR>" Wrap
 
 " TagList options
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 " detect unix and mac osx (darwin)
 if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin"
     let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+  else
+    let Tlist_Ctags_Cmd = "/usr/bin/ctags"
   endif
 endif
 let Tlist_WinWidth = 40                 "taglist window width
