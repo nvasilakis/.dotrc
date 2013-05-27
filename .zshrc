@@ -1,5 +1,16 @@
-# export LACONIC='true' to avoid git prompt delays in big projects
-DOTRC=/Users/nv/.dotrc
+echo -n "Loading environment."
+. ~/.dotrc/shell/environment.sh
+echo ".OK"
+echo -n "Loading base configuration.."
+. ${DOTRC}/shell/base.sh
+echo ".OK"
+echo -n "Loading extra configuration.."
+. ${DOTRC}/shell/extra.sh
+echo ".OK"
+echo -n "Loading shell functions.."
+. ${DOTRC}/shell/functions.sh
+echo ".OK"
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=100000
@@ -138,47 +149,6 @@ zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 zstyle ':completion:*:*:ssh:*' menu yes select
 zstyle ':completion:*:ssh:*' force-list always
 
-echo -n "Loading base configuration.."
-. ${DOTRC}/base.sh
-echo ".OK"
-echo -n "Loading extra configuration.."
-. ${DOTRC}/extra.sh
-echo ".OK"
-
-# Named directories
-code=/media/w7/Projects
-# Nice Exports
-export EDITOR="vim"
-export SVN_EDITOR="vim"
-export PYTHONSTARTUP=~/.pythonrc
-export EC2_PRIVATE_KEY=~/.ec2/access.pem
-export EC2_CERT=~/.ec2/cert.pem
-# unless eniac
-export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-    vim -R -c 'set ft=man nomod nonumber nolist' -c 'noremap q ZQ' \
-    -c 'map <SPACE> <C-D>' -\" \
-    "
-#export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-#    vim -R -c 'set ft=man nomod modified nonumber nolist autoread' -c 'map q :q<CR>' \
-#    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' -\" \
-
-export PATH="$PATH:$HOME/scripts" # include home-grown tools
-if [[ `hostname` == 'nv' ]]; then 
-  # Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
-  export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
-  # Set Hadoop-related environment variables
-  export HADOOP_HOME=/usr/local/hadoop
-  # Now we can cd from anywhere
-  export CDPATH="/media/w7/Projects/"
-  # Add Hadoop bin/ directory to PATH
-  export PATH=$PATH:$HADOOP_HOME/bin
-  export PATH="/home/nikos/.cabal/bin:$PATH"
-
-elif [[ `hostname` == 'cis555-vm' ]] ; then
-  export PATH=$PATH:/home/cis555/555/.tools
-  export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
-fi;
-
 # vcs_info
 # ☡ ∫ S ⨌  for subversion
 # ❄ ✺ for Darcs
@@ -275,164 +245,32 @@ zstyle ':vcs_info:svn*+set-message:*' hooks svn-info
 
 # Show info regarding subversion
 function +vi-svn-info() {
-    svn_status="$(svn status 2> /dev/null )"
-    svn_add="$( echo ${svn_status} | grep '^A[ ]*.*' )"
-    svn_modify="$(echo ${svn_status} | grep '^M[ ]*.*' )"
-    svn_under="$(echo ${svn_status}  | grep '^\?[ ]*.*' )"
-    svn_deletion="$(echo ${svn_status} | grep '^D[ ]*.*' )"
-    svn_conflict="$(echo ${svn_status} | grep '^C[ ]*.*' )"
-    pattern="^A[ ]*.*"
-    #local -a gitstatus
-
-    hook_com[misc]=''
-    if [ $svn_add ]; then
-      hook_com[misc]+="A"
-    fi
-    if [ $svn_modify ]; then
-      hook_com[misc]+="M"
-    fi
-    if [ $svn_under ]; then
-      hook_com[misc]+="?"
-    fi
-    if [ $svn_deletion ]; then
-      hook_com[misc]+="D"
-    fi
-    if [ $svn_conflict ]; then
-      hook_com[misc]+="C"
-    fi
-
-
-#    # Are we on a remote-tracking branch?
-#    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
-#        --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
-#
-#    if [[ -n ${remote} ]] ; then
-#        # for git prior to 1.7
-#        # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
-#        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-#        (( $ahead )) && gitstatus+=( "${c3}+${ahead}${c2}" )
-#
-#        # for git prior to 1.7
-#        # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
-#        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-#        (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
-#
-#        hook_com[misc]="${(j:/:)gitstatus}${hook_com[misc]}"
-#    fi
-}
-# 
-# 
-# ## simplex
-# update_current_git_vars(){
-# unset __CURRENT_GIT_BRANCH
-# unset __CURRENT_GIT_BRANCH_STATUS
-# unset __CURRENT_GIT_BRANCH_IS_DIRTY
-# 
-# local st="$(git status 2>/dev/null)"
-# if [[ -n "$st" ]]; then
-#   local -a arr
-#   arr=(${(f)st})
-# 
-#   if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
-#     __CURRENT_GIT_BRANCH='no-branch'
-#   else
-#     __CURRENT_GIT_BRANCH="${arr[1][(w)4]}";
-#   fi
-# 
-#   if [[ $arr[2] =~ 'Your branch is' ]]; then
-#     if [[ $arr[2] =~ 'ahead' ]]; then
-#       __CURRENT_GIT_BRANCH_STATUS='ahead'
-#     elif [[ $arr[2] =~ 'diverged' ]]; then
-#       __CURRENT_GIT_BRANCH_STATUS='diverged'
-#     else
-#       __CURRENT_GIT_BRANCH_STATUS='behind'
-#     fi
-#   fi
-# 
-#   if [[ ! $st =~ 'nothing to commit' ]]; then
-#     __CURRENT_GIT_BRANCH_IS_DIRTY='1'
-#   fi
-# fi
-# }
-# 
-# prompt_git_info(){
-# if [ -n "$__CURRENT_GIT_BRANCH" ]; then
-#   local s="["
-#   s+="$__CURRENT_GIT_BRANCH"
-#   case "$__CURRENT_GIT_BRANCH_STATUS" in
-#     ahead)
-#     s+="↑"
-#     ;;
-#     diverged)
-#     s+="↕"
-#     ;;
-#     behind)
-#     s+="↓"
-#     ;;
-#   esac
-#   if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
-#     s+="±"
-#   fi
-#   s+="]"
-# # Add color withing quotes %{$bold_color$fg[blue]%} 
-#   printf "%s%s" "" $s
-# fi
-# }
-# 
-# chpwd_update_git_vars() {
-#   update_current_git_vars
-# }
-# 
-# preexec_update_git_vars() {
-#   case "$1" in 
-#     git*)
-#     __EXECUTED_GIT_COMMAND=1
-#     ;;
-#   esac
-# }
-# 
-# precmd_update_git_vars(){
-#   if [ -n "$__EXECUTED_GIT_COMMAND" ]; then
-#     update_current_git_vars
-#     unset __EXECUTED_GIT_COMMAND
-#   fi
-# }
-# 
-# # Set the screen environment for work or home
-# en(){
-#   case $1 in
-#     work)
-#       screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
-#       screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
-#       screen -t "tomcat" cd ~/Work/apache-tomcat-6.0.35/
-#       ;;
-#   esac
-# }
-# 
-# Show the number of background jobs -- only if there are any
-show-jobs(){
-  #if [[ $(echo '%j') == "0" ]] ; then
-  if $(jobs | grep -v '^$' &> /dev/null) ; then
-    #echo '[%{$bold_color$fg[blue]%}%j%{$reset_color%}]'
-    echo '[%j]'
+  svn_status="$(svn status 2> /dev/null )"
+  svn_add="$( echo ${svn_status} | grep '^A[ ]*.*' )"
+  svn_modify="$(echo ${svn_status} | grep '^M[ ]*.*' )"
+  svn_under="$(echo ${svn_status}  | grep '^\?[ ]*.*' )"
+  svn_deletion="$(echo ${svn_status} | grep '^D[ ]*.*' )"
+  svn_conflict="$(echo ${svn_status} | grep '^C[ ]*.*' )"
+  pattern="^A[ ]*.*"
+  #local -a gitstatus
+  hook_com[misc]=''
+  if [ $svn_add ]; then
+    hook_com[misc]+="A"
   fi
-#  if [[%j == 0]]; then
-#    echo %j ena 
-#  fi
+  if [ $svn_modify ]; then
+    hook_com[misc]+="M"
+  fi
+  if [ $svn_under ]; then
+    hook_com[misc]+="?"
+  fi
+  if [ $svn_deletion ]; then
+    hook_com[misc]+="D"
+  fi
+  if [ $svn_conflict ]; then
+    hook_com[misc]+="C"
+  fi
 }
-#  number=$(jobs)
-#  if [[ $number == "" ]]; then
-# .ena.duo' #%{$fg[blue]%}[%j])
-# 
-# typeset -ga preexec_functions
-# typeset -ga precmd_functions
-# typeset -ga chpwd_functions
-# 
-# preexec_functions+='preexec_update_git_vars'
-# precmd_functions+='precmd_update_git_vars'
-# chpwd_functions+='chpwd_update_git_vars'
-# 
-# PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
+ 
 PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%# '
 #RPS1=$'$(prompt_git_info)'
 RPS1=$'${vcs_info_msg_0_}$(show-jobs)'  #%($(ena).[%{$bold_color$fg[blue]%}%j%{$reset_color%}].)
@@ -497,94 +335,6 @@ function backward-kill-word {
 }
 zle -N backward-kill-word
 
-function help {
-  if [[ "$1" == "gz" ]]; then
-    echo '[-]->: tar xzvf < >.tar.gz [-C wh/er/e]'
-    echo '[<]--: tar czvf < >.tar.gz /dir/'
-  elif [[ "$1" == "bz" ]]; then
-    echo '[-]->: tar xjvf < >.tar.bz2 [-C wh/er/e]'
-    echo '[<]--: tar cjvf < >.tar.bz2 /dir/'
-  elif [[ "$1" == "7z" ]]; then
-    echo '[-]->: 7z a -t7z < >.7z'
-    echo '[<]--: 7z x      < >.7z   /dir/'
-  fi
-}
-
-# Some convenient aliases and functions for running Hadoop-related commands
-unalias fs &> /dev/null
-alias fs="hadoop fs"
-unalias hls &> /dev/null
-alias hls="fs -ls"
-
-# If you have LZO compression enabled in your Hadoop cluster and
-# compress job outputs with LZOP (not covered in this tutorial):
-# Conveniently inspect an LZOP compressed file from the command
-# line; run via:
-#
-# $ lzohead /hdfs/path/to/lzop/compressed/file.lzo
-#
-# Requires installed 'lzop' command.
-#
-lzohead () {
-    hadoop fs -cat $1 | lzop -dc | head -1000 | less
-}
-
-# parse_git_branch() {
-#     in_wd="$(git rev-parse --is-inside-work-tree 2>/dev/null)" || return
-#     test "$in_wd" = true || return
-#     state=''
-#     git update-index --refresh -q >/dev/null # avoid false positives with diff-index
-#     if git rev-parse --verify HEAD >/dev/null 2>&1; then
-#         git diff-index HEAD --quiet 2>/dev/null || state='*'
-#     else
-#         state='#'
-#     fi
-#     (
-#         d="$(git rev-parse --show-cdup)" &&
-#         cd "$d" &&
-#         test -z "$(git ls-files --others --exclude-standard .)"
-#     ) >/dev/null 2>&1 || state="${state}+"
-#     branch="$(git symbolic-ref HEAD 2>/dev/null)"
-#     test -z "$branch" && branch='<detached-HEAD>'
-#     echo "${branch#refs/heads/}${state}"
-# }
-
-# PS1=${debian_chroot:+($debian_chroot)}%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$(parse_git_branch)%}%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
-#PS1=$(parse_git_branch)%#
-
-##########################################################################
-# Various reminders of things I forget...
-# (Mostly useful features that I forget to use)
-# vared
-# =ls turns to /bin/ls
-# =(ls) turns to filename (which contains output of ls)
-# <(ls) turns to named pipe
-# ^X* expand word
-# ^[^_ copy prev word
-# ^[A accept and hold
-# echo $name:r not-extension
-# echo $name:e extension
-# echo $xx:l lowercase
-# echo $name:s/foo/bar/
-
-# Quote current line: M-'
-# Quote region: M-"
-
-# Up-case-word: M-u
-# Down-case-word: M-l
-# Capitilise word: M-c
-
-# kill-region
-
-# expand word: ^X*
-# accept-and-hold: M-a
-# accept-line-and-down-history: ^O
-# execute-named-cmd: M-x
-# push-line: ^Q
-# run-help: M-h
-# spelling correction: M-s
-
-# ~/.zshrc
 # if  using GNU  screen, let  the  zsh tell  screen what  the title  and
 # hardstatus of the tab window should be. I grab this with a regex since
 # I usually use screen-256-etc.
@@ -636,49 +386,3 @@ if [[ $TERM =~ "screen" ]]; then
   }
 fi
 
-function cd {
-  builtin cd "$*" && ls
-}
-
-function mkd {
-  mkdir -p "$*" && cd "$*"
-}
-
-# Job control functions
-function f {
-  fg %$*
-}
-
-function b {
-  bg %$*
-}
-
-function mem {
-  echo "In use:\t\e[00;31m$(free | grep Mem | awk '{print $3/$2 * 100.0}')\e[00m\t%"
-  echo "Free:\t\e[00;31m$(free | grep Mem | awk '{print $4/$2 * 100.0}')\e[00m\t%"
-}
-
-function pushwork {
-  tar cvzf ~/work.tar.gz ~/Work/; 
-  rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~
-}
-
-function pullwork {
-  cd $HOME;
-  rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .;
-  echo -n "Backing up work..";
-  cp -r ~/Work/ ~/Work_BK; 
-  echo "..done!"; 
-  tar xvzf ~/work.tar.gz
-  cd $OLDPWD;
-}
-
-function slow () {
-  LACONIC="no"
-  RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
-}
-
-function fast {
-  LACONIC="yes"
-  RPS1=$'$(show-jobs)'
-}
