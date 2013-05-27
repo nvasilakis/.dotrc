@@ -30,7 +30,6 @@ if [[ "$HOSTNAME" == 'nv' ]]; then # fluxbox home
   fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
   # Named directories
   code=/media/w7/Projects
-  safe=$code/UPenn/Research/SAFE
 # Nice Exports
 elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   export PATH=$PATH:/home/cis555/555/.tools
@@ -50,8 +49,7 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   set output-meta on
   xrdb -load ~/.Xdefaults
 elif [[ "$HOSTNAME" == 'ape.local' ]] ; then # mac book air
-  code=/Users/nv/Projects
-  safe=$code/UPenn/Research/SAFE
+  code=/User/nv/Projects
 else  # Others, like eniac machines
   MANPAGER="less"
 fi;
