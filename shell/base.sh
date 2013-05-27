@@ -1,3 +1,5 @@
+# TODO: Environment should come before, aliases next  
+
 # Based on Environment
 if [[ `uname` == 'Linux' ]]; then 
   if [ -x /usr/bin/dircolors ]; then
@@ -47,8 +49,7 @@ alias hfs='hadoop fs'
 unalias hls &> /dev/null
 alias hls='hfs -ls'
 
-  
-# Working environment
+# Working environment -- TODO: Make transparent
 alias breeze='/Users/nv/Projects/UPenn/Research/svn-safe/breeze/breeze'
 # Breeze interpreter
 alias breeze='/media/w7/Projects/UPenn/SAFE/SAFE/breeze/breeze-interpreter/src/dist/build/breeze/breeze'

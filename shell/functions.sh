@@ -6,10 +6,12 @@ function show-jobs {
   fi
 }
 
+# Usually when cd, I also ls
 function cd {
   builtin cd $* && ls
 }
 
+# Usually when mkdir, I also cd
 function mkd() {
   mkdir -p $* && cd $*
 }
@@ -18,21 +20,22 @@ function mkd() {
 function f {
   fg %$*
 }
-
 function b {
   bg %$*
 }
 
+# Show memory, mainly on Linux
+# TODO: make it universal -- maybe query top?
 function mem {
   echo "In use:\t\e[00;31m$(free | grep Mem | awk '{print $3/$2 * 100.0}')\e[00m\t%"
   echo "Free:\t\e[00;31m$(free | grep Mem | awk '{print $4/$2 * 100.0}')\e[00m\t%"
 }
 
+# Push and pull work from TJU
 function pushwork {
   tar cvzf ~/work.tar.gz ~/Work/; 
   rsync -av --progress ~/work.tar.gz nvas@eniac.seas.upenn.edu:~
 }
-
 function pullwork {
   cd $HOME;
   rsync -av --progress nvas@eniac.seas.upenn.edu:~/work.tar.gz .;

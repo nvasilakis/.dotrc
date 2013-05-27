@@ -271,24 +271,12 @@ function +vi-svn-info() {
   fi
 }
  
+# Creating prompts
 PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%# '
 #RPS1=$'$(prompt_git_info)'
 RPS1=$'${vcs_info_msg_0_}$(show-jobs)'  #%($(ena).[%{$bold_color$fg[blue]%}%j%{$reset_color%}].)
 PS4=$'+%N:%i:%_>'
 
-# PROMPT=%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:$(prompt_git_info)%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
-# PS1=${debian_chroot:+($debian_chroot)}%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$(prompt_git_info)%}%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
-
-
-
-# parse_git_dirty() {
-#   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo '*'
-# }
-# parse_git_branch() {
-#  local branch=$(__git_ps1 "%s")
-#  [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
-# # echo wearedoomed
-# }
 parse_git_branch() {
     git_status="$(git status 2> /dev/null)"
     pattern="^# On branch ([^[:space:]]*)"

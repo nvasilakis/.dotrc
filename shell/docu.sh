@@ -159,3 +159,17 @@
 # chpwd_functions+='chpwd_update_git_vars'
 # 
 # PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
+
+# PROMPT=%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:$(prompt_git_info)%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
+# PS1=${debian_chroot:+($debian_chroot)}%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$(prompt_git_info)%}%{$bold_color$fg[blue]%}%~%{$reset_color%}%#
+
+
+
+# parse_git_dirty() {
+#   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo '*'
+# }
+# parse_git_branch() {
+#  local branch=$(__git_ps1 "%s")
+#  [[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
+# # echo wearedoomed
+# }
