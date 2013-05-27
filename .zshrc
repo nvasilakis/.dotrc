@@ -1,3 +1,5 @@
+# export LACONIC='true' to avoid git prompt delays in big projects
+DOTRC=/Users/nv/.dotrc
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=100000
@@ -21,8 +23,6 @@ zmodload zsh/complist
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
-LACONIC="no"
 
 setopt complete_in_word
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
@@ -138,94 +138,12 @@ zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 zstyle ':completion:*:*:ssh:*' menu yes select
 zstyle ':completion:*:ssh:*' force-list always
 
-# Handy Alias
-if [[ `uname` == 'Linux' ]]; then 
-  if [ -x /usr/bin/dircolors ]; then
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-  fi
-  
-  # Overwrite ls colors
-  if [[ `whoami` != 'root' ]]; then
-    export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=35;100:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36'
-  fi
-else 
-  export CLICOLOR=1
-  #export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-  export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=35;100:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36'
-  alias ls='ls -G'
-  export GREP_OPTIONS='--color=auto';
-  export GREP_COLOR='00;31;5;157';
-  alias breeze='/Users/nv/Projects/UPenn/Research/svn-safe/breeze/breeze'
-  alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
-  alias ctags='/usr/local/bin/ctags'
-  ## Open everything up for work
-  #screen -t "uranus" ssh nikostemp@uranus1.jefferson.edu
-  #screen -t "h-free" cd ~/Work/oceanus/handsfree/git/
-  #screen -t "tomact" cd ~/Work/apache-tomcat-6.0.35/
-fi
-
-# some more aliases
-alias rsc='rsync -av --progress'
-alias ll='ls -lhF'
-alias la='ls -A'
-alias l='ls -CF'
-alias j='jobs -l'
-alias ai='sudo apt-get install'
-alias au='sudo apt-get update'
-alias vim='vim -p'
-alias -g prj='/media/w7/Projects/'
-alias -g cv='/media/w7/Projects/cv/'
-alias gga='git add'
-alias ggc='git commit -v'
-alias ggs='git status -sb'
-alias ggp='git push'
-alias ggh='git checkout'
-alias ggb='git branch'
-alias ggl='git lg | head -n 20'
-alias ggd='git diff --word-diff'
-alias -g mam='nv@150.140.90.86'
-alias -g etp='etp@150.140.91.13'
-alias -g is='root@vasilak.is'
-alias -g diogenis='basilakn@diogenis.ceid.upatras.gr'
-alias -g zenon='basilakn@zenon.ceid.upatras.gr'
-alias dh='dirs -v'
-# I shoud add functionality for go seas, ceid, rdesktop
-# if [[ $n -eq 'seas']]; then echo "ssh seas.." fi;
-alias go='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
-alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
-#alias emacs='emacs -nw'
-# A trick for faster nautilus
-alias here='nautilus --no-desktop --browser .'
-alias jhf='cd ~/Work/oceanus/handsfree/git/'
-alias jto='cd ~/Work/apache-tomcat-6.0.35/'
-alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribution/Handsfree-beta.war /oceanus/www/webapps;'
-alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
-# Breeze interpreter
-alias breeze='/media/w7/Projects/UPenn/SAFE/SAFE/breeze/breeze-interpreter/src/dist/build/breeze/breeze'
-# Instead of adding something to /usr/bin
-alias idea="/media/w7/Projects/idea/bin/idea.sh"
-# At last, shutdown
-alias off="echo HALTING SYSTEM; sudo shutdown -h now"
-
-# The usual stuff
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-
-# Suffix aliases
-alias -s xlx=libreoffice
-alias -s xls=libreoffice
-alias -s doc=libreoffice
-alias -s docx=libreoffice
-alias -s tex=vim
-alias -s pdf=evince
-alias -s html=w3m
-alias -s org=w3m
+echo -n "Loading base configuration.."
+. ${DOTRC}/base.sh
+echo ".OK"
+echo -n "Loading extra configuration.."
+. ${DOTRC}/extra.sh
+echo ".OK"
 
 # Named directories
 code=/media/w7/Projects
@@ -235,6 +153,7 @@ export SVN_EDITOR="vim"
 export PYTHONSTARTUP=~/.pythonrc
 export EC2_PRIVATE_KEY=~/.ec2/access.pem
 export EC2_CERT=~/.ec2/cert.pem
+# unless eniac
 export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
     vim -R -c 'set ft=man nomod nonumber nolist' -c 'noremap q ZQ' \
     -c 'map <SPACE> <C-D>' -\" \
@@ -711,7 +630,7 @@ if [[ $TERM =~ "screen" ]]; then
     eval "tab_title=$TAB_TITLE_PREFIX$TAB_TITLE_PROMPT"
     eval "tab_hardstatus=$TAB_HARDSTATUS_PREFIX$TAB_HARDSTATUS_PROMPT"
     screen_set $tab_title $tab_hardstatus
-    if [[ "${LACONIC}" == "no" ]]; then
+    if [[ "${LACONIC}" != "true" ]]; then
       vcs_info 
     fi
   }
