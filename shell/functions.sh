@@ -46,13 +46,18 @@ function pullwork {
   cd $OLDPWD;
 }
 
+# enable defensive resource allocation on prompt
 function laconic () {
-  echo $0
-  #export LACONIC="no"
-  #RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
-
-  #export LACONIC="yes"
-  #RPS1=$'$(show-jobs)'
+  if [[ $1 == 'true' || $1 == 'on' ]]; then
+    export LACONIC="true"
+    RPS1=$'$(show-jobs)'
+  elif [[ $1 == 'false' || $1 == 'off' ]]; then
+    echo "FALSE"
+    export LACONIC="no"
+    RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
+  fi
+  echo "Sourcing ~/.${SHELL}rc.."
+  source ~/.${SHELL}rc
 }
 
 ##

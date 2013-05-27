@@ -273,8 +273,11 @@ function +vi-svn-info() {
  
 # Creating prompts
 PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%# '
-#RPS1=$'$(prompt_git_info)'
-RPS1=$'${vcs_info_msg_0_}$(show-jobs)'  #%($(ena).[%{$bold_color$fg[blue]%}%j%{$reset_color%}].)
+if [[ "${LACONIC}" != "true" ]]; then
+  RPS1=$'${vcs_info_msg_0_}$(show-jobs)'  #%($(ena).[%{$bold_color$fg[blue]%}%j%{$reset_color%}].)
+else
+  RPS1=$'$(show-jobs)'
+fi  
 PS4=$'+%N:%i:%_>'
 
 parse_git_branch() {
