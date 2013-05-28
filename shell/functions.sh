@@ -60,6 +60,23 @@ function laconic () {
   source ~/.${SHELL}rc
 }
 
+function ggl {
+  size='20'
+  # if a number
+  if [[ "${1}" =~ ^[0-9]+$ ]] ; then
+    size="${1}"
+  fi
+  git lg | head -n ${size} | nl -w 2
+}
+
+function gg {
+  if [[ "${1}" =~ ^[0-9]+$ ]] ; then
+    git log --pretty=format:'%h'  | sed -n ${1}p
+  else
+    echo "Wrong argument"
+    return 1 
+  fi
+}
 ##
 # If you have LZO compression enabled in your Hadoop cluster and
 # compress job outputs with LZOP (not covered in this tutorial):

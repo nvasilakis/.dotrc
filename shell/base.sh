@@ -37,7 +37,6 @@ alias ggs='git status -sb'
 alias ggp='git push'
 alias ggh='git checkout'
 alias ggb='git branch'
-alias ggl='git lg | head -n 20'
 alias ggd='git diff --word-diff'
 alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
 # Instead of adding something to /usr/bin
