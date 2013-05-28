@@ -2,7 +2,7 @@
   name = Nikos Vasilakis
   email = nikos.ailo@gmail.com
 [core]
-  editor = vim -c 'vnew temp' -c 'vertical resize 40' -c '.r!cd ../ && git log --pretty=format:"\\%s" | head' -c ':wincmd w'
+  editor = vim -c 'vnew temp' -c 'vertical resize 40' -c '.r!cd ../ && git log --pretty=format:"\\%s" | head' -c ':wincmd w' -c 'noremap ZZ wqqq'
   excludesfile = $HOME/.vim/.gitignore
   fileMode = false
 [color]
