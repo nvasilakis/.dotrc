@@ -49,7 +49,7 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   set convert-meta off
   set output-meta on
   xrdb -load ~/.Xdefaults
-elif [[ "$HOSTNAME" == 'ape.local' ]] ; then # mac book air
+elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   code=/Users/nv/Projects
   safe=$code/UPenn/Research/SAFE
 else  # Others, like eniac machines
