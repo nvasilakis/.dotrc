@@ -1,6 +1,4 @@
 #TODO: These should already be in the base, but not global
-alias -g prj='/media/w7/Projects/'
-alias -g cv='/media/w7/Projects/cv/'
 # not sure if I need these
 alias -g mam='nv@150.140.90.86' 
 alias -g etp='etp@150.140.91.13'
@@ -10,7 +8,7 @@ alias -g zenon='basilakn@zenon.ceid.upatras.gr'
 
 # I shoud add functionality for go seas, ceid, rdesktop
 # if [[ $n -eq 'seas']]; then echo "ssh seas.." fi;
-# implement go
+# implement heavy go, with reverse index
 alias go='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
 
 # Should be made global

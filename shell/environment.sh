@@ -52,6 +52,8 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   code=/Users/nv/Projects
   safe=$code/UPenn/Research/SAFE
+  cv=/Users/nv/Projects/my/cv
+  rosa=/Users/nvProjects/my/rosalind
 else  # Others, like eniac machines
   MANPAGER="less"
 fi;
