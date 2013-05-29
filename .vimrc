@@ -302,6 +302,7 @@ endfunc
 map <leader>2 :Gcc<CR>
 
 " abbreviations
-:ab u Update
-:ab la \lambda{}sh
+au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>u Update
+au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>m [Minor]
+au  BufRead,BufNewFile *.tex               iabb <buffer>la \lambda{}sh
 
