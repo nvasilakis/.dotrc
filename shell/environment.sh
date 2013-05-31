@@ -25,13 +25,19 @@ if [[ "$HOSTNAME" == 'nv' ]]; then # fluxbox home
   export HADOOP_HOME=/usr/local/hadoop
   export CDPATH="/media/w7/Projects/"
   export PATH="/home/nikos/.cabal/bin:$PATH"
-  # Let fluxbox grab gnome theme and change global keyboard bindings
-  #gnome-keyboard-properties &
-  gnome-settings-daemon
-  fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
   # Named directories
   code=/media/w7/Projects
   safe=$code/UPenn/Research/SAFE
+  # Run only once
+  if [[ "$ONCE" != "true" ]]; then
+    # Let fluxbox grab gnome theme and change global keyboard bindings
+    gnome-settings-daemon
+    # Set desktop background
+    fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
+    # Configure wifi
+    
+    ONCE="true"
+  fi
 # Nice Exports
 elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   export PATH=$PATH:/home/cis555/555/.tools
