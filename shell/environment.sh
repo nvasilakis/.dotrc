@@ -35,7 +35,7 @@ if [[ "$HOSTNAME" == 'nv' ]]; then # fluxbox home
     # Set desktop background
     fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
     # Configure wifi
-    
+    nm-applet 
     ONCE="true"
   fi
 # Nice Exports
