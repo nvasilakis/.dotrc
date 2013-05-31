@@ -33,4 +33,4 @@
   p = pull --rebase
   ctags = !.git/hooks/ctags
 [init]
-  templatedir = ~/.vim/.git_template
+  templatedir = ~/.dotrc/.git_template
