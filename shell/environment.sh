@@ -1,4 +1,4 @@
-DOTRC=/Users/nv/.dotrc
+DOTRC=~/.dotrc
 
 #Nice Exports
 export EDITOR="vim"
@@ -26,7 +26,8 @@ if [[ "$HOSTNAME" == 'nv' ]]; then # fluxbox home
   export CDPATH="/media/w7/Projects/"
   export PATH="/home/nikos/.cabal/bin:$PATH"
   # Let fluxbox grab gnome theme and change global keyboard bindings
-  gnome-keyboard-properties &
+  #gnome-keyboard-properties &
+  gnome-settings-daemon
   fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
   # Named directories
   code=/media/w7/Projects
