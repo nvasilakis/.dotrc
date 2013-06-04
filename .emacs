@@ -1,5 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
+;;;; Proof General
+;;(load-file "~/.emacs.d/ProofGeneral/generic/proof-site.el")
+;;(setq coq-prog-name "/usr/bin/coqtop -emacs")
+
 ;; Initianlize for gnome-terminal
 (defun terminal-init-gnome ()
   "Terminal initialization function for gnome-terminal."
