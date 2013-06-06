@@ -5,6 +5,8 @@
   editor = vim -c 'vnew temp' -c 'vertical resize 40' -c '.r!cd ../ && git log --pretty=format:"\\%s" | head' -c ':wincmd w'
   excludesfile = $HOME/.vim/.gitignore
   fileMode = false
+#  compression = 9
+#  loosecompression = 9
 [color]
   diff = always
   status = always
