@@ -13,6 +13,7 @@ if [[ `uname` == 'Linux' ]]; then
   alias ai='sudo apt-get install'
   alias au='sudo apt-get update'
   alias here='nautilus --no-desktop --browser .'
+  alias w3m='w3m www.google.com'
 else 
   export CLICOLOR=1
   alias ls='ls -G'
