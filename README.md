@@ -25,8 +25,26 @@ Note : Only for this repository, one can use a manual clone and setup.
 
 ## TODO list ##
 
-Split all directories
+Should I split to shell, programming, editors, other? For instance:
 
-Have to split based on
--> OS: Linux, OS X, Linux with Windows partition
--> Shell: bash, zsh
+.bashrc
+.screenrc
+.zshrc
+shell
+
+.gittemplate
+.gitconfig
+.gitignore
+
+.emacs
+.vimrc
+
+.irbrc
+.pythonrc
+.luarc
+
+.Xdefaults
+.conkyrc
+.pentadactylrc
+.ss
+
