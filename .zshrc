@@ -120,6 +120,7 @@ hosts=(
   diogenis.ceid.upatras.gr 
   zenon.ceid.upatras.gr 
   eniac.seas.upenn.edu
+  quark.seas.upenn.edu
   biglab.seas.upenn.edu
   speclab.seas.upenn.edu
   uranus1.jefferson.edu
@@ -137,6 +138,7 @@ my_accounts=(
   basilakn@diogenis.ceid.upatras.gr 
   basilakn@zenon.ceid.upatras.gr 
   nvas@eniac.seas.upenn.edu
+  nvas@quark.seas.upenn.edu
   nvas@biglab.seas.upenn.edu
   nxv009@uranus1.jefferson.edu
   nxv009@uranus2.jefferson.edu
