@@ -7,12 +7,13 @@
 ;; Initianlize for gnome-terminal
 (defun terminal-init-gnome ()
   "Terminal initialization function for gnome-terminal."
-
   ;; This is a dirty hack that I accidentally stumbled across:
   ;;  initializing "rxvt" first and _then_ "xterm" seems
   ;;  to make the colors work... although I have no idea why.
   (tty-run-terminal-initialization (selected-frame) "rxvt")
   (tty-run-terminal-initialization (selected-frame) "xterm"))
+;; Remove splash screen
+(setq inhibit-splash-screen t)
 
 (defun terminal-init-screen ()
   "Terminal initialization function for screen."
@@ -48,13 +49,13 @@
 (if
     (equal 0 (string-match "^24" emacs-version))
     ;; it's emacs24, so use built-in theme
-    (require 'solarized-dark-theme)
+    (require 'solarized-light-theme)
   ;; it's NOT emacs24, so use color-theme
   (progn
     (require 'color-theme)
     (color-theme-initialize)
     (require 'color-theme-solarized)
-    (color-theme-solarized-dark)))
+    (color-theme-solarized-light)))
 
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
@@ -233,3 +234,7 @@
 ;
 ;;;; emacs-rc-tex.el ends here
 ;
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
