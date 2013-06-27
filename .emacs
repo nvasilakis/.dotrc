@@ -21,6 +21,8 @@
    (xterm-register-default-colors)
    (tty-set-up-initial-frame-faces))
 
+;; toggle off menu
+(menu-bar-mode 0)
 ;; Add line numbers
 (require 'linum)
 (global-linum-mode 1)
@@ -29,7 +31,7 @@
 (unless window-system
   (menu-bar-mode -1))
 (scroll-bar-mode -1)  
-(tool-bar-mode -1)
+;;(tool-bar-mode -1)
 
 ;; Interactively Do Things
 (ido-mode 1)
