@@ -1,5 +1,22 @@
 (add-to-list 'load-path "~/.emacs.d/")
-
+;;
+;;(defun omar-hip ()
+;;  "a nonce menu function"
+;;  (interactive)
+;;  (message "hip, hop, don't stop"))
+;;
+;;(defun omar-hotel ()
+;; "another nonce menu function"
+;; (interactive)
+;; (message "hotel, motel, holiday inn"))
+;;
+;;(tool-bar-add-item "splash.xpm" 'pink-bliss-save-or-open 'pink-defun)
+;;
+;;(define-key global-map [tool-bar omar-button]
+;;'(menu-item "Hotel" omar-hotel
+;;   :help "OMG Omar!"
+;;   :image (image :type svg :file "/usr/share/icons/elementary/actions/32/properties.svg")))
+;;
 ;;;; Proof General
 ;;(load-file "~/.emacs.d/ProofGeneral/generic/proof-site.el")
 ;;(setq coq-prog-name "/usr/bin/coqtop -emacs")
@@ -240,3 +257,9 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
+
+(global-set-key (kbd "C-c g") (ffap))
+(global-set-key (kbd "C-c t") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
+;;(autoload 'magit-status "magit" nil t)
+;;(global-set-key "\C-ci" 'magit-status)
+;;(global-set-key (kbd "C-c i") (magit-status))
