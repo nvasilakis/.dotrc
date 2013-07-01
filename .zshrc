@@ -121,6 +121,7 @@ hosts=(
   zenon.ceid.upatras.gr 
   eniac.seas.upenn.edu
   quark.seas.upenn.edu
+  antikythera.vasilak.is
   biglab.seas.upenn.edu
   speclab.seas.upenn.edu
   uranus1.jefferson.edu
@@ -139,6 +140,7 @@ my_accounts=(
   basilakn@zenon.ceid.upatras.gr 
   nvas@eniac.seas.upenn.edu
   nvas@quark.seas.upenn.edu
+  nikos@antikythera.vasilak.is
   nvas@biglab.seas.upenn.edu
   nxv009@uranus1.jefferson.edu
   nxv009@uranus2.jefferson.edu
