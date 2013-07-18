@@ -1,5 +1,22 @@
 (add-to-list 'load-path "~/.emacs.d/")
-
+;;
+;;(defun omar-hip ()
+;;  "a nonce menu function"
+;;  (interactive)
+;;  (message "hip, hop, don't stop"))
+;;
+;;(defun omar-hotel ()
+;; "another nonce menu function"
+;; (interactive)
+;; (message "hotel, motel, holiday inn"))
+;;
+;;(tool-bar-add-item "splash.xpm" 'pink-bliss-save-or-open 'pink-defun)
+;;
+;;(define-key global-map [tool-bar omar-button]
+;;'(menu-item "Hotel" omar-hotel
+;;   :help "OMG Omar!"
+;;   :image (image :type svg :file "/usr/share/icons/elementary/actions/32/properties.svg")))
+;;
 ;;;; Proof General
 ;;(load-file "~/.emacs.d/ProofGeneral/generic/proof-site.el")
 ;;(setq coq-prog-name "/usr/bin/coqtop -emacs")
@@ -7,12 +24,13 @@
 ;; Initianlize for gnome-terminal
 (defun terminal-init-gnome ()
   "Terminal initialization function for gnome-terminal."
-
   ;; This is a dirty hack that I accidentally stumbled across:
   ;;  initializing "rxvt" first and _then_ "xterm" seems
   ;;  to make the colors work... although I have no idea why.
   (tty-run-terminal-initialization (selected-frame) "rxvt")
   (tty-run-terminal-initialization (selected-frame) "xterm"))
+;; Remove splash screen
+(setq inhibit-splash-screen t)
 
 (defun terminal-init-screen ()
   "Terminal initialization function for screen."
@@ -20,6 +38,8 @@
    (xterm-register-default-colors)
    (tty-set-up-initial-frame-faces))
 
+;; toggle off menu
+(menu-bar-mode 0)
 ;; Add line numbers
 (require 'linum)
 (global-linum-mode 1)
@@ -28,7 +48,7 @@
 (unless window-system
   (menu-bar-mode -1))
 (scroll-bar-mode -1)  
-(tool-bar-mode -1)
+;;(tool-bar-mode -1)
 
 ;; Interactively Do Things
 (ido-mode 1)
@@ -48,13 +68,13 @@
 (if
     (equal 0 (string-match "^24" emacs-version))
     ;; it's emacs24, so use built-in theme
-    (require 'solarized-dark-theme)
+    (require 'solarized-light-theme)
   ;; it's NOT emacs24, so use color-theme
   (progn
     (require 'color-theme)
     (color-theme-initialize)
     (require 'color-theme-solarized)
-    (color-theme-solarized-dark)))
+    (color-theme-solarized-light)))
 
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
@@ -233,3 +253,13 @@
 ;
 ;;;; emacs-rc-tex.el ends here
 ;
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
+(global-set-key (kbd "C-c g") (ffap))
+(global-set-key (kbd "C-c t") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
+;;(autoload 'magit-status "magit" nil t)
+;;(global-set-key "\C-ci" 'magit-status)
+;;(global-set-key (kbd "C-c i") (magit-status))

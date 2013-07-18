@@ -278,9 +278,11 @@ endfunction
 
 "Invisible character colors
 highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:➟\ ,eol:⤦
+" highlight SpecialKey guifg=#4a4a59
+:hi SpecialKey  cterm=NONE ctermbg=235 guibg=black " 8 24 235|51
+":hi NonText     cterm=NONE ctermbg=235 guibg=black " 8 24 235|51
+" Use the same symbols as TextMate for tabstops and EOLsA set list
+set listchars=tab:_\|,eol:$
 
 " Return to last edit position 
 autocmd BufReadPost *

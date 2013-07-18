@@ -34,7 +34,7 @@ activity "         Activity has appeared in window      %n - %t"
 shelltitle "$ |zsh"
 
 # caption always "%3n %t%? (%u)%?%?: %h%?"
-hardstatus alwayslastline '%{= kd}%?%E%{= .Y}%:%{= .g}%?%H%{-} %L=%-w%45L>%{= g.}%n %h%{-}%+w %-17<%=%{= .y}(%l) | %m/%d %02c:%s '
+hardstatus alwayslastline '%{= kd}%?%E%{= .Y}%:%{= .g}%?%H%{-} %L=%-w%45L>%{= g.}%n %h%{-}%+w %-17<%=%{= .y}(%l) | %m/%d %02c '
 #When your ssh connection dies, screen is autodetached
 autodetach on 
 
