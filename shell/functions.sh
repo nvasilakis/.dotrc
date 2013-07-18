@@ -57,7 +57,7 @@ function laconic () {
     RPS1=$'$(show-jobs)'
   elif [[ $1 == 'false' || $1 == 'off' || "${LACONIC}" == 'true' ]]; then
     echo "Disabling laconic PS4"
-    export LACONIC="no"
+    export LACONIC="false"
     RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
   fi
 }
