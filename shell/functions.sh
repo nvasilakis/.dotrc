@@ -47,17 +47,19 @@ function pullwork {
 }
 
 # enable defensive resource allocation on prompt
+# this is also useful for systems that do not properly support UTF-8 and
+# colors (TODO: further investigation of why these systems mis-behave
+# is needed) -- zsh--only
+#TODO: find out shell correctly, 
 function laconic () {
-  if [[ $1 == 'true' || $1 == 'on' ]]; then
+  if [[ $1 == 'true' || $1 == 'on' || "${LACONIC}" == 'false' ]]; then
     export LACONIC="true"
     RPS1=$'$(show-jobs)'
-  elif [[ $1 == 'false' || $1 == 'off' ]]; then
-    echo "FALSE"
-    export LACONIC="no"
+  elif [[ $1 == 'false' || $1 == 'off' || "${LACONIC}" == 'true' ]]; then
+    echo "Disabling laconic PS4"
+    export LACONIC="false"
     RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
   fi
-  echo "Sourcing ~/.${SHELL}rc.."
-  source ~/.${SHELL}rc
 }
 
 function ggl {
