@@ -308,35 +308,7 @@ au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>u Update
 au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>m [Minor]
 au  BufRead,BufNewFile *.tex               iabb <buffer>la \lambda{}sh
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Adapted from http://technotales.wordpress.com/2007/10/03/like-slime-for-vim/
-" but I wanted per-line basis
-function Send_to_Screen(text)
-  if !exists("g:screen_sessionname") || !exists("g:screen_windowname")
-    call Screen_Vars()
-  end
-
-  echo system("screen -S " . g:screen_sessionname . " -p " . g:screen_windowname . " -X stuff '" . substitute(a:text, "'", "'\\\\''", 'g') . "'")
-  execute "normal j^"
-endfunction
-
-function Screen_Session_Names(A,L,P)
-  return system("screen -ls | awk '/Attached/ {print $1}'")
-endfunction
-
-function Screen_Vars()
-  if !exists("g:screen_sessionname") || !exists("g:screen_windowname")
-    let g:screen_sessionname = ""
-    let g:screen_windowname = "0"
-  end
-
-  let g:screen_sessionname = input("session name: ", "", "custom,Screen_Session_Names")
-  let g:screen_windowname = input("window name: ", g:screen_windowname)
-endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vmap <C-c><C-c> "ry :call Send_to_Screen(@r)<CR>
-nmap <C-c><C-c> vip<C-c><C-c>
-nmap <CR> V<C-c><C-c>
-nmap <C-c>v :call Screen_Vars()<CR>
+" small tricks for slime, given modifications in plugin's source
+nmap <CR> <Plug>SlimeLineSend
+xmap <leader>s <Plug>SlimeRegionSend
+nmap <leader>s <Plug>SlimeParagraphSend
