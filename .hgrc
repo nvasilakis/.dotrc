@@ -1,0 +1,7 @@
+[extensions]
+color =
+[color]
+# valid modes are win32, ansi, auto, off
+mode = auto
+[ui]
+username = Nikos Vasilakis <nikos.ailo@gmail.com>
