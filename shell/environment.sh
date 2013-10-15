@@ -62,6 +62,9 @@ elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   safe=$code/UPenn/Research/SAFE
   cv=/Users/nv/Projects/my/cv
   rosa=/Users/nv/Projects/my/rosalind
+elif [[ "$HOSTNAME" == 'antikythera' ]] ; then # mac book air
+  code="/home/nikos/Projects/UPenn/"
+  safe=$code/Research/SAFE
 else  # Others, like eniac machines
   MANPAGER="less"
   #Less Colors for Man Pages
