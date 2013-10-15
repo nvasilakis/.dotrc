@@ -18,8 +18,10 @@
 ;;   :image (image :type svg :file "/usr/share/icons/elementary/actions/32/properties.svg")))
 ;;
 ;;;; Proof General
-;;(load-file "~/.emacs.d/ProofGeneral/generic/proof-site.el")
-;;(setq coq-prog-name "/usr/bin/coqtop -emacs")
+(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
+(setq coq-prog-name "/usr/bin/coqtop")
+(setq proof-splash-enable nil)
+(setq proof-toolbar-enable nil)
 
 ;; Initianlize for gnome-terminal
 (defun terminal-init-gnome ()
@@ -258,8 +260,13 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-(global-set-key (kbd "C-c g") (ffap))
-(global-set-key (kbd "C-c t") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
+;;(global-set-key (kbd "C-c g") (ffap))
+;;(global-set-key (kbd "C-c t") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
+
+(require 'dired-x)
+(setq dired-omit-files "^\\...+$")
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+
 ;;(autoload 'magit-status "magit" nil t)
 ;;(global-set-key "\C-ci" 'magit-status)
 ;;(global-set-key (kbd "C-c i") (magit-status))
