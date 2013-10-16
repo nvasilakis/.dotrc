@@ -307,6 +307,7 @@ map <leader>2 :Gcc<CR>
 au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>u Update
 au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>m [Minor]
 au  BufRead,BufNewFile *.tex               iabb <buffer>la \lambda{}sh
+au  BufRead,BufNewFile *.tex               iabb <buffer>ci (citeTODO)
 
 " small tricks for slime, given modifications in plugin's source
 nmap <CR> <Plug>SlimeLineSend
