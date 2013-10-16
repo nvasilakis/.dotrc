@@ -52,6 +52,53 @@
 (scroll-bar-mode -1)  
 ;;(tool-bar-mode -1)
 
+(defun kill-region-or-backward-kill-word (arg)
+  "Woo! Kill word a la bash/zsh and preserve it in kill ring! "
+  (interactive "p")
+  (if mark-active
+      (kill-region (point) (mark))
+    (backward-kill-word arg)))
+(global-set-key "\C-w" 'kill-region-or-backward-kill-word)
+
+
+;; from http://whattheemacsd.com/key-bindings.el-01.html
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+    (progn
+      (linum-mode 1)
+      (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
+
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+(defun fill-region-width (fill-width)
+  "Fills the region with the given width"
+  (set-fill-column fill-width)
+  (fill-region))
+
+(defun justify-region-80 (&optional len)
+  "Justify Text at 80 or len"
+  (interactive "p")
+  (set-justification-full (point-min) (point-max)))
+(global-set-key "\C-q" 'justify-region-80)
+
+
+(defun toggle-some-personal-preferences (&optional arg)
+  "Enable three minor modes for neat text"
+  (interactive "p")
+  (flyspell-mode 1)
+  (turn-on-auto-fill)
+;;  (setq auto-fill-mode t)
+  (set-fill-column 80)
+)
+
+;; Debugging
+;; Handy trick: M-x toggle-debug-on-error. Now run your function, and you'll get a stack trace showing exactly where the error is coming from. See M-: (info "(elisp) Debugger") for details of how to use the debugger. –  phils Mar 6 '12 at 10:38
+;;
+;;One more handy trick: M-x eldoc-mode - when your point is inside a function you can see the required and optional arguments –  sabof Mar 6 '12 at 19:42
+
 ;; Interactively Do Things
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
@@ -143,8 +190,10 @@
 ;; ;           (kill-region (max (save-excursion (backward-word)(point))
 ;; ;                             (line-beginning-position))
 ;; ;                        (point)))))))
+;; ;(defun my-backward-kill-word
+;; ;  (backward-kill-word) )
 ;; ; 
-;; ; (global-set-key "\C-w" 'backward-kill-word)
+;; ;(global-set-key "\C-w" 'my-backward-kill-word)
 ;; ; 
 ;; ; (define-key (current-global-map) [remap backward-kill-word]
 ;; ;   'my-backward-kill-word)
