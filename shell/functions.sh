@@ -110,6 +110,9 @@ function help {
 }
 
 function remindmeto {
+  # todo OSX:
+  # http://stackoverflow.com/questions/5588064/how-do-i-make-a-mac-terminal-pop-up-alert-applescript
+  # Also find notification center even on other platforms
   if [[ $# == 0 ]]; then
     cat <<-__EOF
 			
