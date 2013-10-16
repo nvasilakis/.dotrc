@@ -150,7 +150,7 @@ function remindmeto {
     # remindmeto return book at the library at 6
     when="$(echo "${*}" | sed 's/^.*at//')"
     #what="$(echo "${*}" | sed 's/^\(.*\)at/\1/')"
-    what="$(echo "${*}" | sed 's/^\(.*\)at.*$/\1/')"
+    what="$(echo "${*}" | sed 's/^\(.*\)at.*$/\1/' | sed -e 's/^\(.\)/\u\1/g')"
     #what="$(echo "${*}" | sed "s/${when}//")"
     if [[ "${1}" == "debug" ]]; then
       echo "all:  $*"
@@ -158,7 +158,7 @@ function remindmeto {
       echo "what: ${what}"
     fi
     at "${when}" <<-__EOF
-			notify-send "Reminder!" "${what}!" -i /usr/share/pixmaps/gnome-color-browser.png -t 5000
+			notify-send "Hey!" "${what}!" -i /usr/share/pixmaps/gnome-color-browser.png -t 5000
 			atq
 			__EOF
     rat=$?
