@@ -144,7 +144,7 @@ function remindmeto {
 			    you are free to  change and  redistribute  it. There is NO  WARRANTY,
 			    to the extent permitted by law.
 			
-__EOF
+			__EOF
   else
     # remindmeto drink milk at 6
     # remindmeto return book at the library at 6
@@ -158,9 +158,9 @@ __EOF
       echo "what: ${what}"
     fi
     at "${when}" <<-__EOF
-			notify-send "Reminder!" "${what}" -i /usr/share/pixmaps/gnome-color-browser.png -t 5000
+			notify-send "Reminder!" "${what}!" -i /usr/share/pixmaps/gnome-color-browser.png -t 5000
 			atq
-__EOF
+			__EOF
     rat=$?
     if [[ $rat != 0 ]]; then
       echo "\e[00;31mThere was an ERROR, $(whoami) -- Please resubmit!"
