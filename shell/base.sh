@@ -14,7 +14,7 @@ if [[ `uname` == 'Linux' ]]; then
   alias au='sudo apt-get update'
   alias here='nautilus --no-desktop --browser .'
   alias e='emacs --geometry=160x50+500' 
-  alias emacs='emacs -nw'
+  #alias emacs='emacs -nw'
   #alias w3m='w3m www.google.com'
 else 
   export CLICOLOR=1
