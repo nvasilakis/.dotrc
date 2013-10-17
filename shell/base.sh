@@ -13,6 +13,8 @@ if [[ `uname` == 'Linux' ]]; then
   alias ai='sudo apt-get install'
   alias au='sudo apt-get update'
   alias here='nautilus --no-desktop --browser .'
+  alias e='emacs --geometry=160x50+500' 
+  alias emacs='emacs -nw'
   #alias w3m='w3m www.google.com'
 else 
   export CLICOLOR=1
@@ -20,6 +22,7 @@ else
   export GREP_OPTIONS='--color=auto';
   export GREP_COLOR='00;31;5;157';
   alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
+  alias emacs='emacs -nw'
   alias ctags='/usr/local/bin/ctags'
 fi
 

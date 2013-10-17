@@ -27,7 +27,7 @@ if [[ "$HOSTNAME" == 'nv' ]]; then # fluxbox home
   export CDPATH="/media/w7/Projects/"
   export PATH="/home/nikos/.cabal/bin:$PATH"
   # Named directories
-  code=/media/w7/Projects
+  code=/media/w7/Projects/UPenn
   safe=$code/UPenn/Research/SAFE
   # Run only once
   if [[ "$ONCE" != "true" ]]; then
@@ -58,12 +58,13 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   set output-meta on
   xrdb -load ~/.Xdefaults
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
-  code=/Users/nv/Projects
-  safe=$code/UPenn/Research/SAFE
+  code="/Users/nv/Projects/UPenn"
+  safe=$code/Research/SAFE
   cv=/Users/nv/Projects/my/cv
   rosa=/Users/nv/Projects/my/rosalind
 elif [[ "$HOSTNAME" == 'antikythera' ]] ; then # mac book air
   code="/home/nikos/Projects/UPenn/"
+  sf="$code/500/software-foundations/"
   safe=$code/Research/SAFE
 else  # Others, like eniac machines
   MANPAGER="less"
