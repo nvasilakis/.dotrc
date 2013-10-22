@@ -19,7 +19,7 @@
 ;;
 ;;;; Proof General
 (load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
-(setq coq-prog-name "/usr/bin/coqtop")
+(setq coq-prog-name "/usr/local/bin/coqtop")
 (setq proof-splash-enable nil)
 (setq proof-toolbar-enable nil)
 
