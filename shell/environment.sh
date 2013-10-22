@@ -67,7 +67,8 @@ elif [[ "$HOSTNAME" == 'antikythera' ]] ; then # mac book air
   code="/home/nikos/Projects/UPenn/"
   sf="$code/500/software-foundations/"
   safe=$code/Research/SAFE
-  rosa=$code/..//my/rosalind
+  rosa=$code/../my/rosalind
+  alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
 else  # Others, like eniac machines
   MANPAGER="less"
   #Less Colors for Man Pages

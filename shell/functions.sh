@@ -162,6 +162,7 @@ function remindmeto {
     fi
     at "${when}" <<-__EOF
 			notify-send "Hey!" "${what}!" -i /usr/share/pixmaps/gnome-color-browser.png -t 5000
+			paplay /usr/share/sounds/gnome/default/alerts/drip.ogg
 			atq
 			__EOF
     rat=$?
