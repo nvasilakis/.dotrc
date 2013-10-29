@@ -23,6 +23,9 @@ zstyle :compinstall filename '/home/nv/.zshrc'
 
 autoload -Uz compinit
 compinit
+## case-insensitive (all)artial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
+    'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 autoload -U promptinit
 promptinit
 autoload -U colors && colors
