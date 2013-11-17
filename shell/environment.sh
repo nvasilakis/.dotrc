@@ -64,10 +64,14 @@ elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   sf="$code/500/software-foundations/"
   rosa=/Users/nv/Projects/my/rosalind
 elif [[ "$HOSTNAME" == 'antikythera' ]] ; then # mac book air
-  code="/home/nikos/Projects/UPenn/"
-  sf="$code/500/software-foundations/"
-  safe=$code/Research/SAFE
-  rosa=$code/../my/rosalind
+  penn=/home/nikos/Projects/UPenn/
+  my=/home/nikos/my
+  rosa=$my/rosalind
+  sf=$penn/500/software-foundations/
+  lab=$penn/Research
+  safe=$lab/SAFE
+  isca=$lab/ISCA
+  gem5=$isca/gem5
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
 else  # Others, like eniac machines
   MANPAGER="less"
