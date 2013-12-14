@@ -59,15 +59,17 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   xrdb -load ~/.Xdefaults
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   code="/Users/nv/Projects/UPenn"
-  safe=$code/Research/SAFE
-  cv=/Users/nv/Projects/my/cv
+  safe="$code/Research/SAFE"
+  lab="$code/Research/"
+  cv="/Users/nv/Projects/my/cv"
   sf="$code/500/software-foundations/"
-  rosa=/Users/nv/Projects/my/rosalind
+  rosa="/Users/nv/Projects/my/rosalind"
 elif [[ "$HOSTNAME" == 'antikythera' ]] ; then # mac book air
   code="/home/nikos/Projects/UPenn/"
   sf="$code/500/software-foundations/"
-  safe=$code/Research/SAFE
-  rosa=$code/../my/rosalind
+  lab="$code/Research/"
+  safe="$code/Research/SAFE"
+  rosa="$code/../my/rosalind"
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
 else  # Others, like eniac machines
   MANPAGER="less"
