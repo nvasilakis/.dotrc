@@ -1,4 +1,158 @@
 (add-to-list 'load-path "~/.emacs.d/")
+
+;;;; Customize environment
+(menu-bar-mode 0) ; toggle off menu
+(require 'linum) ;Add line numbers
+(global-linum-mode 1)
+(unless window-system
+  (menu-bar-mode -1))
+(scroll-bar-mode -1)  
+;;(tool-bar-mode -1)
+(setq inhibit-splash-screen t)
+; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+(custom-set-variables
+   '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+     '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
+
+
+;;;; Proof General
+(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
+(setq coq-prog-name "/usr/local/bin/coqtop")
+(setq proof-splash-enable nil)
+(setq proof-toolbar-enable nil)
+
+
+;;;; Haskell Mode
+(load "~/.emacs.d/haskell-mode/haskell-site-file")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+; Overwrite haskell save buffer to include goodies
+;(define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
+
+
+;;;; My personal functions to invoke!
+(defun kill-region-or-backward-kill-word (arg)
+  "Woo! Kill word a la bash/zsh and preserve it in kill ring! "
+  (interactive "p")
+  (if mark-active
+      (kill-region (point) (mark))
+    (backward-kill-word arg)))
+(global-set-key "\C-w" 'kill-region-or-backward-kill-word)
+
+;; from http://whattheemacsd.com/key-bindings.el-01.html
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+    (progn
+      (linum-mode 1)
+      (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+(defun fill-region-width (fill-width)
+  "Fills the region with the given width"
+  (set-fill-column fill-width)
+  (fill-region))
+
+; If region is selected
+(defun justify-region-80 (&optional len)
+  "Justify Text at 80 or len"
+  (interactive "p")
+  (fill-region (point) (mark) 'full)) 
+  ;optional NOSQUEEZE TO-EOP
+;;  (set-justification-full (point) (mark)))
+(global-set-key "\C-q" 'justify-region-80)
+
+; If region is not selected 
+; TODO: merge these two
+(defun justify-or-fill-region(&optional justify)
+  (interactive "p")
+  (let ((point (point))
+	(mark (and mark-active (mark))))
+    (message (format "justify is %s" justify))
+    (if (and mark (not (equal point mark)))
+	(fill-region (min point mark) (max point mark)
+		     (if (= justify 1)
+			 nil
+		       'full))
+      (fill-paragraph justify))))
+(global-set-key (kbd "M-q") 'justify-or-fill-region)
+
+(defun toggle-some-personal-preferences (&optional arg)
+  "Enable three minor modes for neat text"
+  (interactive "p")
+  (flyspell-mode 1)
+  (turn-on-auto-fill)
+;;  (setq auto-fill-mode t)
+  (set-fill-column 80))
+(global-set-key (kbd "<f5>") 'toggle-some-personal-preferences)
+
+;; fill region:
+;;(global-set-key "\C-x\C-w" 'fill-region)
+
+;;;; Color theme -- Solarized Light
+(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+(if
+    (equal 0 (string-match "^24" emacs-version))
+    ;; it's emacs24, so use built-in theme
+    (require 'solarized-light-theme)
+  ;; it's NOT emacs24, so use color-theme
+  (progn
+    (require 'color-theme)
+    (color-theme-initialize)
+    (require 'color-theme-solarized)
+    (color-theme-solarized-light)))
+
+;;;; More Customization
+;; Ido Mode -- Interactively do things
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+;; This tab override shouldn't be necessary given ido's default
+;; configuration, but minibuffer-complete otherwise dominates the
+;; tab binding because of my custom tab-completion-everywhere
+;; configuration.
+(add-hook 'ido-setup-hook
+	  (lambda ()
+	    (define-key ido-completion-map [tab] 'ido-complete)))
+; auto indent
+;(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; melpa package management
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+; should enbable these at some point
+;(global-set-key (kbd "C-c g") (ffap))
+;(global-set-key (kbd "C-c t") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
+; Toggle hidden drirectories in dired
+(require 'dired-x)
+(setq dired-omit-files "^\\...+$")
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+
+
+;; ;; Initianlize for gnome-terminal
+;; (defun terminal-init-gnome ()
+;;   "Terminal initialization function for gnome-terminal."
+;;   ;; This is a dirty hack that I accidentally stumbled across:
+;;   ;;  initializing "rxvt" first and _then_ "xterm" seems
+;;   ;;  to make the colors work... although I have no idea why.
+;;   (tty-run-terminal-initialization (selected-frame) "rxvt")
+;;   (tty-run-terminal-initialization (selected-frame) "xterm"))
+;; ;; Remove splash screen
+;; (setq inhibit-splash-screen t)
+
+;; (defun terminal-init-screen ()
+;;   "Terminal initialization function for screen."
+;;    ;; Use the xterm color initialization code.
+;;    (xterm-register-default-colors)
+;;    (tty-set-up-initial-frame-faces))
+
 ;;
 ;;(defun omar-hip ()
 ;;  "a nonce menu function"
@@ -17,128 +171,19 @@
 ;;   :help "OMG Omar!"
 ;;   :image (image :type svg :file "/usr/share/icons/elementary/actions/32/properties.svg")))
 ;;
-;;;; Proof General
-(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
-(setq coq-prog-name "/usr/local/bin/coqtop")
-(setq proof-splash-enable nil)
-(setq proof-toolbar-enable nil)
 
-;; Initianlize for gnome-terminal
-(defun terminal-init-gnome ()
-  "Terminal initialization function for gnome-terminal."
-  ;; This is a dirty hack that I accidentally stumbled across:
-  ;;  initializing "rxvt" first and _then_ "xterm" seems
-  ;;  to make the colors work... although I have no idea why.
-  (tty-run-terminal-initialization (selected-frame) "rxvt")
-  (tty-run-terminal-initialization (selected-frame) "xterm"))
-;; Remove splash screen
-(setq inhibit-splash-screen t)
-
-(defun terminal-init-screen ()
-  "Terminal initialization function for screen."
-   ;; Use the xterm color initialization code.
-   (xterm-register-default-colors)
-   (tty-set-up-initial-frame-faces))
-
-;; toggle off menu
-(menu-bar-mode 0)
-;; Add line numbers
-(require 'linum)
-(global-linum-mode 1)
-;; I want no-gui even in gui version
-;; turn off toolbar
-(unless window-system
-  (menu-bar-mode -1))
-(scroll-bar-mode -1)  
-;;(tool-bar-mode -1)
-
-(defun kill-region-or-backward-kill-word (arg)
-  "Woo! Kill word a la bash/zsh and preserve it in kill ring! "
-  (interactive "p")
-  (if mark-active
-      (kill-region (point) (mark))
-    (backward-kill-word arg)))
-(global-set-key "\C-w" 'kill-region-or-backward-kill-word)
-
-
-;; from http://whattheemacsd.com/key-bindings.el-01.html
-(defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
-  (interactive)
-  (unwind-protect
-    (progn
-      (linum-mode 1)
-      (goto-line (read-number "Goto line: ")))
-    (linum-mode -1)))
-
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
-
-(defun fill-region-width (fill-width)
-  "Fills the region with the given width"
-  (set-fill-column fill-width)
-  (fill-region))
-
-(defun justify-region-80 (&optional len)
-  "Justify Text at 80 or len"
-  (interactive "p")
-  (set-justification-full (point-min) (point-max)))
-(global-set-key "\C-q" 'justify-region-80)
-
-
-(defun toggle-some-personal-preferences (&optional arg)
-  "Enable three minor modes for neat text"
-  (interactive "p")
-  (flyspell-mode 1)
-  (turn-on-auto-fill)
-;;  (setq auto-fill-mode t)
-  (set-fill-column 80)
-)
 
 ;; Debugging
-;; Handy trick: M-x toggle-debug-on-error. Now run your function, and you'll get a stack trace showing exactly where the error is coming from. See M-: (info "(elisp) Debugger") for details of how to use the debugger. –  phils Mar 6 '12 at 10:38
-;;
-;;One more handy trick: M-x eldoc-mode - when your point is inside a function you can see the required and optional arguments –  sabof Mar 6 '12 at 19:42
 
-;; Interactively Do Things
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-;; This tab override shouldn't be necessary given ido's default
-;; configuration, but minibuffer-complete otherwise dominates the
-;; tab binding because of my custom tab-completion-everywhere
-;; configuration.
-(add-hook 'ido-setup-hook
-	  (lambda ()
-	    (define-key ido-completion-map [tab] 'ido-complete)))
-;; auto indent
-(define-key global-map (kbd "RET") 'newline-and-indent)
+;; Handy trick: M-x toggle-debug-on-error.  Now run your function, and
+;; you'll get a stack trace showing  exactly where the error is coming
+;; from. See M-:  (info "(elisp) Debugger") for details of  how to use
+;; the debugger. – phils Mar 6 '12 at 10:38
 
-(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
-(if
-    (equal 0 (string-match "^24" emacs-version))
-    ;; it's emacs24, so use built-in theme
-    (require 'solarized-light-theme)
-  ;; it's NOT emacs24, so use color-theme
-  (progn
-    (require 'color-theme)
-    (color-theme-initialize)
-    (require 'color-theme-solarized)
-    (color-theme-solarized-light)))
+;; One more handy trick: M-x eldoc-mode  - when your point is inside a
+;; function you  can see the  required and optional arguments  – sabof
+;; Mar 6 '12 at 19:42
 
-(load "~/.emacs.d/haskell-mode/haskell-site-file")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;;   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-
-;; Overwrite haskell save buffer to include goodies
-;; (define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
-
-;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
-(custom-set-variables
-   '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
-     '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
-;; create the autosave dir if necessary, since emacs won't.
-(make-directory "~/.emacs.d/autosaves/" t)
 
 ;; ai auctex
 ;;load the auto complete path here, if you havent done it
@@ -304,17 +349,6 @@
 ;
 ;;;; emacs-rc-tex.el ends here
 ;
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
-
-;;(global-set-key (kbd "C-c g") (ffap))
-;;(global-set-key (kbd "C-c t") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
-
-(require 'dired-x)
-(setq dired-omit-files "^\\...+$")
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
 ;;(autoload 'magit-status "magit" nil t)
 ;;(global-set-key "\C-ci" 'magit-status)
