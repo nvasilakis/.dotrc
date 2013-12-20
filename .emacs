@@ -18,10 +18,10 @@
 
 
 ;;;; Proof General
-(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
-(setq coq-prog-name "/usr/local/bin/coqtop")
-(setq proof-splash-enable nil)
-(setq proof-toolbar-enable nil)
+;(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
+;(setq coq-prog-name "/usr/local/bin/coqtop")
+;(setq proof-splash-enable nil)
+;(setq proof-toolbar-enable nil)
 
 
 ;;;; Haskell Mode
