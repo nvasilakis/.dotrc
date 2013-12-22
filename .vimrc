@@ -190,6 +190,23 @@ augroup filetype
   au! BufRead,BufNewFile *.br     set filetype=breeze
 augroup END
 
+" Vala support
+autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+
+" Disable valadoc syntax highlight
+"let vala_ignore_valadoc = 1
+" Enable comment strings
+let vala_comment_strings = 1
+" Highlight space errors
+let vala_space_errors = 1
+" Disable trailing space errors
+"let vala_no_trail_space_error = 1
+" Disable space-tab-space errors
+let vala_no_tab_space_error = 1
+" Minimum lines used for comment syncing (default 50)
+"let vala_minlines = 120
+
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 " Hacks for SQL completion
