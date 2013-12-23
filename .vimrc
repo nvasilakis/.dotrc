@@ -206,6 +206,10 @@ let vala_space_errors = 1
 let vala_no_tab_space_error = 1
 " Minimum lines used for comment syncing (default 50)
 "let vala_minlines = 120
+" Work-around Tag List for Vala
+let tlist_vala_settings='c#;d:macro;t:typedef;n:namespace;c:class;'.
+  \ 'E:event;g:enum;s:struct;i:interface;'.
+  \ 'p:properties;m:method'
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
