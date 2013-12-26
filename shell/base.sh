@@ -14,7 +14,10 @@ if [[ `uname` == 'Linux' ]]; then
   alias au='sudo apt-get update'
   alias here='nautilus --no-desktop --browser .'
   alias e='emacs --geometry=160x50+500' 
-  alias open='xdg-open'
+  # open everything, a la OS X
+  function open {
+    xdg-open $* &> /dev/null
+  }
   #alias emacs='emacs -nw'
   #alias w3m='w3m www.google.com'
 else 
