@@ -16,7 +16,9 @@ if [[ `uname` == 'Linux' ]]; then
   alias e='emacs --geometry=160x50+500' 
   # open everything, a la OS X
   function open {
-    xdg-open $* &> /dev/null
+    for f in $*; do
+      xdg-open "${f}" &> /dev/null
+    done
   }
   #alias emacs='emacs -nw'
   #alias w3m='w3m www.google.com'
