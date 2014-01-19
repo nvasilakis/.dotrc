@@ -1,28 +1,21 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
-;;;; Customize environment
-(menu-bar-mode 0) ; toggle off menu
-(require 'linum) ;Add line numbers
-(global-linum-mode 1)
-(unless window-system
-  (menu-bar-mode -1))
-(scroll-bar-mode -1)  
-;;(tool-bar-mode -1)
-(setq inhibit-splash-screen t)
-; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
-(custom-set-variables
-   '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
-     '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
-; create the autosave dir if necessary, since emacs won't.
-(make-directory "~/.emacs.d/autosaves/" t)
-
-
 ;;;; Proof General
-(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
-(setq coq-prog-name "/usr/local/bin/coqtop")
-(setq proof-splash-enable nil)
-(setq proof-toolbar-enable nil)
+;(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
+;(setq coq-prog-name "/usr/local/bin/coqtop")
+;(setq proof-splash-enable nil)
+;(setq proof-toolbar-enable nil)
 
+
+;;;; Vala mode
+;(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(autoload 'vala-mode "vala-mode" "Major mode for editing Vala code." t)
+(add-to-list 'auto-mode-alist '("\\.vala$" . vala-mode))
+(add-to-list 'auto-mode-alist '("\\.vapi$" . vala-mode))
+(add-to-list 'file-coding-system-alist '("\\.vala$" . utf-8))
+(add-to-list 'file-coding-system-alist '("\\.vapi$" . utf-8))
+; Add ECB/CEDET C# semantics
+(add-hook 'vala-mode-hook #'wisent-csharp-default-setup)
 
 ;;;; Haskell Mode
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
@@ -38,7 +31,7 @@
   "Woo! Kill word a la bash/zsh and preserve it in kill ring! "
   (interactive "p")
   (if mark-active
-      (kill-region (point) (mark))
+    (kill-region (point) (mark))
     (backward-kill-word arg)))
 (global-set-key "\C-w" 'kill-region-or-backward-kill-word)
 
@@ -63,7 +56,7 @@
   "Justify Text at 80 or len"
   (interactive "p")
   (fill-region (point) (mark) 'full)) 
-  ;optional NOSQUEEZE TO-EOP
+;optional NOSQUEEZE TO-EOP
 ;;  (set-justification-full (point) (mark)))
 (global-set-key "\C-q" 'justify-region-80)
 
@@ -72,13 +65,13 @@
 (defun justify-or-fill-region(&optional justify)
   (interactive "p")
   (let ((point (point))
-	(mark (and mark-active (mark))))
+        (mark (and mark-active (mark))))
     (message (format "justify is %s" justify))
     (if (and mark (not (equal point mark)))
-	(fill-region (min point mark) (max point mark)
-		     (if (= justify 1)
-			 nil
-		       'full))
+      (fill-region (min point mark) (max point mark)
+                   (if (= justify 1)
+                     nil
+                     'full))
       (fill-paragraph justify))))
 (global-set-key (kbd "M-q") 'justify-or-fill-region)
 
@@ -87,7 +80,7 @@
   (interactive "p")
   (flyspell-mode 1)
   (turn-on-auto-fill)
-;;  (setq auto-fill-mode t)
+  ;;  (setq auto-fill-mode t)
   (set-fill-column 80))
 (global-set-key (kbd "<f5>") 'toggle-some-personal-preferences)
 
@@ -97,9 +90,9 @@
 ;;;; Color theme -- Solarized Light
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
 (if
-    (equal 0 (string-match "^24" emacs-version))
-    ;; it's emacs24, so use built-in theme
-    (require 'solarized-light-theme)
+  (equal 0 (string-match "^24" emacs-version))
+  ;; it's emacs24, so use built-in theme
+  (require 'solarized-light-theme)
   ;; it's NOT emacs24, so use color-theme
   (progn
     (require 'color-theme)
@@ -117,8 +110,8 @@
 ;; tab binding because of my custom tab-completion-everywhere
 ;; configuration.
 (add-hook 'ido-setup-hook
-	  (lambda ()
-	    (define-key ido-completion-map [tab] 'ido-complete)))
+          (lambda ()
+            (define-key ido-completion-map [tab] 'ido-complete)))
 ; auto indent
 ;(define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -353,3 +346,46 @@
 ;;(autoload 'magit-status "magit" nil t)
 ;;(global-set-key "\C-ci" 'magit-status)
 ;;(global-set-key (kbd "C-c i") (magit-status))
+;(setq whitespace-mode 1)
+;(autoload 'whitespace-mode "whitespace-mode.el" "Whitespace editing mode." t)
+;(setq auto-mode-alist (cons '("\.ws$" . whitespace-mode) auto-mode-alist))
+;(require 'whitespace)
+;(setq whitespace-mode 0)
+;(setq whitespace-mode 1)
+;(require 'whitespace)
+;(provide 'whitespace-setup)
+
+;(setq whitespace-style
+;      '(face tabs trailing lines-tail
+;             space-before-tab indentation
+;             empty space-after-tab))
+;(whitespace-mode 1)
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;
+;;;; Further Customization
+(menu-bar-mode 0) ; toggle off menu
+(require 'linum) ;Add line numbers
+(global-linum-mode 1)
+(unless window-system
+  (menu-bar-mode -1))
+(scroll-bar-mode -1)  
+;;(tool-bar-mode -1)
+(setq inhibit-splash-screen t)
+; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+(custom-set-variables
+  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
+; Show hidden characters
+(global-whitespace-mode +1)
+; Clean trailing spaces before saving -- unfortunately retabs
+;(add-hook 'before-save-hook 'whitespace-cleanup)
+; Add spaces instead of tabs
+(setq tab-width 2)
+(setq indent-tabs-mode nil)
+; Alias yes/no to y/n
+(defalias 'yes-or-no-p 'y-or-n-p)
+; Highlight parens
+(show-paren-mode t)
+
