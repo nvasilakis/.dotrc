@@ -64,7 +64,7 @@ elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   cv="/Users/nv/Projects/my/cv"
   sf="$code/500/software-foundations/"
   rosa="/Users/nv/Projects/my/rosalind"
-elif [[ "$HOSTNAME" == 'antikythera' ]] ; then # mac book air
+elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   penn=/home/nikos/Projects/UPenn/
   my=/home/nikos/my
   rosa=$my/rosalind

@@ -360,7 +360,7 @@
 ;             space-before-tab indentation
 ;             empty space-after-tab))
 ;(whitespace-mode 1)
-;(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;
 ;;;; Further Customization
 (menu-bar-mode 0) ; toggle off menu
@@ -389,3 +389,5 @@
 ; Highlight parens
 (show-paren-mode t)
 
+(add-hook 'vala-mode-hook '(lambda () 
+                               (setq vala-indent 2)))
