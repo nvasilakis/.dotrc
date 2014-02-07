@@ -378,7 +378,7 @@
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 ; Show hidden characters
-(global-whitespace-mode +1)
+;(global-whitespace-mode +1)
 ; Clean trailing spaces before saving -- unfortunately retabs
 ;(add-hook 'before-save-hook 'whitespace-cleanup)
 ; Add spaces instead of tabs

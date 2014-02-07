@@ -130,7 +130,7 @@ if has("unix")
   if uname == "Darwin"
     let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
   else
-    let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+    let Tlist_Ctags_Cmd = "/usr/bin/ctags-exuberant"
   endif
 endif
 let Tlist_WinWidth = 40                 "taglist window width
