@@ -72,3 +72,6 @@ alias breeze='/media/w7/Projects/UPenn/SAFE/SAFE/breeze/breeze-interpreter/src/d
 alias jhf='cd ~/Work/oceanus/handsfree/git/'
 alias jto='cd ~/Work/apache-tomcat-6.0.35/'
 alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribution/Handsfree-beta.war /oceanus/www/webapps;'
+
+# Update environment for haskell
+PATH="$HOME/.cabal/bin:$PATH"

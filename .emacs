@@ -17,6 +17,16 @@
 ; Add ECB/CEDET C# semantics
 (add-hook 'vala-mode-hook #'wisent-csharp-default-setup)
 
+;;;; Tempest Mode
+(autoload 'tempest-mode "tempest-mode" "Major mode for editing Tempest code." t)
+(add-to-list 'auto-mode-alist '("\\.ts" . tempest-mode))
+(add-to-list 'auto-mode-alist '("\\.ti" . tempest-mode))
+(add-to-list 'file-coding-system-alist '("\\.ts" . utf-8))
+(add-to-list 'file-coding-system-alist '("\\.ti" . utf-8))
+(autoload 'meld-mode "meld-mode" "Major mode for editing Meld code." t)
+(add-to-list 'auto-mode-alist '("\\.meld" . meld-mode))
+(add-to-list 'file-coding-system-alist '("\\.meld" . utf-8))
+
 ;;;; Haskell Mode
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
@@ -360,7 +370,7 @@
 ;             space-before-tab indentation
 ;             empty space-after-tab))
 ;(whitespace-mode 1)
-;(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;
 ;;;; Further Customization
 (menu-bar-mode 0) ; toggle off menu
@@ -389,3 +399,5 @@
 ; Highlight parens
 (show-paren-mode t)
 
+(add-hook 'vala-mode-hook '(lambda () 
+                               (setq vala-indent 2)))

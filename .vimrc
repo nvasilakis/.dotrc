@@ -188,6 +188,8 @@ autocmd FileType ruby set omnifunc=rubycomplete#Complete
 
 augroup filetype
   au! BufRead,BufNewFile *.br     set filetype=breeze
+  au! BufRead,BufNewFile *.ts     set filetype=tempest
+  au! BufRead,BufNewFile *.ti     set filetype=tempest
 augroup END
 
 " Vala support
