@@ -74,6 +74,7 @@ elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   isca=$lab/ISCA
   gem5=$isca/gem5
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
+  PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 else  # Others, like eniac machines
   MANPAGER="less"
   #Less Colors for Man Pages

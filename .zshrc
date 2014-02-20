@@ -383,4 +383,3 @@ if [[ $TERM =~ "screen" ]]; then
     fi
   }
 fi
-
