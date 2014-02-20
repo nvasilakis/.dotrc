@@ -171,3 +171,13 @@ function remindmeto {
     fi
   fi
 }
+
+function 555fetch () {
+  if [[ $# == 1 ]]; then
+    mkdir testfield && cd testfield
+    rsync -av --progress cis455@eniac.seas.upenn.edu:/home1/c/cis455/submit/hw1ms1/${1}.Z .
+    uncompress ${1}.Z && tar xvf ${1} && unzip submit-hw1.zip && cp ../hw1m1/runserver.sh .
+    ant build
+    cat README
+  fi
+}
