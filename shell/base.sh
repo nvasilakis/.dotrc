@@ -22,6 +22,7 @@ if [[ `uname` == 'Linux' ]]; then
   }
   #alias emacs='emacs -nw'
   #alias w3m='w3m www.google.com'
+  alias ctags='/usr/bin/ctags-exuberant'
 else 
   export CLICOLOR=1
   alias ls='ls -G'
