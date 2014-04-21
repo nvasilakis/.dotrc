@@ -75,6 +75,7 @@ elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   gem5=$isca/gem5
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
   PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+  export URBIT_HOME=/home/nikos/Documents/urbit/urb
 else  # Others, like eniac machines
   MANPAGER="less"
   #Less Colors for Man Pages
