@@ -5,6 +5,7 @@
 (setq coq-prog-name "/usr/bin/coqtop") ;; Either /usr/local/bin.. or /usr/bin/..
 (setq proof-splash-enable nil)
 (setq proof-toolbar-enable nil)
+(setq split-width-threshold 120)
 
 
 ;;;; Vala mode
