@@ -8,6 +8,7 @@ export EC2_PRIVATE_KEY=~/.ec2/access.pem
 export EC2_CERT=~/.ec2/cert.pem
 export PATH="$PATH:$HOME/scripts" # include home-grown tools
 export LACONIC="false"
+UNIVERSE=$(echo "~/.dotrc ~/.vimrc ~/scripts ~/.emacs.d" | sed "s;~;$HOME;g")
 
 ## My own man page viewer. If I need to remap K, add also:
 #-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\"\

@@ -172,6 +172,15 @@ function remindmeto {
   fi
 }
 
+function playfwd () {
+  for d in $UNIVERSE; do
+    ls $d;
+    cd $d;
+    git pull;
+  done
+}
+
+
 function 555fetch () {
   if [[ $# == 1 ]]; then
     mkdir testfield && cd testfield
