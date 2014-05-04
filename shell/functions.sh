@@ -190,3 +190,21 @@ function setLocales {
   LC_ALL="en_US.UTF-8"
 }
 
+function playfwd () {
+  for d in $UNIVERSE; do
+    ls $d;
+    cd $d;
+    git pull;
+  done
+}
+
+
+function 555fetch () {
+  if [[ $# == 1 ]]; then
+    mkdir testfield && cd testfield
+    rsync -av --progress cis455@eniac.seas.upenn.edu:/home1/c/cis455/submit/hw1ms1/${1}.Z .
+    uncompress ${1}.Z && tar xvf ${1} && unzip submit-hw1.zip && cp ../hw1m1/runserver.sh .
+    ant build
+    cat README
+  fi
+}

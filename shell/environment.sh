@@ -8,6 +8,7 @@ export EC2_PRIVATE_KEY=~/.ec2/access.pem
 export EC2_CERT=~/.ec2/cert.pem
 export PATH="$PATH:$HOME/scripts" # include home-grown tools
 export LACONIC="false"
+UNIVERSE=$(echo "~/.dotrc ~/.vimrc ~/scripts ~/.emacs.d" | sed "s;~;$HOME;g")
 
 ## My own man page viewer. If I need to remap K, add also:
 #-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\"\
@@ -59,16 +60,26 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   xrdb -load ~/.Xdefaults
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   code="/Users/nv/Projects/UPenn"
-  safe=$code/Research/SAFE
-  cv=/Users/nv/Projects/my/cv
+  safe="$code/Research/SAFE"
+  lab="$code/Research/"
+  cv="/Users/nv/Projects/my/cv"
   sf="$code/500/software-foundations/"
-  rosa=/Users/nv/Projects/my/rosalind
-elif [[ "$HOSTNAME" == 'antikythera' ]] ; then # mac book air
-  code="/home/nikos/Projects/UPenn/"
-  sf="$code/500/software-foundations/"
-  safe=$code/Research/SAFE
-  rosa=$code/../my/rosalind
+  rosa="/Users/nv/Projects/my/rosalind"
+elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air
+  code="/Users/nv/Documents"
+  export URBIT_HOME=/home/nikos/Documents/urbit/urb
+elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
+  penn=/home/nikos/Projects/UPenn/
+  my=/home/nikos/my
+  rosa=$my/rosalind
+  sf=$penn/500/software-foundations/
+  lab=$penn/Research
+  safe=$lab/SAFE
+  isca=$lab/ISCA
+  gem5=$isca/gem5
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
+  PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+  export URBIT_HOME=/home/nikos/Documents/urbit/urb
 else  # Others, like eniac machines
   MANPAGER="less"
   #Less Colors for Man Pages

@@ -34,7 +34,7 @@ call pathogen#helptags()
 :set autochdir                    " change directory automagically
 :set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%04.8b]\ [HEX=\%04.4B]\ [LEN=%L]\ [POS=%04l,%04v][%p%%]
 :set laststatus=2                 " set the status line visible at all times
-:set list                         " show invisibles
+" :set list                         " show invisibles
 :set shell=/bin/zsh\ -l          " set shell to my shell
 :hi CursorLine   cterm=NONE ctermbg=235 guibg=black " 8 24 235|51
 " Using , as a map leader -- Define ",," to equal a current ,!
@@ -130,7 +130,7 @@ if has("unix")
   if uname == "Darwin"
     let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
   else
-    let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+    let Tlist_Ctags_Cmd = "/usr/bin/ctags-exuberant"
   endif
 endif
 let Tlist_WinWidth = 40                 "taglist window width
@@ -188,7 +188,30 @@ autocmd FileType ruby set omnifunc=rubycomplete#Complete
 
 augroup filetype
   au! BufRead,BufNewFile *.br     set filetype=breeze
+  au! BufRead,BufNewFile *.ts     set filetype=tempest
+  au! BufRead,BufNewFile *.ti     set filetype=tempest
 augroup END
+
+" Vala support
+autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+
+" Disable valadoc syntax highlight
+"let vala_ignore_valadoc = 1
+" Enable comment strings
+let vala_comment_strings = 1
+" Highlight space errors
+let vala_space_errors = 1
+" Disable trailing space errors
+"let vala_no_trail_space_error = 1
+" Disable space-tab-space errors
+let vala_no_tab_space_error = 1
+" Minimum lines used for comment syncing (default 50)
+"let vala_minlines = 120
+" Work-around Tag List for Vala
+let tlist_vala_settings='c#;d:macro;t:typedef;n:namespace;c:class;'.
+  \ 'E:event;g:enum;s:struct;i:interface;'.
+  \ 'p:properties;m:method'
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold

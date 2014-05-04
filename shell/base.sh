@@ -14,8 +14,15 @@ if [[ `uname` == 'Linux' ]]; then
   alias au='sudo apt-get update'
   alias here='nautilus --no-desktop --browser .'
   alias e='emacs --geometry=160x50+500' 
+  # open everything, a la OS X
+  function open {
+    for f in $*; do
+      xdg-open "${f}" &> /dev/null
+    done
+  }
   #alias emacs='emacs -nw'
   #alias w3m='w3m www.google.com'
+  alias ctags='/usr/bin/ctags-exuberant'
 else 
   export CLICOLOR=1
   alias ls='ls -G'
@@ -70,3 +77,5 @@ alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribu
 PATH="${PATH}:/scratch/safe/usr/modelsim/modeltech/bin:/scratch/safe/usr/Bluespec-2013.05.beta2/bin/"
 export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
 export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib
+# Update environment for haskell
+PATH="$HOME/.cabal/bin:$PATH"
