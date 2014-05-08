@@ -125,6 +125,7 @@ hosts=(
   eniac.seas.upenn.edu
   quark.seas.upenn.edu
   antikythera.vasilak.is
+  centaurus.vasilak.is
   biglab.seas.upenn.edu
   speclab.seas.upenn.edu
   uranus1.jefferson.edu
@@ -144,6 +145,7 @@ my_accounts=(
   nvas@eniac.seas.upenn.edu
   nvas@quark.seas.upenn.edu
   nikos@antikythera.vasilak.is
+  nikos@centaurus.vasilak.is
   nvas@biglab.seas.upenn.edu
   nxv009@uranus1.jefferson.edu
   nxv009@uranus2.jefferson.edu
@@ -172,8 +174,8 @@ zstyle ':vcs_info:*' stagedstr "✔"
 
 # ± for git
 # zstyle ':vcs_info:git:*' actionformats "[± %a|%8.8i %b %c%u%m]"
-zstyle ':vcs_info:*' actionformats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u %{${bg[red]}%{${fg_bold[white]}%}%}%a%{$reset_color%}%m]"
-zstyle ':vcs_info:git*' formats "[±|%b %8.8i %{${fg[green]}%}%c%{${fg[red]}%}%u%a%{$reset_color%}%m]"
+zstyle ':vcs_info:*' actionformats "[±|%b %8.8i%{${fg[green]}%}%c%{${fg[red]}%}%u %{${bg[red]}%{${fg_bold[white]}%}%}%a%{$reset_color%}%m]"
+zstyle ':vcs_info:git*' formats "[±|%b %8.8i%{${fg[green]}%}%c%{${fg[red]}%}%u%a%{$reset_color%}%m]"
 # zstyle ':vcs_info:*' formats "($green%b%u%c$default:$blue%s$default)"
 zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-st 
 
@@ -246,7 +248,7 @@ function +vi-mq-vcs() {
 
 # ☡ ∫ S ⨌  for subversion
 zstyle ':vcs_info:svn:*' actionformats "[S %a|%8.8i %b %c%u%m]"
-zstyle ':vcs_info:svn*' formats "[S|%b %{${fg[green]}%} %m%{$reset_color%}]"
+zstyle ':vcs_info:svn*' formats "[S|%b%{${fg[green]}%}%m%{$reset_color%}]"
 zstyle ':vcs_info:svn*:*' branchformat "%b %r"
 zstyle ':vcs_info:svn*+set-message:*' hooks svn-info
 
