@@ -14,6 +14,7 @@ if [[ `uname` == 'Linux' ]]; then
   alias au='sudo apt-get update'
   alias here='nautilus --no-desktop --browser .'
   alias e='emacs --geometry=160x50+500' 
+  alias emacs='emacs --geometry=120x33+500+50'
   # open everything, a la OS X
   function open {
     for f in $*; do
