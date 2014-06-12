@@ -59,6 +59,7 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   set output-meta on
   xrdb -load ~/.Xdefaults
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
+  export PATH="$PATH:/usr/local/bin" # homebrew
   code="/Users/nv/Projects/UPenn"
   safe="$code/Research/SAFE"
   lab="$code/Research/"
