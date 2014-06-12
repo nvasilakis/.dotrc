@@ -1,10 +1,11 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
 ;;;; Proof General
-;(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
-;(setq coq-prog-name "/usr/local/bin/coqtop")
-;(setq proof-splash-enable nil)
-;(setq proof-toolbar-enable nil)
+(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
+(setq coq-prog-name "/usr/bin/coqtop") ;; Either /usr/local/bin.. or /usr/bin/..
+(setq proof-splash-enable nil)
+(setq proof-toolbar-enable nil)
+(setq split-width-threshold 120)
 
 
 ;;;; Vala mode
