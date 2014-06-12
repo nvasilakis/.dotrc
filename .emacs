@@ -17,15 +17,10 @@
 ; Add ECB/CEDET C# semantics
 (add-hook 'vala-mode-hook #'wisent-csharp-default-setup)
 
-;;;; Tempest Mode
-(autoload 'tempest-mode "tempest-mode" "Major mode for editing Tempest code." t)
-(add-to-list 'auto-mode-alist '("\\.ts" . tempest-mode))
-(add-to-list 'auto-mode-alist '("\\.ti" . tempest-mode))
-(add-to-list 'file-coding-system-alist '("\\.ts" . utf-8))
-(add-to-list 'file-coding-system-alist '("\\.ti" . utf-8))
-(autoload 'meld-mode "meld-mode" "Major mode for editing Meld code." t)
-(add-to-list 'auto-mode-alist '("\\.meld" . meld-mode))
-(add-to-list 'file-coding-system-alist '("\\.meld" . utf-8))
+;;;; Tempest & meld Modes
+;; (add-to-path "~/emacs.d/tempest")
+(require 'tempest-mode)
+(require 'meld-mode)
 
 ;;;; Haskell Mode
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
