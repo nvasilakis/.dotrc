@@ -376,7 +376,11 @@
   (menu-bar-mode -1))
 (scroll-bar-mode -1)  
 ;;(tool-bar-mode -1)
-(setq inhibit-splash-screen t)
+;;(setq inhibit-splash-screen t)
+;; Set window size
+;;
+;;(if (window-system)
+;;    (set-frame-height (selected-frame) 31))
 ; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
   '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
