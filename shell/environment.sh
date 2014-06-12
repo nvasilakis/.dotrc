@@ -67,7 +67,10 @@ elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   sf="$code/500/software-foundations/"
   rosa="/Users/nv/Projects/my/rosalind"
 elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air
-  code="/Users/nv/Documents"
+  code="/home/nikos/Documents"
+  lab="/home/nikos/Documents"
+  safe="/home/nikos/Projects/crash/"
+  alias m31="cd ~lab/universe"
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
 elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   penn=/home/nikos/Projects/UPenn/

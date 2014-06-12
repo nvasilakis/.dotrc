@@ -18,15 +18,10 @@
 ; Add ECB/CEDET C# semantics
 (add-hook 'vala-mode-hook #'wisent-csharp-default-setup)
 
-;;;; Tempest Mode
-(autoload 'tempest-mode "tempest-mode" "Major mode for editing Tempest code." t)
-(add-to-list 'auto-mode-alist '("\\.ts" . tempest-mode))
-(add-to-list 'auto-mode-alist '("\\.ti" . tempest-mode))
-(add-to-list 'file-coding-system-alist '("\\.ts" . utf-8))
-(add-to-list 'file-coding-system-alist '("\\.ti" . utf-8))
-(autoload 'meld-mode "meld-mode" "Major mode for editing Meld code." t)
-(add-to-list 'auto-mode-alist '("\\.meld" . meld-mode))
-(add-to-list 'file-coding-system-alist '("\\.meld" . utf-8))
+;;;; Tempest & meld Modes
+;; (add-to-path "~/emacs.d/tempest")
+(require 'tempest-mode)
+(require 'meld-mode)
 
 ;;;; Haskell Mode
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
@@ -381,7 +376,11 @@
   (menu-bar-mode -1))
 (scroll-bar-mode -1)  
 ;;(tool-bar-mode -1)
-(setq inhibit-splash-screen t)
+;;(setq inhibit-splash-screen t)
+;; Set window size
+;;
+;;(if (window-system)
+;;    (set-frame-height (selected-frame) 31))
 ; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
   '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
