@@ -61,12 +61,12 @@
 (defun justify-region-80 (&optional len)
   "Justify Text at 80 or len"
   (interactive "p")
-  (fill-region (point) (mark) 'full)) 
+  (fill-region (point) (mark) 'full))
 ;optional NOSQUEEZE TO-EOP
 ;;  (set-justification-full (point) (mark)))
 (global-set-key "\C-q" 'justify-region-80)
 
-; If region is not selected 
+; If region is not selected
 ; TODO: merge these two
 (defun justify-or-fill-region(&optional justify)
   (interactive "p")
@@ -190,30 +190,30 @@
 ;; ; (ac-config-default)
 ;; ; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 ;; ; (require 'auto-complete-latex)
-;; ; 
+;; ;
 ;; ; ; necessary, add the following into your init file.
 ;; ; (setq ac-modes (append ac-modes '(foo-mode)))
 ;; ; (add-hook 'foo-mode-hook 'ac-l-setup)
-;; ; 
+;; ;
 ;; ; ; Yasnipper Tricks
 ;; ; (add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
 ;; ; (require 'yasnippet) ;; not yasnippet-bundle
 ;; ; (yas/initialize)
 ;; ; (yas/load-directory "~/.emacs.d/plugins/yasnippet/snippets")
-;; ; 
+;; ;
 ;; ; ;; Some nice snippets https://github.com/rejeep/yasnippets
 ;; ; ;;(add-hook 'shell-script-mode-hook'(lambda ()(yas/minor-mode-on)))
-;; ; 
+;; ;
 ;; ; ;(require ’tex-site)
 ;; ; ; LaTeX Tricks
 ;; ; (setq TeX-auto-save t)
 ;; ; (setq TeX-parse-self t)
 ;; ; (setq TeX-save-query nil)
-;; ; 
+;; ;
 ;; ; (load "auctex.el" nil t t)
 ;; ; (load "preview-latex.el" nil t t)
 ;; ; (setq TeX-PDF-mode t)
-;; ; 
+;; ;
 ;; ; (defun my-backward-kill-word (&optional arg)
 ;; ;   "Replacement for the backward-kill-word command
 ;; ; If the region is active, then invoke kill-region.  Otherwise, use
@@ -222,7 +222,7 @@
 ;; ; word.  Otherwise, if the previous word is on a prior line, then kill
 ;; ; to the beginning of the line.  If point is already at the beginning
 ;; ; of the line, then kill to the end of the previous line.
-;; ; 
+;; ;
 ;; ; With argument ARG and region inactive, do this that many times."
 ;; ;   (interactive "p")
 ;; ;   (if (use-region-p)
@@ -236,12 +236,12 @@
 ;; ;                        (point)))))))
 ;; ;(defun my-backward-kill-word
 ;; ;  (backward-kill-word) )
-;; ; 
+;; ;
 ;; ;(global-set-key "\C-w" 'my-backward-kill-word)
-;; ; 
+;; ;
 ;; ; (define-key (current-global-map) [remap backward-kill-word]
 ;; ;   'my-backward-kill-word)
-;; ; 
+;; ;
 ;(require 'flymake)
 ;(defun flymake-get-tex-args (file-name) (list “pdflatex” (list “-file-line-error” “-draftmode” “-interaction=nonstopmode” file-name)))
 ;(add-hook ‘LaTeX-mode-hook ‘flymake-mode)
@@ -374,9 +374,9 @@
 (global-linum-mode 1)
 (unless window-system
   (menu-bar-mode -1))
-(scroll-bar-mode -1)  
+(scroll-bar-mode -1)
 ;;(tool-bar-mode -1)
-;;(setq inhibit-splash-screen t)
+(setq inhibit-splash-screen t)
 ;; Set window size
 ;;
 ;;(if (window-system)
@@ -392,12 +392,13 @@
 ; Clean trailing spaces before saving -- unfortunately retabs
 ;(add-hook 'before-save-hook 'whitespace-cleanup)
 ; Add spaces instead of tabs
-(setq tab-width 2)
+
 (setq indent-tabs-mode nil)
 ; Alias yes/no to y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
 ; Highlight parens
 (show-paren-mode t)
 
-(add-hook 'vala-mode-hook '(lambda () 
+(add-hook 'vala-mode-hook '(lambda ()
                                (setq vala-indent 2)))
+(setq tab-width 2)

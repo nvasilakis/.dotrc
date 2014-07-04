@@ -13,8 +13,8 @@ if [[ `uname` == 'Linux' ]]; then
   alias ai='sudo apt-get install'
   alias au='sudo apt-get update'
   alias here='nautilus --no-desktop --browser .'
-  alias e='emacs --geometry=160x50+500' 
-  alias emacs='emacs --geometry=120x33+500+50'
+  alias emacs='emacs --geometry=120x40+500' 
+  #alias emacs='emacs --geometry=120x33+500+50'
   # open everything, a la OS X
   function open {
     for f in $*; do
@@ -75,11 +75,13 @@ alias jhf='cd ~/Work/oceanus/handsfree/git/'
 alias jto='cd ~/Work/apache-tomcat-6.0.35/'
 alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribution/Handsfree-beta.war /oceanus/www/webapps;'
 
-PATH="${PATH}:/scratch/safe/usr/modelsim/modeltech/bin:/scratch/safe/usr/Bluespec-2013.05.beta2/bin/"
-export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
-export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib
+#PATH="${PATH}:/scratch/safe/usr/modelsim/modeltech/bin:/scratch/safe/usr/Bluespec-2013.05.beta2/bin/"
+#export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
+#export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib
+
 # Update environment for haskell
 PATH="$HOME/.cabal/bin:$PATH"
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
