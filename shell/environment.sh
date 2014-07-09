@@ -61,14 +61,15 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   export PATH="$PATH:/usr/local/bin" # homebrew
   code="/Users/nv/Projects/UPenn"
-  safe="$code/Research/SAFE"
+  safe=$code/Research/CRASH
+  nets=$code/Research/safe-nets
   lab="$code/Research/"
   cv="/Users/nv/Projects/my/cv"
   sf="$code/500/software-foundations/"
   rosa="/Users/nv/Projects/my/rosalind"
 elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air, linux
-  code="/home/nikos/Documents"
-  lab="/home/nikos/Documents"
+  code=/home/nikos/Documents
+  lab=/home/nikos/Documents
   safe="/home/nikos/Projects/crash/"
   alias m31="cd ~lab/universe"
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
