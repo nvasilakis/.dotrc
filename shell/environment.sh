@@ -80,6 +80,8 @@ elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
   PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
+elif [[ "$HOSTNAME" == 'quark' ]] ; then # penn machine
+  export PATH=$PATH:/scratch/safe/usr/Bluespec-2013.05.beta2/lib/bin
 else  # Others, like eniac machines
   MANPAGER="less"
   #Less Colors for Man Pages
