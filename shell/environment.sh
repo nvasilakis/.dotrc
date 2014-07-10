@@ -29,7 +29,7 @@ if [[ "$HOSTNAME" == 'nv' ]]; then # fluxbox home
   export PATH="/home/nikos/.cabal/bin:$PATH"
   # Named directories
   code=/media/w7/Projects/UPenn
-  safe=$code/UPenn/Research/SAFE
+  safe=$code/UPenn/Research/CRASH/safe
   # Run only once
   if [[ "$ONCE" != "true" ]]; then
     # Let fluxbox grab gnome theme and change global keyboard bindings
@@ -59,22 +59,29 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   set output-meta on
   xrdb -load ~/.Xdefaults
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
+  export PATH="$PATH:/usr/local/bin" # homebrew
   code="/Users/nv/Projects/UPenn"
-  safe="$code/Research/SAFE"
+  safe=$code/Research/CRASH
+  nets=$code/Research/safe-nets
   lab="$code/Research/"
   cv="/Users/nv/Projects/my/cv"
   sf="$code/500/software-foundations/"
   rosa="/Users/nv/Projects/my/rosalind"
-elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air
-  code="/Users/nv/Documents"
+elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air, linux
+  code=/home/nikos/Documents
+  lab=/home/nikos/Documents
+  safe="/home/nikos/Projects/crash/"
+  alias m31="cd ~lab/universe"
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
 elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
+  . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   penn=/home/nikos/Projects/UPenn/
   my=/home/nikos/my
   rosa=$my/rosalind
   sf=$penn/500/software-foundations/
   lab=$penn/Research
-  safe=$lab/SAFE
+  safe=$lab/CRASH/safe
+  nets=$lab/CRASH/safe-nets/users/nvas/nets
   isca=$lab/ISCA
   gem5=$isca/gem5
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
