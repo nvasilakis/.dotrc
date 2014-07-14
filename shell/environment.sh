@@ -89,6 +89,24 @@ elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
 elif [[ "$HOSTNAME" == 'quark' ]] ; then # penn machine
   export PATH=$PATH:/scratch/safe/usr/Bluespec-2013.05.beta2/lib/bin
+  export CHICKEN_BUILD=/home/nvas/chicken-4.9.0.1/
+  export PATH=$PATH:/home/nvas/chicken-4.9.0.1/build/bin
+  export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6
+  export PATH=$PATH:$XILINX_DIR/ISE_DS/ISE/bin/lin64
+elif [[ "$HOSTNAME" == 'harlie' ]] ; then # penn machine
+  source /home/nvas/safe/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1
+  export PATH=$PATH:/scratch/safe/usr/Bluespec-2013.05.beta2/lib/bin
+  export OCPI_BASE_DIR=~/safe/isa/fpga/platform/host_interface/ocpi_bit
+  export PATH=/home/nvas/.cabal/bin:$PATH
+  export PATH=/home/nvas/ghc/bin:$PATH
+  export CHICKEN_BUILD=/home/nvas/chicken-4.9.0.1/
+  export PATH=$PATH:/home/nvas/chicken-4.9.0.1/build/bin
+  export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6
+  export PATH=$PATH:$XILINX_DIR/ISE_DS/ISE/bin/lin64
+  export FPGA_SLOT="02"
+  #export LM_LICENSE_FILE=$LM_LICENSE_FILE:1717@potato.cis.upenn.edu:2100@potato.cis.upenn.edu
+  export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib/
+  export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
 else  # Others, like eniac machines
   MANPAGER="less"
   #Less Colors for Man Pages
