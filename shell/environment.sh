@@ -87,15 +87,10 @@ elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
   PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
-elif [[ "$HOSTNAME" == 'quark' ]] ; then # penn machine
-  export PATH=$PATH:/scratch/safe/usr/Bluespec-2013.05.beta2/lib/bin
-  export CHICKEN_BUILD=/home/nvas/chicken-4.9.0.1/
-  export PATH=$PATH:/home/nvas/chicken-4.9.0.1/build/bin
-  export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6
-  export PATH=$PATH:$XILINX_DIR/ISE_DS/ISE/bin/lin64
-elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* ]] ; then # SAFE machine
+elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
   SAFE_NV_OUT="(Loaded SAFE environment)"
-  source /home/nvas/safe/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1
+  export SVNROOT=/home/nvas/safe-latest
+  source $SVNROOT/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1
   export PATH=$PATH:/scratch/safe/usr/Bluespec-2013.05.beta2/lib/bin
   export OCPI_BASE_DIR=~/safe/isa/fpga/platform/host_interface/ocpi_bit
   export PATH=/home/nvas/.cabal/bin:$PATH
@@ -108,7 +103,13 @@ elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* ]] ; then # SAFE machin
   #export LM_LICENSE_FILE=$LM_LICENSE_FILE:1717@potato.cis.upenn.edu:2100@potato.cis.upenn.edu
   export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib/
   export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
-else  # Others, like eniac machines
+  export LD_LIBRARY_PATH=$OCPI_BASE_DIR/lib/$OCPI_BUILD_HOST-bin:$OCPI_GTEST_DIR/lib:$LD_LIBRARY_PATH
+  export FPGA_SLOT=`lspci -v|grep Xilinx|head -1|cut -d":" -f1`
+  export FPGA_PCI_ADDRESS=`lspci -v|grep Xilinx|head -1|cut -d " " -f1`
+  export SWCTL_REGION_0=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_0`
+  export SWCTL_REGION_1=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_1`
+  export OCPI_DMA_MEMORY=512M\$0x5f700000
+else  # Others, like eniac
   MANPAGER="less"
   #Less Colors for Man Pages
   export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
