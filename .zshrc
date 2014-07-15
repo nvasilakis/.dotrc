@@ -10,6 +10,7 @@ echo ".OK"
 echo -n "Loading shell functions.."
 . ${DOTRC}/shell/functions.sh
 echo ".OK"
+echo $SAFE_NV_OUT
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile

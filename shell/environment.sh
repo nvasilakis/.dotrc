@@ -93,7 +93,8 @@ elif [[ "$HOSTNAME" == 'quark' ]] ; then # penn machine
   export PATH=$PATH:/home/nvas/chicken-4.9.0.1/build/bin
   export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6
   export PATH=$PATH:$XILINX_DIR/ISE_DS/ISE/bin/lin64
-elif [[ "$HOSTNAME" == 'harlie' ]] ; then # penn machine
+elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* ]] ; then # SAFE machine
+  SAFE_NV_OUT="(Loaded SAFE environment)"
   source /home/nvas/safe/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1
   export PATH=$PATH:/scratch/safe/usr/Bluespec-2013.05.beta2/lib/bin
   export OCPI_BASE_DIR=~/safe/isa/fpga/platform/host_interface/ocpi_bit
