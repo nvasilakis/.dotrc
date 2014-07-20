@@ -61,8 +61,8 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   export PATH="$PATH:/usr/local/bin" # homebrew
   code="/Users/nv/Projects/UPenn"
-  safe=$code/Research/CRASH
-  nets=$code/Research/safe-nets
+  safe=$code/Research/SAFE
+  nets=$code/Research/safe-nets/users/nvas/
   lab="$code/Research/"
   cv="/Users/nv/Projects/my/cv"
   sf="$code/500/software-foundations/"
