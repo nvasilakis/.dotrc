@@ -89,10 +89,11 @@ elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
 elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
   SAFE_NV_OUT="(Loaded SAFE environment)"
-  export SVNROOT=/home/nvas/safe-latest
+  export SVNROOT=/tmp/crash
+  cd $SVNROOT/isa/fpga/platform/host_interface/Lib
   source $SVNROOT/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1
+  cd -
   export PATH=$PATH:/scratch/safe/usr/Bluespec-2013.05.beta2/lib/bin
-  export OCPI_BASE_DIR=~/safe/isa/fpga/platform/host_interface/ocpi_bit
   export PATH=/home/nvas/.cabal/bin:$PATH
   export PATH=/home/nvas/ghc/bin:$PATH
   export CHICKEN_BUILD=/home/nvas/chicken-4.9.0.1/
@@ -109,6 +110,8 @@ elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quar
   export SWCTL_REGION_0=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_0`
   export SWCTL_REGION_1=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_1`
   export OCPI_DMA_MEMORY=512M\$0x5f700000
+  echo "*** SVN ROOT IS SET TO: $SVNROOT ***"
+  echo "*** OCPI BASE IS SET TO: $OCPI_BASE_DIR ***"
 else  # Others, like eniac
   MANPAGER="less"
   #Less Colors for Man Pages
