@@ -130,8 +130,8 @@ hosts=(
   icsafe05.seas.upenn.edu
   antikythera.vasilak.is
   centaurus.vasilak.is
-  qubit0.seas.upenn.edu
-  qubit1.seas.upenn.edu
+  qubit0.cis.upenn.edu
+  qubit1.cis.upenn.edu
   uranus1.jefferson.edu
   uranus2.jefferson.edu
   gaia1.jefferson.edu
@@ -153,8 +153,8 @@ my_accounts=(
   nvas@icsafe05.seas.upenn.edu
   nikos@antikythera.vasilak.is
   nikos@centaurus.vasilak.is
-  nikos@qubit0.seas.upenn.edu
-  nikos@qubit1.seas.upenn.edu
+  nikos@qubit0.cis.upenn.edu
+  nikos@qubit1.cis.upenn.edu
   nxv009@uranus1.jefferson.edu
   nxv009@uranus2.jefferson.edu
   nxv009@gaia1.jefferson.edu
