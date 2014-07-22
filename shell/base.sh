@@ -30,7 +30,8 @@ else
   export GREP_OPTIONS='--color=auto';
   export GREP_COLOR='00;31;5;157';
   alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
-  alias emacs='emacs -nw'
+  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+  #alias emacs='emacs -nw'
   alias ctags='/usr/local/bin/ctags'
 fi
 

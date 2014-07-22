@@ -124,11 +124,14 @@ hosts=(
   diogenis.ceid.upatras.gr 
   zenon.ceid.upatras.gr 
   eniac.seas.upenn.edu
+  biglab.seas.upenn.edu
   quark.seas.upenn.edu
+  harlie.seas.upenn.edu
+  icsafe05.seas.upenn.edu
   antikythera.vasilak.is
   centaurus.vasilak.is
-  biglab.seas.upenn.edu
-  speclab.seas.upenn.edu
+  qubit0.cis.upenn.edu
+  qubit1.cis.upenn.edu
   uranus1.jefferson.edu
   uranus2.jefferson.edu
   gaia1.jefferson.edu
@@ -144,10 +147,14 @@ my_accounts=(
   basilakn@diogenis.ceid.upatras.gr 
   basilakn@zenon.ceid.upatras.gr 
   nvas@eniac.seas.upenn.edu
+  nvas@biglab.seas.upenn.edu
   nvas@quark.seas.upenn.edu
+  nvas@harlie.seas.upenn.edu
+  nvas@icsafe05.seas.upenn.edu
   nikos@antikythera.vasilak.is
   nikos@centaurus.vasilak.is
-  nvas@biglab.seas.upenn.edu
+  nikos@qubit0.cis.upenn.edu
+  nikos@qubit1.cis.upenn.edu
   nxv009@uranus1.jefferson.edu
   nxv009@uranus2.jefferson.edu
   nxv009@gaia1.jefferson.edu
