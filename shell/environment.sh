@@ -101,17 +101,22 @@ elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quar
   alias synplify_pro="export LM_LICENSE_FILE=$LM_SYNPLIFY; synplify_pro" # S
 
   pushd . > /dev/null # S+
-  export SVNROOT=/tmp/crash # S+
+  #export SVNROOT=/tmp/crash # S+
+  export SVNROOT=/home/nvas/crash-harlie # S+
   cd $SVNROOT/isa/fpga/platform/host_interface/Lib #S
-  #. $SVNROOT/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1 #S
+  . $SVNROOT/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1 #S
 
   export LD_LIBRARY_PATH=$OCPI_BASE_DIR/lib/$OCPI_BUILD_HOST-bin:$OCPI_GTEST_DIR/lib:$LD_LIBRARY_PATH #S
   export FPGA_SLOT=`lspci -v|grep Xilinx|head -1|cut -d":" -f1` #S
   #export FPGA_SLOT="02" # Above command gives 3!
-  export FPGA_PCI_ADDRESS=`lspci -v|grep Xilinx|head -1|cut -d " " -f1` #S
-  export SWCTL_REGION_0=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_0` #S
-  export SWCTL_REGION_1=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_1` #S
-  export OCPI_DMA_MEMORY=512M\$0x5f700000 #S
+  #export FPGA_PCI_ADDRESS=`lspci -v|grep Xilinx|head -1|cut -d " " -f1` #S
+  #export SWCTL_REGION_0=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_0` #S
+  #export SWCTL_REGION_1=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_1` #S
+  #export OCPI_DMA_MEMORY=512M\$0x5f700000 #S
+
+  # Force GHC 7.6.3
+  export PATH=/home/nvas/.cabal/bin:$PATH
+  export PATH=/home/nvas/ghc/bin:$PATH
 
   # For chicken scheme experiments
   # export CHICKEN_BUILD=/home/nvas/chicken-4.9.0.1/
@@ -120,6 +125,7 @@ elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quar
   popd > /dev/null #S+
   MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)SVN  ROOT SET TO: $SVNROOT $(tput sgr0)\n"
   MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)OCPI BASE SET TO: $OCPI_BASE_DIR $(tput sgr0)\n"
+  MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)GHC   VERSION IS: $(ghc --version) $(tput sgr0)\n"
 else  # Others, like eniac
   MANPAGER="less"
   #Less Colors for Man Pages
