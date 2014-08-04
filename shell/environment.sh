@@ -59,7 +59,11 @@ elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
   set output-meta on
   xrdb -load ~/.Xdefaults
 elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
-  export PATH="$PATH:/usr/local/bin" # homebrew
+  # need: [sudo] gem install terminal-notifier
+  alias tfail='terminal-notifier {} -title "Tempest"  -message "Compilation failed!" -sound "default"'
+  alias tsuccess='terminal-notifier {} -title "Tempest"  -message "Compilation done!" -sound "default"'
+  #export PATH="$PATH:/usr/local/bin" # homebrew
+  export PATH="$PATH:/Users/nv/Library/Haskell/bin"
   code="/Users/nv/Projects/UPenn"
   safe=$code/Research/SAFE
   nets=$code/Research/safe-nets/users/nvas/
