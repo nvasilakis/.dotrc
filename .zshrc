@@ -10,7 +10,7 @@ echo ".OK"
 echo -n "Loading shell functions.."
 . ${DOTRC}/shell/functions.sh
 echo ".OK"
-echo $SAFE_NV_OUT
+echo $MORE_OUT | head -c -1 # remove last newline
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -127,9 +127,18 @@ hosts=(
   biglab.seas.upenn.edu
   quark.seas.upenn.edu
   harlie.seas.upenn.edu
+  icsafe01.seas.upenn.edu
+  icsafe02.seas.upenn.edu
+  icsafe03.seas.upenn.edu
+  icsafe04.seas.upenn.edu
   icsafe05.seas.upenn.edu
+  icsafe06.seas.upenn.edu
+  icsafe07.seas.upenn.edu
+  icsafe08.seas.upenn.edu
+  icsafe09.seas.upenn.edu
   antikythera.vasilak.is
   centaurus.vasilak.is
+  cassiopeia.vasilak.is
   qubit0.cis.upenn.edu
   qubit1.cis.upenn.edu
   uranus1.jefferson.edu
@@ -150,9 +159,18 @@ my_accounts=(
   nvas@biglab.seas.upenn.edu
   nvas@quark.seas.upenn.edu
   nvas@harlie.seas.upenn.edu
+  nvas@icsafe01.seas.upenn.edu
+  nvas@icsafe02.seas.upenn.edu
+  nvas@icsafe03.seas.upenn.edu
+  nvas@icsafe04.seas.upenn.edu
   nvas@icsafe05.seas.upenn.edu
+  nvas@icsafe06.seas.upenn.edu
+  nvas@icsafe07.seas.upenn.edu
+  nvas@icsafe08.seas.upenn.edu
+  nvas@icsafe09.seas.upenn.edu
   nikos@antikythera.vasilak.is
   nikos@centaurus.vasilak.is
+  nikos@cassiopeia.vasilak.is
   nikos@qubit0.cis.upenn.edu
   nikos@qubit1.cis.upenn.edu
   nxv009@uranus1.jefferson.edu
