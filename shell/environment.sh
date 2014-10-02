@@ -89,7 +89,7 @@ elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   isca=$lab/ISCA
   gem5=$isca/gem5
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
-  PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+  PATH=$HOME/ghc/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
 elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
   export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6 # S
