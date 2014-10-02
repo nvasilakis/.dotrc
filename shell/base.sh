@@ -11,7 +11,7 @@ if [[ `uname` == 'Linux' ]]; then
     alias egrep='egrep --color=auto'
   fi
   alias ai='sudo apt-get install'
-  alias au='sudo apt-get update'
+  alias au='sudo apt-get update && sudo apt-get upgrade'
   alias here='nautilus --no-desktop --browser .'
   alias emacs='emacs --geometry=120x40+500' 
   #alias emacs='emacs --geometry=120x33+500+50'
