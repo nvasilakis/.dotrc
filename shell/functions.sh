@@ -208,3 +208,22 @@ function 555fetch () {
     cat README
   fi
 }
+
+# Wraps a command with callback to notify the user when this is done
+# (an excellent example of functional-style bash scripting needs!)
+function letmeknow {
+  # Check OS X or Typical Linux (Debian, Ubuntu)
+  # TODO: Need to change message with actual event
+  if $(command -v terminal-notifier >/dev/null 2>&1); then
+    tfail='terminal-notifier {} -title "FAIL!"  -message "Just to let you know.."" -sound "default"'
+    tsuccess='terminal-notifier {} -title "SUCCESS!"  -message "Just to let you know.." -sound "default"'
+  elif $(command -v notify-send >/dev/null 2>&1); then
+    tfail='notify-send "FAIL!" "Just to let you know.." -i /usr/share/pixmaps/gnome-color-browser.png -t 5000 && paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
+    tsuccess='notify-send "SUCCESS!" "Just to let you know.." -i /usr/share/pixmaps/gnome-color-browser.png -t 5000 && paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
+  else # Add sound
+    tfail='echo "$(tput setaf 1) $(tput bel) FAIL $(tput sgr 0)"'
+    tsuccess='echo "$(tput setaf 2) $(tput bel) FAIL $(tput sgr 0)"'
+  fi
+  $* && eval ${tsuccess} || eval ${tfail}
+}
+
