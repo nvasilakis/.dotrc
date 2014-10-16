@@ -64,13 +64,10 @@ elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
   alias tsuccess='terminal-notifier {} -title "Tempest"  -message "Compilation done!" -sound "default"'
   #export PATH="$PATH:/usr/local/bin" # homebrew
   export PATH="$PATH:/Users/nv/Library/Haskell/bin"
-  code="/Users/nv/Projects/UPenn"
-  safe=$code/Research/SAFE
-  nets=$code/Research/safe-nets/users/nvas/
-  lab="$code/Research/"
-  cv="/Users/nv/Projects/my/cv"
-  sf="$code/500/software-foundations/"
-  rosa="/Users/nv/Projects/my/rosalind"
+  lab="/Users/nv/lab"
+  safe=$lab/SAFE
+  nets=$lab/safe-nets/users/nvas/
+  cv=$lab/vitae/Resume/
 elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air, linux
   code=/home/nikos/Documents
   lab=/home/nikos/Documents
@@ -78,7 +75,7 @@ elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air, linux
   alias m31="cd ~lab/universe"
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
 elif [[ "$HOSTNAME" == 'hippo' ]] ; then # home
-  lab=/home/nikos/Projects
+  lab=/home/nikos/lab
 elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   penn=/home/nikos/Projects/UPenn/
