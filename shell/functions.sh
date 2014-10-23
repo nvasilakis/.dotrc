@@ -215,8 +215,8 @@ function letmeknow {
   # Check OS X or Typical Linux (Debian, Ubuntu)
   # TODO: Need to change message with actual event
   if $(command -v terminal-notifier >/dev/null 2>&1); then
-    tfail='terminal-notifier {} -title "FAIL!"  -message "Just to let you know.."" -sound "default"'
-    tsuccess='terminal-notifier {} -title "SUCCESS!"  -message "Just to let you know.." -sound "default"'
+    tfail='terminal-notifier {} -title "FAIL!"  -message "Just to let you know.." -sound "Ping"'
+    tsuccess='terminal-notifier {} -title "SUCCESS!"  -message "Just to let you know.." -sound "Pop"'
   elif $(command -v notify-send >/dev/null 2>&1); then
     tfail='notify-send "FAIL!" "Just to let you know.." -i /usr/share/pixmaps/gnome-color-browser.png -t 5000 && paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
     tsuccess='notify-send "SUCCESS!" "Just to let you know.." -i /usr/share/pixmaps/gnome-color-browser.png -t 5000 && paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
@@ -226,4 +226,3 @@ function letmeknow {
   fi
   $* && eval ${tsuccess} || eval ${tfail}
 }
-
