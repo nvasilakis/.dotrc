@@ -76,6 +76,8 @@ elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air, linux
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
 elif [[ "$HOSTNAME" == 'hippo' ]] ; then # home
   lab=/home/nikos/lab
+elif [[ "$HOSTNAME" == 'hippo' ]] ; then # server
+  alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
 elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
   . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   penn=/home/nikos/Projects/UPenn/
