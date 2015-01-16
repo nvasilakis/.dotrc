@@ -1,5 +1,10 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
+; Not sure why this is needed
+;(require 'package)
+;(add-to-list 'package-archives
+;             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 ;;;; Proof General
 ;(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
 ;(setq coq-prog-name "/usr/bin/coqtop") ;; Either /usr/local/bin.. or /usr/bin/..
@@ -7,6 +12,20 @@
 ;(setq proof-toolbar-enable nil)
 ;(setq split-width-threshold 120)
 
+;;;; OCaml
+(add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+(setq auto-mode-alist
+      (append '(("\\.ml[ily]?$" . tuareg-mode)
+                ("\\.topml$" . tuareg-mode))
+              auto-mode-alist))
+(autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
+(add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
+(add-hook 'tuareg-mode-hook 'merlin-mode)
+(setq merlin-use-auto-complete-mode t)
+(setq merlin-error-after-save nil)
+;; override tuareg with ocp-indent
+(setq opam-share (substring (shell-command-to-string "opam config var share") 0 -1))
+(load-file (concat opam-share "/typerex/ocp-indent/ocp-indent.el"))
 
 ;;;; Vala mode
 ;(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
