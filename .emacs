@@ -1,10 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
-; Not sure why this is needed
-;(require 'package)
-;(add-to-list 'package-archives
-;             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
 ;;;; Proof General
 ;(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
 ;(setq coq-prog-name "/usr/bin/coqtop") ;; Either /usr/local/bin.. or /usr/bin/..
@@ -13,19 +8,33 @@
 ;(setq split-width-threshold 120)
 
 ;;;; OCaml
-(add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+;; Setup environment variables using opam
+(dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+  (setenv (car var) (cadr var)))
+;; Update the emacs path
+(setq exec-path (append (parse-colon-path (getenv "PATH"))
+                        (list exec-directory)))
+;; Update the emacs load path
+(add-to-list 'load-path (expand-file-name "../../share/emacs/site-lisp"
+                                          (getenv "OCAML_TOPLEVEL_PATH")))
+;(add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
 (setq auto-mode-alist
       (append '(("\\.ml[ily]?$" . tuareg-mode)
                 ("\\.topml$" . tuareg-mode))
               auto-mode-alist))
-(autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
-(add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
+;; Automatically load utop.el
+(autoload 'utop "utop" "Toplevel for OCaml" t)
+(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+(add-hook 'tuareg-mode-hook 'utop-minor-mode)
 (add-hook 'tuareg-mode-hook 'merlin-mode)
 (setq merlin-use-auto-complete-mode t)
 (setq merlin-error-after-save nil)
-;; override tuareg with ocp-indent
-(setq opam-share (substring (shell-command-to-string "opam config var share") 0 -1))
-(load-file (concat opam-share "/typerex/ocp-indent/ocp-indent.el"))
+
+;(set-face-background 'merlin-type-face "#88FF44")
+;; Not required, but useful along with merlin-mode
+(require 'auto-complete)
+(add-hook 'tuareg-mode-hook 'auto-complete-mode)
+
 
 ;;;; Vala mode
 ;(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
