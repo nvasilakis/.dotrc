@@ -78,7 +78,7 @@ elif [[ "$HOSTNAME" == 'hippo' ]] ; then # home
   lab=/home/nikos/lab
 elif [[ "$HOSTNAME" == 'centaurus' ]] ; then # server
   alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
-elif [[ "$HOSTNAME" == 'giraffe' ]] ; then # penn machine
+elif [[ "$HOSTNAME" == 'toco' ]] ; then # penn machine
   . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   penn=/home/nikos/Projects/UPenn/
   my=/home/nikos/my
