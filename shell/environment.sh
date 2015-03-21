@@ -179,6 +179,9 @@ else  # Others, like eniac
   isca=/scratch/safe/nvas/isca/testcases
 fi;
 
+# Andromeda
+m31=$lab/andromeda
+
 # Adding export for KLEE in order to run
 # *.cde files only by invoking their name
 # TODO: ADD a lib folder in programs
