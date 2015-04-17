@@ -83,6 +83,7 @@ elif [[ "$HOSTNAME" == 'toco' ]] ; then # penn machine
   lab=/home/nikos/lab
   safe=$lab/CRASH/safe
   nets=$lab/CRASH/safe-nets/users/nvas/nets
+  alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
 elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
   export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6 # S

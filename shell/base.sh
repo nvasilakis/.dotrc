@@ -13,15 +13,12 @@ if [[ `uname` == 'Linux' ]]; then
   alias ai='sudo apt-get install'
   alias au='sudo apt-get update && sudo apt-get upgrade'
   alias here='nautilus --no-desktop --browser .'
-  alias emacs='emacs --geometry=120x40+500' 
-  #alias emacs='emacs --geometry=120x33+500+50'
   # open everything, a la OS X
   function open {
     for f in $*; do
       xdg-open "${f}" &> /dev/null
     done
   }
-  #alias emacs='emacs -nw'
   #alias w3m='w3m www.google.com'
   alias ctags='/usr/bin/ctags-exuberant'
 else 
