@@ -80,18 +80,10 @@ elif [[ "$HOSTNAME" == 'centaurus' ]] ; then # server
   alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
 elif [[ "$HOSTNAME" == 'toco' ]] ; then # penn machine
   . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-  penn=/home/nikos/Projects/UPenn/
-  my=/home/nikos/my
-  rosa=$my/rosalind
-  sf=$penn/500/software-foundations/
-  lab=$penn/Research
+  lab=/home/nikos/lab
   safe=$lab/CRASH/safe
   nets=$lab/CRASH/safe-nets/users/nvas/nets
-  isca=$lab/ISCA
-  gem5=$isca/gem5
   alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
-  PATH=$HOME/ghc/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-  export URBIT_HOME=/home/nikos/Documents/urbit/urb
 elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
   export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6 # S
   export VIVADO_DIR=/opt/Xilinx/Vivado_HLS/2012.2 # S
