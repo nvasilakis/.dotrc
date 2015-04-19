@@ -80,6 +80,7 @@
     (linum-mode -1)))
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
+
 (defun fill-region-width (fill-width)
   "Fills the region with the given width"
   (set-fill-column fill-width)
@@ -429,4 +430,11 @@
 
 (add-hook 'vala-mode-hook '(lambda ()
                                (setq vala-indent 2)))
-(setq tab-width 2)
+(setq-default tab-width 2)
+(setq-default scroll-step 1)
+(setq-default fill-column 72)
+(setq-default flyspell-mode 1)
+(global-hl-line-mode 1)
+(column-number-mode 1)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'markdown-mode-hook 'turn-on-auto-fill)
