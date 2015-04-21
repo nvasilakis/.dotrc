@@ -74,8 +74,9 @@ elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air, linux
   safe="/home/nikos/Projects/crash/"
   alias m31="cd ~lab/universe"
   export URBIT_HOME=/home/nikos/Documents/urbit/urb
-elif [[ "$HOSTNAME" == 'hippo' ]] ; then # home
+elif [[ "$HOSTNAME" == 'moomin' ]] ; then # home
   lab=/home/nikos/lab
+  alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
 elif [[ "$HOSTNAME" == 'centaurus' ]] ; then # server
   alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
 elif [[ "$HOSTNAME" == 'toco' ]] ; then # penn machine
