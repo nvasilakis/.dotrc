@@ -6,10 +6,11 @@ alias -g is='root@vasilak.is'
 alias -g diogenis='basilakn@diogenis.ceid.upatras.gr'
 alias -g zenon='basilakn@zenon.ceid.upatras.gr'
 
-# I shoud add functionality for go seas, ceid, rdesktop
+# bookmarks command
+# I shoud add functionality for bm seas, ceid, rdesktop
 # if [[ $n -eq 'seas']]; then echo "ssh seas.." fi;
-# implement heavy go, with reverse index
-alias go='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
+# implement heavy bm, with reverse index
+alias bms='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
 
 # Should be made global
 alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
