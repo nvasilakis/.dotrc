@@ -41,6 +41,7 @@ alias vslks='ssh root@vasilak.is'
 alias anti='ssh nikos@antikythera.vasilak.is'
 alias ceid='ssh nikos@diogenis.ceid.upatras.gr'
 alias rupdoc='ssh nikos@centaurus.vasilak.is "cd /var/www/ndr.md/doc; git pull; cd -;"'
+alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
 
 # breeze?
 alias rsc='rsync -av --progress'
@@ -79,7 +80,7 @@ alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribu
 #export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib
 
 # Update environment for haskell
-PATH="$HOME/.cabal/bin:$PATH"
+PATH="$HOME/.cabal/bin:$HOME/ghc/bin:$PATH"
 
 ###-begin-npm-completion-###
 #

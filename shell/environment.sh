@@ -22,70 +22,15 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
   "
 
 HOSTNAME=`hostname`
-if [[ "$HOSTNAME" == 'nv' ]]; then # fluxbox home
-  export JDK_HOME="/usr/lib/jvm/jdk1.6.0_26/";
-  export HADOOP_HOME=/usr/local/hadoop
-  export CDPATH="/media/w7/Projects/"
-  export PATH="/home/nikos/.cabal/bin:$PATH"
-  # Named directories
-  code=/media/w7/Projects/UPenn
-  safe=$code/UPenn/Research/CRASH/safe
-  # Run only once
-  if [[ "$ONCE" != "true" ]]; then
-    # Let fluxbox grab gnome theme and change global keyboard bindings
-    gnome-settings-daemon
-    # Set desktop background
-    fbsetbg /media/w7/Users/nikos/Dbox/Dropbox/Photos/Wallpapers/aetherea.jpg
-    # Configure wifi
-    nm-applet 
-    ONCE="true"
-  fi
-# Nice Exports
-elif [[ "$HOSTNAME" == 'cis555-vm' ]] ; then # virtual machine
-  export PATH=$PATH:/home/cis555/555/.tools
-  export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
-#  xrandr --newmode "1920x1080" 172.80 1920 2040 2248 2576 1080 1081 1084 1118
-#  xrandr --addmode VBOX0 "1920x1080"
-#  # xrandr -s 1920x1080
-#  # fbsetbg ~/Downloads/1680x1050.jpg
-#  # vim .inputrc
-#  # mv X.defaults .Xdefaults
-#  # vim .Xdefaults
-#   xrandr --newmode "1280x800@60" 83.46 1280 1344 1480 1680 800 801 804 828
-#   xrandr --addmode VBOX0 "1280x800@60"
-#   xrandr -s 1280x800@60
-  set meta-flag on
-  set convert-meta off
-  set output-meta on
-  xrdb -load ~/.Xdefaults
-elif [[ "$HOSTNAME" == 'ape' ]] ; then # mac book air
+if [[ "$HOSTNAME" == 'ape' ]]; then # os x
   # need: [sudo] gem install terminal-notifier
   alias tfail='terminal-notifier {} -title "Tempest"  -message "Compilation failed!" -sound "default"'
   alias tsuccess='terminal-notifier {} -title "Tempest"  -message "Compilation done!" -sound "default"'
   #export PATH="$PATH:/usr/local/bin" # homebrew
   export PATH="$PATH:/Users/nv/Library/Haskell/bin"
-  lab="/Users/nv/lab"
-  safe=$lab/SAFE
-  nets=$lab/safe-nets/users/nvas/
-  cv=$lab/vitae/Resume/
-elif [[ "$HOSTNAME" == 'squirrel' ]] ; then # mac book air, linux
-  code=/home/nikos/Documents
-  lab=/home/nikos/Documents
-  safe="/home/nikos/Projects/crash/"
-  alias m31="cd ~lab/universe"
-  export URBIT_HOME=/home/nikos/Documents/urbit/urb
-elif [[ "$HOSTNAME" == 'moomin' ]] ; then # home
-  lab=/home/nikos/lab
+elif [[ "$HOSTNAME" == 'moomin' || "$HOSTNAME" == 'toco' ]] ; then # home
+  i#. /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
-elif [[ "$HOSTNAME" == 'centaurus' ]] ; then # server
-  alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
-elif [[ "$HOSTNAME" == 'toco' ]] ; then # penn machine
-  . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-  lab=/home/nikos/lab
-  safe=$lab/CRASH/safe
-  nets=$lab/CRASH/safe-nets/users/nvas/nets
-  alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
-  alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
 elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
   export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6 # S
   export VIVADO_DIR=/opt/Xilinx/Vivado_HLS/2012.2 # S
@@ -117,44 +62,6 @@ elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quar
   export PATH=/home/nvas/.cabal/bin:$PATH
   export PATH=/home/nvas/ghc/bin:$PATH
 
-  # For chicken scheme experiments
-  # export CHICKEN_BUILD=/home/nvas/chicken-4.9.0.1/
-  # export PATH=$PATH:/home/nvas/chicken-4.9.0.1/build/bin
-
-  popd > /dev/null #S+
-  MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)SVN  ROOT SET TO: $SVNROOT $(tput sgr0)\n"
-  MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)OCPI BASE SET TO: $OCPI_BASE_DIR $(tput sgr0)\n"
-  MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)GHC   VERSION IS: $(ghc --version) $(tput sgr0)\n"
-
-elif [[ "$HOSTNAME" == 'cassiopeia' ]]; then
-  export XILINX_DIR=/opt/Xilinx_ISE_14.6 # S
-  #export VIVADO_DIR=/opt/Xilinx/Vivado_HLS/2012.2 # S
-  export BLUESPECDIR=/opt/Bluespec-2014.05.C/;
-  export PATH=$PATH:$XILINX_DIR/ISE_DS/ISE/bin/lin64:$XILINX_DIR/ISE_DS/PlanAhead/bin #S
-  export PATH=$PATH:$BLUESPECDIR/bin:$CABALDIR #S
-  #export PATH=$PATH:$VIVADO_DIR/bin:$XILINX_BASE/ISE/bin/lin64 #S
-  export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu" #S
-  #export LM_SYNPLIFY="1709@potato.cis.upenn.edu" #S
-  #LM_LICENSE_FILE=$LM_LICENSE_FILE:1717@potato.cis.upenn.edu:2100@potato.cis.upenn.edu:$LM_SYNPLIFY #S
-  #export SYNPLCTYD_LICENSE_FILE=$LM_SYNPLIFY #S
-  
-
-  pushd . > /dev/null # S+
-  export SVNROOT=/home/nikos/crash # S+
-  cd $SVNROOT/isa/fpga/platform/host_interface/Lib > /dev/null #S
-  . $SVNROOT/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1 #S
-
-  export LD_LIBRARY_PATH=$OCPI_BASE_DIR/lib/$OCPI_BUILD_HOST-bin:$OCPI_GTEST_DIR/lib:$LD_LIBRARY_PATH #S
-  export FPGA_SLOT=`lspci -v|grep Xilinx|head -1|cut -d":" -f1` #S
-  export FPGA_PCI_ADDRESS=`lspci -v|grep Xilinx|head -1|cut -d " " -f1` #S
-  export SWCTL_REGION_0=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_0` #S
-  export SWCTL_REGION_1=0x`setpci -s 0000:$FPGA_PCI_ADDRESS BASE_ADDRESS_1` #S
-  export OCPI_DMA_MEMORY=512M\$0x5f700000 #S
-
-  # For chicken scheme experiments
-  # export CHICKEN_BUILD=/home/nvas/chicken-4.9.0.1/
-  # export PATH=$PATH:/home/nvas/chicken-4.9.0.1/build/bin
-
   popd > /dev/null #S+
   MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)SVN  ROOT SET TO: $SVNROOT $(tput sgr0)\n"
   MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)OCPI BASE SET TO: $OCPI_BASE_DIR $(tput sgr0)\n"
@@ -173,12 +80,16 @@ else  # Others, like eniac
   isca=/scratch/safe/nvas/isca/testcases
 fi;
 
+# SAFE Nets
+lab="/Users/nv/lab"
+safe=$lab/SAFE
+nets=$lab/safe-nets/users/nvas/
+
 # Andromeda
 m31=$lab/andromeda
 
 # Adding export for KLEE in order to run
 # *.cde files only by invoking their name
-# TODO: ADD a lib folder in programs
 if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
   export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
 fi
