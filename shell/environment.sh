@@ -37,9 +37,7 @@ elif [[ "$HOSTNAME" == 'bee' ]] ; then # vmware
   # for golang
   # mkdir $HOME/go
   # mkdir -p $GOPATH/src/github.com/user
-  echo what is going on
   export GOPATH=$HOME/go
-  echo $GOPATH
   export PATH="$PATH:$GOPATH/bin"
   export PATH="$HOME/Library/Haskell/bin/:$PATH"
 elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
