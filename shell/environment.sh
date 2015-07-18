@@ -79,6 +79,15 @@ elif [[ "$HOSTNAME" == 'moomin' ]] ; then # home
   alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
 elif [[ "$HOSTNAME" == 'centaurus' ]] ; then # server
   alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
+elif [[ "$HOSTNAME" == 'bee' ]] ; then # vmware
+  # for golang
+  # mkdir $HOME/go
+  # mkdir -p $GOPATH/src/github.com/user
+  echo what is going on
+  export GOPATH=$HOME/go
+  echo $GOPATH
+  export PATH="$PATH:$GOPATH/bin"
+  export PATH="$HOME/Library/Haskell/bin/:$PATH"
 elif [[ "$HOSTNAME" == 'toco' ]] ; then # penn machine
   . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   lab=/home/nikos/lab

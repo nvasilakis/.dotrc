@@ -78,9 +78,6 @@ alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribu
 #export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
 #export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib
 
-# Update environment for haskell
-PATH="$HOME/.cabal/bin:$PATH"
-
 ###-begin-npm-completion-###
 #
 # npm command completion script
