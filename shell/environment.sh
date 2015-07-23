@@ -90,15 +90,11 @@ else  # Others, like eniac
 fi;
 
 # SAFE Nets
-lab="/Users/nv/lab"
+lab=$HOME/lab
 safe=$lab/SAFE
 nets=$lab/safe-nets/users/nvas/
 
 # Andromeda
 m31=$lab/andromeda
 
-# Adding export for KLEE in order to run
-# *.cde files only by invoking their name
-if [[ -d  "$HOME/Programs/klee-cde-package/bin/" ]]; then
-  export PATH=$HOME/Programs/klee-cde-package/bin/:$PATH;
-fi
+alias m31=$m31/m31/src/shell.js
