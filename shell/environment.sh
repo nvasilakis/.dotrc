@@ -33,7 +33,7 @@ elif [[ "$HOSTNAME" == 'moomin' || "$HOSTNAME" == 'toco' ]] ; then # home
   alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
 elif [[ "$HOSTNAME" == 'centaurus' ]] ; then # server
   alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
-elif [[ "$HOSTNAME" == 'bee' ]] ; then # vmware
+elif [[ "$HOSTNAME" == 'jainl' ]] ; then # vmware
   # for golang
   # mkdir $HOME/go
   # mkdir -p $GOPATH/src/github.com/user
