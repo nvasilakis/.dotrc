@@ -33,13 +33,14 @@ elif [[ "$HOSTNAME" == 'moomin' || "$HOSTNAME" == 'toco' ]] ; then # home
   alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
 elif [[ "$HOSTNAME" == 'centaurus' ]] ; then # server
   alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
-elif [[ "$HOSTNAME" == 'jainl' ]] ; then # vmware
+elif [[ "$HOSTNAME" == 'jainl.local' || "$HOSTNAME" == 'Darwin' ]] ; then # vmware
   # for golang
   # mkdir $HOME/go
   # mkdir -p $GOPATH/src/github.com/user
   export GOPATH=$HOME/go
   export PATH="$PATH:$GOPATH/bin"
   export PATH="$HOME/Library/Haskell/bin/:$PATH"
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home"
 elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
   export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6 # S
   export VIVADO_DIR=/opt/Xilinx/Vivado_HLS/2012.2 # S
