@@ -24,22 +24,22 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 # TODO: Make it distribution-specific
 HOSTNAME=`hostname`
 if [[ `uname` == 'Linux' ]]; then
+  # OCaml
+  . /home/$(whoami)/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+  # emacs on Gnome
+  alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
+else
   # Tempest
   alias tfail='terminal-notifier {} -title "Tempest"  -message "Compilation failed!" -sound "default"'
   alias tsuccess='terminal-notifier {} -title "Tempest"  -message "Compilation done!" -sound "default"'
   # Haskell
-  export PATH="$PATH:/Users/nv/Library/Haskell/bin"
+  export PATH="$PATH:/Users/$(whoami)/Library/Haskell/bin"
   # Golang
   # mkdir $HOME/go
   export GOPATH=$HOME/go
   export PATH="$PATH:$GOPATH/bin"
   # Java
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home"
-else
-  # OCaml
-  . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-  # emacs on Gnome
-  alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
 fi
 
 if [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
@@ -57,7 +57,7 @@ if [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark'
 
   pushd . > /dev/null # S+
   #export SVNROOT=/tmp/crash # S+
-  export SVNROOT=/home/nvas/crash-harlie # S+
+  export SVNROOT=/home/$(whoami)/crash-harlie # S+
   cd $SVNROOT/isa/fpga/platform/host_interface/Lib #S
   . $SVNROOT/isa/fpga/platform/host_interface/Lib/ocpi_env_linux_x86_64.sh > /dev/null 2>&1 #S
 
@@ -70,8 +70,8 @@ if [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark'
   #export OCPI_DMA_MEMORY=512M\$0x5f700000 #S
 
   # Force GHC 7.6.3
-  export PATH=/home/nvas/.cabal/bin:$PATH
-  export PATH=/home/nvas/ghc/bin:$PATH
+  export PATH=/home/$(whoami)/.cabal/bin:$PATH
+  export PATH=/home/$(whoami)/ghc/bin:$PATH
 
   popd > /dev/null #S+
   MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)SVN  ROOT SET TO: $SVNROOT $(tput sgr0)\n"
