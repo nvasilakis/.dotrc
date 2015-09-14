@@ -21,27 +21,28 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
   -c 'map <SPACE> <C-D>' -\" \
   "
 
+# TODO: Make it distribution-specific
 HOSTNAME=`hostname`
-if [[ "$HOSTNAME" == 'ape' ]]; then # os x
-  # need: [sudo] gem install terminal-notifier
+if [[ `uname` == 'Linux' ]]; then
+  # Tempest
   alias tfail='terminal-notifier {} -title "Tempest"  -message "Compilation failed!" -sound "default"'
   alias tsuccess='terminal-notifier {} -title "Tempest"  -message "Compilation done!" -sound "default"'
-  #export PATH="$PATH:/usr/local/bin" # homebrew
+  # Haskell
   export PATH="$PATH:/Users/nv/Library/Haskell/bin"
-elif [[ "$HOSTNAME" == 'moomin' || "$HOSTNAME" == 'toco' ]] ; then # home
-  . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-  alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
-elif [[ "$HOSTNAME" == 'centaurus' ]] ; then # server
-  alias updoc='cd /var/www/ndr.md/doc; git pull; cd -;'
-elif [[ "$HOSTNAME" == 'jainl.local' || "$HOSTNAME" == 'Darwin' ]] ; then # vmware
-  # for golang
+  # Golang
   # mkdir $HOME/go
-  # mkdir -p $GOPATH/src/github.com/user
   export GOPATH=$HOME/go
   export PATH="$PATH:$GOPATH/bin"
-  export PATH="$HOME/Library/Haskell/bin/:$PATH"
+  # Java
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home"
-elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
+else
+  # OCaml
+  . /home/nikos/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+  # emacs on Gnome
+  alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
+fi
+
+if [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quark' ]] ; then
   export XILINX_DIR=/scratch/safe/usr/Xilinx_ISE_14.6 # S
   export VIVADO_DIR=/opt/Xilinx/Vivado_HLS/2012.2 # S
   export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib/ #S
@@ -77,25 +78,27 @@ elif [[ "$HOSTNAME" == 'harlie' || "$HOSTNAME" == icsaf* || "$HOSTNAME" == 'quar
   MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)OCPI BASE SET TO: $OCPI_BASE_DIR $(tput sgr0)\n"
   MORE_OUT="$MORE_OUT$(tput bold ; tput setaf 8)GHC   VERSION IS: $(ghc --version) $(tput sgr0)\n"
 
-else  # Others, like eniac
-  MANPAGER="less"
-  #Less Colors for Man Pages
-  export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-  export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-  export LESS_TERMCAP_me=$'\E[0m'           # end mode
-  export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-  export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
-  export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-  export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-  isca=/scratch/safe/nvas/isca/testcases
+# else  # Others, like eniac
+#   MANPAGER="less"
+#   #Less Colors for Man Pages
+#   export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+#   export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+#   export LESS_TERMCAP_me=$'\E[0m'           # end mode
+#   export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+#   export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+#   export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+#   export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 fi;
 
-# SAFE Nets
 lab=$HOME/lab
+
+# Safe
 safe=$lab/SAFE
 nets=$lab/safe-nets/users/nvas/
 
 # Andromeda
 m31=$lab/andromeda
-
 alias m31=$m31/m31/src/shell.js
+
+# DCP
+dcp=$lab/dcp
