@@ -11,7 +11,7 @@ if [[ `uname` == 'Linux' ]]; then
     alias egrep='egrep --color=auto'
   fi
   alias ai='sudo apt-get install'
-  alias au='sudo apt-get update && sudo apt-get upgrade'
+  alias au='sudo apt-get update && sudo apt-get upgrade -y'
   alias here='nautilus --no-desktop --browser .'
   # open everything, a la OS X
   function open {
