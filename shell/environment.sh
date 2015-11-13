@@ -102,3 +102,5 @@ alias m31=$m31/m31/src/shell.js
 
 # DCP
 dcp=$lab/dcp
+alias lh="http://localhost:8000/"
+l="http://localhost:8000/"

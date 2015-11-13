@@ -1,5 +1,19 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
+;; Check if system is Darwin/Mac OS X
+(defun system-type-is-darwin ()
+(interactive)
+"Return true if system is darwin-based (Mac OS X)"
+(string-equal system-type "darwin")
+)
+
+;; Check if system is GNU/Linux
+(defun system-type-is-gnu ()
+(interactive)
+"Return true if system is GNU/Linux-based"
+(string-equal system-type "gnu/linux")
+)
+
 ;;;; Proof General
 ;(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
 ;(setq coq-prog-name "/usr/bin/coqtop") ;; Either /usr/local/bin.. or /usr/bin/..
@@ -52,10 +66,10 @@
 (require 'meld-mode)
 
 ;;;; Haskell Mode
-(load "~/.emacs.d/haskell-mode/haskell-site-file")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;(load "~/.emacs.d/haskell-mode/haskell-site-file")
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ; Overwrite haskell save buffer to include goodies
 ;(define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
 
@@ -122,19 +136,21 @@
 ;; fill region:
 ;;(global-set-key "\C-x\C-w" 'fill-region)
 
-;;;; Color theme -- Solarized Light
-(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
-(if
-  (equal 0 (string-match "^24" emacs-version))
-  ;; it's emacs24, so use built-in theme
-  (require 'solarized-light-theme)
-  ;; it's NOT emacs24, so use color-theme
-  (progn
-    (require 'color-theme)
-    (color-theme-initialize)
-    (require 'color-theme-solarized)
-    (color-theme-solarized-light)))
-
+(if (system-type-is-darwin)
+  ;;;; Color theme -- Solarized Light
+  (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+  (if
+    (equal 0 (string-match "^24" emacs-version))
+    ;; it's emacs24, so use built-in theme
+    (require 'solarized-light-theme)
+    ;; it's NOT emacs24, so use color-theme
+    (progn
+      (require 'color-theme)
+      (color-theme-initialize)
+      (require 'color-theme-solarized)
+      (color-theme-solarized-light)))
+)
+  
 ;;;; More Customization
 ;; Ido Mode -- Interactively do things
 (ido-mode 1)
