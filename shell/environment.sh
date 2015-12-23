@@ -34,6 +34,8 @@ else
   alias tsuccess='terminal-notifier {} -title "Tempest"  -message "Compilation done!" -sound "default"'
   # Haskell
   export PATH="$PATH:/Users/$(whoami)/Library/Haskell/bin"
+  export PATH="/usr/local/bin:$PATH"
+  export PATH="$PATH:/Library/TeX/texbin/"
   # Golang
   # mkdir $HOME/go
   export GOPATH=$HOME/go

@@ -15,7 +15,7 @@ call pathogen#helptags()
 :colors peaksea 
 :set number
 :set numberwidth=2
-:set ts=2 sts=2 sw=2 expandtab smartindent
+:set ts=4 sts=4 sw=4 expandtab smartindent
 " Usability options
 " :set virtualedit=onemore          " allow for cursor beyond last character
 :set history=1000                 " Store a ton of history (default is 20)
