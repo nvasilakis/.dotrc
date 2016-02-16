@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d/")
+;(add-to-list 'load-path "~/.emacs.d/")
 
 ;;;; Proof General
 ;(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
@@ -46,10 +46,10 @@
 ; Add ECB/CEDET C# semantics
 (add-hook 'vala-mode-hook #'wisent-csharp-default-setup)
 
-;;;; Tempest & meld Modes
-;; (add-to-path "~/emacs.d/tempest")
-(require 'tempest-mode)
-(require 'meld-mode)
+;;;;; Tempest & meld Modes
+;;; (add-to-path "~/emacs.d/tempest")
+;(require 'tempest-mode)
+;(require 'meld-mode)
 
 ;;;; Haskell Mode
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
