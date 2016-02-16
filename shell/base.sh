@@ -11,7 +11,7 @@ if [[ `uname` == 'Linux' ]]; then
     alias egrep='egrep --color=auto'
   fi
   alias ai='sudo apt-get install'
-  alias au='sudo apt-get update && sudo apt-get upgrade'
+  alias au='sudo apt-get update && sudo apt-get upgrade -y'
   alias here='nautilus --no-desktop --browser .'
   # open everything, a la OS X
   function open {
@@ -41,6 +41,7 @@ alias vslks='ssh root@vasilak.is'
 alias anti='ssh nikos@antikythera.vasilak.is'
 alias ceid='ssh nikos@diogenis.ceid.upatras.gr'
 alias rupdoc='ssh nikos@centaurus.vasilak.is "cd /var/www/ndr.md/doc; git pull; cd -;"'
+alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
 
 # breeze?
 alias rsc='rsync -av --progress'
@@ -77,9 +78,6 @@ alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribu
 #PATH="${PATH}:/scratch/safe/usr/modelsim/modeltech/bin:/scratch/safe/usr/Bluespec-2013.05.beta2/bin/"
 #export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
 #export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib
-
-# Update environment for haskell
-PATH="$HOME/.cabal/bin:$PATH"
 
 ###-begin-npm-completion-###
 #

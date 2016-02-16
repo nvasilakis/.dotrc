@@ -10,7 +10,6 @@ echo ".OK"
 echo -n "Loading shell functions.."
 . ${DOTRC}/shell/functions.sh
 echo ".OK"
-echo $MORE_OUT | head -c -1 # remove last newline
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
