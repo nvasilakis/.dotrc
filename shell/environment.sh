@@ -99,8 +99,9 @@ safe=$lab/SAFE
 nets=$lab/safe-nets/users/nvas/
 
 # Andromeda
+andromeda=$lab/andromeda
 m31=$lab/andromeda
-alias m31=$m31/m31/src/shell.js
+alias andromeda=$m31/m31/src/andromeda.js
 
 # DCP
 dcp=$lab/dcp
