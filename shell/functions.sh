@@ -6,6 +6,10 @@ function show-jobs {
   fi
 }
 
+function url {
+    curl -sX${2-"GET"} -H"Content-type: application/json" -d${3-""} "http://localhost:8080/$1"
+}
+
 # Usually when cd, I also ls
 function cd {
   builtin cd $* && ls
