@@ -100,8 +100,7 @@ nets=$lab/safe-nets/users/nvas/
 
 # Andromeda
 andromeda=$lab/andromeda
-m31=$lab/andromeda
-alias andromeda="node $m31/m31/src/andromeda.js"
+alias andromeda="node $andromeda/m31/andromeda.js"
 
 # DCP
 dcp=$lab/dcp
