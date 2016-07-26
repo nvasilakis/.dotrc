@@ -1,3 +1,8 @@
+. ~/.dotrc/shell/environment.sh
+. ${DOTRC}/shell/base.sh
+. ${DOTRC}/shell/extra.sh
+. ${DOTRC}/shell/functions.sh
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=100000
