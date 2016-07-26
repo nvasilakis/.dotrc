@@ -1,16 +1,3 @@
-echo -n "Loading environment."
-. ~/.dotrc/shell/environment.sh
-echo ".OK"
-echo -n "Loading base configuration.."
-. ${DOTRC}/shell/base.sh
-echo ".OK"
-echo -n "Loading extra configuration.."
-. ${DOTRC}/shell/extra.sh
-echo ".OK"
-echo -n "Loading shell functions.."
-. ${DOTRC}/shell/functions.sh
-echo ".OK"
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=100000
