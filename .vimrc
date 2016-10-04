@@ -15,7 +15,17 @@ call pathogen#helptags()
 :colors peaksea 
 :set number
 :set numberwidth=2
-:set ts=4 sts=4 sw=4 expandtab smartindent
+:set tabstop=4       " The width of a TAB is set to 4.
+                    " Still it is a \t. It is just that
+                    " Vim will interpret it to be having
+                    " a width of 4.
+
+:set shiftwidth=4    " Indents will have a width of 4
+
+:set softtabstop=4   " Sets the number of columns for a TAB
+
+:set expandtab       " Expand TABs to spaces
+:set smartindent
 " Usability options
 " :set virtualedit=onemore          " allow for cursor beyond last character
 :set history=1000                 " Store a ton of history (default is 20)

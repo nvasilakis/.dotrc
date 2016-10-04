@@ -106,9 +106,10 @@ else
   # Older versions don't like the above cruft
   _etc_hosts=()
 fi
+
 hosts=(
-	"$_etc_hosts[@]"
-	localhost
+  "$_etc_hosts[@]"
+  localhost
   150.140.90.86
   150.140.91.13 
   vasilak.is 
@@ -132,15 +133,13 @@ hosts=(
   cassiopeia.vasilak.is
   qubit0.cis.upenn.edu
   qubit1.cis.upenn.edu
-  uranus1.jefferson.edu
-  uranus2.jefferson.edu
-  gaia1.jefferson.edu
-  gaia2.jefferson.edu
-  128.91.113.91 # Wharton
+  alpha.ndr.md
+  beta.ndr.md
 )
+
 zstyle ':completion:*' hosts $hosts
 my_accounts=(
-	root@localhost
+  root@localhost
   nv@150.140.90.86
   etp@150.140.91.13 
   root@vasilak.is 
@@ -164,11 +163,8 @@ my_accounts=(
   nikos@cassiopeia.vasilak.is
   nikos@qubit0.cis.upenn.edu
   nikos@qubit1.cis.upenn.edu
-  nxv009@uranus1.jefferson.edu
-  nxv009@uranus2.jefferson.edu
-  nxv009@gaia1.jefferson.edu
-  nxv009@gaia2.jefferson.edu
-  ssh nv@128.91.113.91 # Wharton
+  nikos@alpha.ndr.md
+  nikos@beta.ndr.md
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
