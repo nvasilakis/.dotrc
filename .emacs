@@ -1,25 +1,19 @@
-;(add-to-list 'load-path "~/.emacs.d/")
-
-;; Check if system is Darwin/Mac OS X
-(defun system-type-is-darwin ()
-(interactive)
-"Return true if system is darwin-based (Mac OS X)"
-(string-equal system-type "darwin")
-)
-
-;; Check if system is GNU/Linux
-(defun system-type-is-gnu ()
-(interactive)
-"Return true if system is GNU/Linux-based"
-(string-equal system-type "gnu/linux")
-)
+;; melpa package management
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(setq package-enable-at-startup nil)
+(package-initialize)
+(setq custom-safe-themes t)
+(load-theme 'solarized-light t)
 
 ;;;; Proof General
-;(load-file "~/Projects/tools/ProofGeneral/generic/proof-site.el")
-;(setq coq-prog-name "/usr/bin/coqtop") ;; Either /usr/local/bin.. or /usr/bin/..
-;(setq proof-splash-enable nil)
-;(setq proof-toolbar-enable nil)
-;(setq split-width-threshold 120)
+(load-file "/usr/local/share/emacs/site-lisp/proof-general/generic/proof-site.el")
+(load-file "/usr/local/Cellar/ssreflect/1.5_1/share/ssreflect/pg-ssr.el")
+(setq coq-prog-name "/usr/local/bin/coqtop") ;; Either /usr/local/bin.. or /usr/bin/..
+(setq proof-splash-enable nil)
+(setq proof-toolbar-enable nil)
+(setq split-width-threshold 120)
 
 ;;;;; OCaml
 ;;; Setup environment variables using opam
@@ -50,6 +44,20 @@
 ;(add-hook 'tuareg-mode-hook 'auto-complete-mode)
 ;
 
+;; Check if system is Darwin/Mac OS X
+(defun system-type-is-darwin ()
+(interactive)
+"Return true if system is darwin-based (Mac OS X)"
+(string-equal system-type "darwin")
+)
+
+;; Check if system is GNU/Linux
+(defun system-type-is-gnu ()
+(interactive)
+"Return true if system is GNU/Linux-based"
+(string-equal system-type "gnu/linux")
+)
+
 ;;;; Vala mode
 ;(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 (autoload 'vala-mode "vala-mode" "Major mode for editing Vala code." t)
@@ -73,8 +81,6 @@
 ; Overwrite haskell save buffer to include goodies
 ;(define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
 
-
-;;;; My personal functions to invoke!
 (defun kill-region-or-backward-kill-word (arg)
   "Woo! Kill word a la bash/zsh and preserve it in kill ring! "
   (interactive "p")
@@ -136,21 +142,6 @@
 ;; fill region:
 ;;(global-set-key "\C-x\C-w" 'fill-region)
 
-(if (system-type-is-darwin)
-  ;;;; Color theme -- Solarized Light
-  (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
-  (if
-    (equal 0 (string-match "^24" emacs-version))
-    ;; it's emacs24, so use built-in theme
-    (require 'solarized-light-theme)
-    ;; it's NOT emacs24, so use color-theme
-    (progn
-      (require 'color-theme)
-      (color-theme-initialize)
-      (require 'color-theme-solarized)
-      (color-theme-solarized-light)))
-)
-  
 ;;;; More Customization
 ;; Ido Mode -- Interactively do things
 (ido-mode 1)
@@ -166,11 +157,6 @@
 ; auto indent
 ;(define-key global-map (kbd "RET") 'newline-and-indent)
 
-;; melpa package management
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
 ; should enbable these at some point
 ;(global-set-key (kbd "C-c g") (ffap))
 ;(global-set-key (kbd "C-c t") '(lambda ()(interactive) (dired (magit-read-top-dir nil))))
@@ -428,8 +414,15 @@
 ;;    (set-frame-height (selected-frame) 31))
 ; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
-  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
-  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
+ '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(custom-safe-themes
+	 (quote
+		("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default))))
 ; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 ; Show hidden characters
@@ -454,3 +447,9 @@
 (column-number-mode 1)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
