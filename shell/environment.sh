@@ -44,3 +44,6 @@ alias andromeda="node $andromeda/andromeda.js"
 dcp=$lab/dcp
 alias lh="http://localhost:8000/"
 l="http://localhost:8000/"
+
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
