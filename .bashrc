@@ -130,4 +130,3 @@ case $TERM in
     ;;
 esac
 PS1="${SCREENTITLEPROCESS}${SCREENTITLE}${PS1}"
-export PATH="$PATH:/Users/nvasilakis/.local/bin" # andromeda node
