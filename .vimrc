@@ -138,7 +138,9 @@ map <F5> :TlistToggle<CR>
 if has("unix")
   let uname = substitute(system("uname"),"\n","","g")
   if uname == "Darwin"
-    let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+      " this is weird: /usr/bin/ctags points to emacs..
+      " https://github.com/Homebrew/legacy-homebrew/issues/8859
+    let Tlist_Ctags_Cmd = "/usr/local/Cellar/ctags/5.8_1/bin/ctags"
   else
     let Tlist_Ctags_Cmd = "/usr/bin/ctags-exuberant"
   endif
