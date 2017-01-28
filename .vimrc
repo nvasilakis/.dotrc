@@ -344,6 +344,10 @@ au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>m [Minor]
 au  BufRead,BufNewFile *.tex               iabb <buffer>la \lambda{}sh
 au  BufRead,BufNewFile *.tex               iabb <buffer>ci (citeTODO)
 
+" show a column marking the end of a 80-character line
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
 " small tricks for slime, given modifications in plugin's source
 nmap <CR> <Plug>SlimeLineSend
 xmap <leader>s <Plug>SlimeRegionSend
