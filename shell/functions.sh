@@ -6,6 +6,22 @@ function show-jobs {
   fi
 }
 
+function npp {
+    echo "npm public publish"
+    if [ ! -f ./package.json ]; then
+        echo "No package.json found!"
+    else
+        if grep -q '@andromeda/' ./package.json; then
+            echo 'log-in as andromeda!'
+            npm login andromeda && npm publish --access=public
+        else
+            echo 'log-in as andromeda!'
+            npm login nvasilakis && npm publish --access=public
+        fi
+    fi
+
+}
+
 function url {
     curl -sX${2-"GET"} -H"Content-type: application/json" -d${3-""} "http://localhost:8080/$1"
 }
