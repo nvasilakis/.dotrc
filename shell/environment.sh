@@ -24,6 +24,7 @@ if [[ `uname` == 'Linux' ]]; then
   . /home/$(whoami)/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   # emacs on Gnome
   alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
+  export PATH=~/.npm-global/bin:$PATH
 else
   # Haskell
   export PATH="$PATH:/Users/$(whoami)/Library/Haskell/bin"
@@ -47,3 +48,5 @@ l="http://localhost:8000/"
 
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
+
+export PATH="$PATH:$HOME/.local/bin" # andromeda node
