@@ -345,7 +345,7 @@ au  BufRead,BufNewFile *.tex               iabb <buffer>la \lambda{}sh
 au  BufRead,BufNewFile *.tex               iabb <buffer>ci (citeTODO)
 
 " show a column marking the end of a 80-character line
-set colorcolumn=80
+set colorcolumn=81
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " small tricks for slime, given modifications in plugin's source
