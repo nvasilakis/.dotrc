@@ -341,8 +341,7 @@ map <leader>2 :Gcc<CR>
 " abbreviations
 au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>u Update
 au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>m [Minor]
-au  BufRead,BufNewFile *.tex               iabb <buffer>la \lambda{}sh
-au  BufRead,BufNewFile *.tex               iabb <buffer>ci (citeTODO)
+au  BufRead,BufNewFile *.tex               iabb <buffer>lst \lstinline!
 
 " show a column marking the end of a 80-character line
 set colorcolumn=81
