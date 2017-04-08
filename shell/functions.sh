@@ -246,3 +246,15 @@ function letmeknow {
   fi
   $* && eval ${tsuccess} || eval ${tfail}
 }
+
+function latexcleanup {
+  rm -f *-blx.bib
+  rm -f *.aux
+  rm -f *.bbl
+  rm -f *.blg
+  rm -f *.log
+  rm -f *.out
+  rm -f *.run.xml
+  rm -f *.bcf
+  rm -f *.sty
+}
