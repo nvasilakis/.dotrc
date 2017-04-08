@@ -36,9 +36,9 @@ call pathogen#helptags()
 :set smartcase                    " case sensitive when uc present
 :set wildmenu                     " show list instead of just completing
 :set wildmode=list:longest,full   " command <Tab> completion, list matches,
-:set formatprg=par\ -jreq         " par formatter
+:set formatprg=par\ -jw80req      " par formatter (w is 79 columns)
 :set formatoptions+=t             " autoformat from vim's formatter
-:set textwidth=72                 " for vim's auto formatter
+:set textwidth=80                 " for vim's auto formatter
 :set spell                        " spell on the fly -- now default!
 :set cursorline                   " show where the line is
 :set autochdir                    " change directory automagically
