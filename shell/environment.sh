@@ -40,6 +40,9 @@ lab=$HOME/lab
 androdev=$lab/universe
 andromeda=$lab/universe/andromeda
 alias andromeda="node $andromeda/andromeda.js"
+function andromeda1 {
+  andromeda '{"nodes": 1}'
+}
 
 # DCP
 dcp=$lab/dcp
