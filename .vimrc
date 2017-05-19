@@ -38,7 +38,11 @@ call pathogen#helptags()
 :set wildmode=list:longest,full   " command <Tab> completion, list matches,
 :set formatprg=par\ -jw80req      " par formatter (w is 79 columns)
 :set formatoptions+=t             " autoformat from vim's formatter
-:set textwidth=80                 " for vim's auto formatter
+":set textwidth=80                 " for vim's auto formatter
+":set columns=80                   " for softwrap
+"autocmd VimResized * if (&columns > 80) | set columns=80 | endif
+:set wrap
+:set linebreak
 :set spell                        " spell on the fly -- now default!
 :set cursorline                   " show where the line is
 :set autochdir                    " change directory automagically
@@ -337,11 +341,15 @@ func! Gcc()
 endfunc
 
 map <leader>2 :Gcc<CR>
-
+set textwidth=80
 " abbreviations
 au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>u Update
 au  BufRead,BufNewFile COMMIT_EDITMSG      iabb <buffer>m [Minor]
 au  BufRead,BufNewFile *.tex               iabb <buffer>lst \lstinline!
+augroup WrapLineInTeXFile
+    autocmd!
+    autocmd FileType pandoc set textwidth=80  " for vim's auto formatter
+augroup END
 
 " show a column marking the end of a 80-character line
 set colorcolumn=81
