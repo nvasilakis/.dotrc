@@ -53,3 +53,4 @@ LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
 export PATH="$PATH:$HOME/.local/bin" # andromeda node
+export PATH=~/.npm-global/bin:$PATH
