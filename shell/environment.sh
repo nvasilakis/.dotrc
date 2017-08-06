@@ -37,8 +37,8 @@ fi
 lab=$HOME/lab
 
 # Andromeda
-androdev=$lab/universe
-andromeda=$lab/universe/andromeda
+androdev=$lab/andromeda
+andromeda=$lab/andromeda/andromeda
 alias andromeda="node $andromeda/andromeda.js"
 function andromeda1 {
   andromeda '{"nodes": 1}'
