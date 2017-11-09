@@ -10,7 +10,7 @@ alias -g zenon='basilakn@zenon.ceid.upatras.gr'
 # I shoud add functionality for bm seas, ceid, rdesktop
 # if [[ $n -eq 'seas']]; then echo "ssh seas.." fi;
 # implement heavy bm, with reverse index
-alias bms='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
+alias to='dirs -v ; echo -n "..>" ; read n ; cd ~$n'
 
 # Should be made global
 alias -g dbox="/media/w7/Documents\ and\ Settings/nikos/Dbox/Dropbox/"
