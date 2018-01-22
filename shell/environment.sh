@@ -42,6 +42,9 @@ andromeda=$lab/andromeda/andromeda
 doc=$lab/andromeda/doc
 alias desk="cd $lab/andromeda/doc"
 alias a="cd $lab/andromeda"
+alias pt="cd $lab/andromeda/doc/thesis/proposal/tex"
+alias dt="cd $lab/andromeda/doc/thesis/defense/tex"
+alias research="cd $lab/andromeda/doc/research"
 alias andromeda="node $andromeda/andromeda.js"
 function andromeda1 {
   andromeda '{"nodes": 1}'
