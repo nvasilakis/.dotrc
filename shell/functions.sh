@@ -26,9 +26,26 @@ function url {
     curl -sX${2-"GET"} -H"Content-type: application/json" -d${3-""} "http://localhost:8080/$1"
 }
 
+# Latest Git Root
+LGR=""
+
+function show-git-status {
+  # TODO check if `git` exists
+  IN_GIT="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
+	if [ "$IN_GIT" ]; then
+    CGR=$(git rev-parse --show-toplevel)
+    if [[ "$LGR" != "$CGR" ]]; then
+      git status -sb --show-stash
+      git branch
+      LGR="$CGR"
+    fi
+  fi
+}
+
 # Usually when cd, I also ls
 function cd {
   builtin cd $* && ls
+  show-git-status
 }
 
 # Usually when mkdir, I also cd
