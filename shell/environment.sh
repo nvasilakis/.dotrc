@@ -1,16 +1,16 @@
 DOTRC=~/.dotrc
 
 # Emscripten
-export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable:$PATH"
-export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/clang/e1.37.28_64bit:$PATH"
-export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/node/4.1.1_64bit/bin:$PATH"
-export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/emscripten/1.37.28:$PATH"
+# export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable:$PATH"
+# export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/clang/e1.37.28_64bit:$PATH"
+# export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/node/4.1.1_64bit/bin:$PATH"
+# export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/emscripten/1.37.28:$PATH"
 
 #Setting environment variables:
-export EMSDK="/Users/nvasilakis/lab/emscripten/emsdk-portable"
-export EM_CONFIG="/Users/nvasilakis/.emscripten"
-export BINARYEN_ROOT="/Users/nvasilakis/lab/emscripten/emsdk-portable/clang/e1.37.28_64bit/binaryen"
-export EMSCRIPTEN="/Users/nvasilakis/lab/emscripten/emsdk-portable/emscripten/1.37.28"
+# export EMSDK="/Users/nvasilakis/lab/emscripten/emsdk-portable"
+# export EM_CONFIG="/Users/nvasilakis/.emscripten"
+# export BINARYEN_ROOT="/Users/nvasilakis/lab/emscripten/emsdk-portable/clang/e1.37.28_64bit/binaryen"
+# export EMSCRIPTEN="/Users/nvasilakis/lab/emscripten/emsdk-portable/emscripten/1.37.28"
 
 #Nice Exports
 export EDITOR="vim"
@@ -63,12 +63,15 @@ function andromeda1 {
 }
 
 # DCP
-dcp=$lab/dcp
-alias lh="http://localhost:8000/"
-l="http://localhost:8000/"
+# dcp=$lab/dcp
+# alias lh="http://localhost:8000/"
+# l="http://localhost:8000/"
 
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
 export PATH="$PATH:$HOME/.local/bin" # andromeda node
 export PATH=~/.npm-global/bin:$PATH
+
+export NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$NPM_PACKAGES/bin:$PATH"
