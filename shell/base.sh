@@ -42,6 +42,11 @@ alias anti='ssh nikos@antikythera.vasilak.is'
 alias ceid='ssh nikos@diogenis.ceid.upatras.gr'
 alias rupdoc='ssh nikos@centaurus.vasilak.is "cd /var/www/ndr.md/doc; git pull; cd -;"'
 alias seas='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
+# alias reverse='(tac 2> /dev/null || tail -r)'
+TAC=$(which tac)
+function tac {
+  $TAC 2> /dev/null $* || tail -r $*
+}
 
 # breeze?
 alias rsc='rsync -av --progress'
