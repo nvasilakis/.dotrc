@@ -46,7 +46,7 @@ else
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home"
 fi
 
-lab=$HOME/lab
+lab=$HOME/wrk
 
 # Andromeda
 androdev=$lab/andromeda
