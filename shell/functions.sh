@@ -273,5 +273,4 @@ function latexcleanup {
   rm -f *.out
   rm -f *.run.xml
   rm -f *.bcf
-  rm -f *.sty
 }
