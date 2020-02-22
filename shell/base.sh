@@ -81,6 +81,7 @@ alias breeze='/media/w7/Projects/UPenn/SAFE/SAFE/breeze/breeze-interpreter/src/d
 alias jhf='cd ~/Work/oceanus/handsfree/git/'
 alias jto='cd ~/Work/apache-tomcat-6.0.35/'
 alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribution/Handsfree-beta.war /oceanus/www/webapps;'
+alias gkallas='GIT_COMMITTER_NAME="Konstantinos Kallas" GIT_COMMITTER_EMAIL="konstantinos.kallas@hotmail.com" git commit --author="Konstantinos Kallas <konstantinos.kallas@hotmail.com>"'
 
 #PATH="${PATH}:/scratch/safe/usr/modelsim/modeltech/bin:/scratch/safe/usr/Bluespec-2013.05.beta2/bin/"
 #export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
