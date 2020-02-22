@@ -136,8 +136,10 @@ hosts=(
   alpha.ndr.md
   beta.ndr.md
   gamma.ndr.md
+  delta.ndr.md
   deathstar.cis.upenn.edu
   livestar.cis.upenn.edu
+  memstar.cis.upenn.edu
 )
 
 zstyle ':completion:*' hosts $hosts
@@ -169,8 +171,10 @@ my_accounts=(
   nikos@alpha.ndr.md
   nikos@beta.ndr.md
   nikos@gamma.ndr.md
+  nikos@delta.ndr.md
   nikos@deathstar.cis.upenn.edu
   nikos@livestar.cis.upenn.edu
+  nikos@lmemstar.cis.upenn.edu
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
