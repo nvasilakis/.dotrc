@@ -42,7 +42,6 @@ function show-git-status {
   fi
 }
 
-# Usually when cd, I also ls
 function cd {
   builtin cd $* && ls
   show-git-status

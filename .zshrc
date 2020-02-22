@@ -136,8 +136,10 @@ hosts=(
   alpha.ndr.md
   beta.ndr.md
   gamma.ndr.md
+  delta.ndr.md
   deathstar.cis.upenn.edu
   livestar.cis.upenn.edu
+  memstar.cis.upenn.edu
 )
 
 zstyle ':completion:*' hosts $hosts
@@ -169,8 +171,10 @@ my_accounts=(
   nikos@alpha.ndr.md
   nikos@beta.ndr.md
   nikos@gamma.ndr.md
+  nikos@delta.ndr.md
   nikos@deathstar.cis.upenn.edu
   nikos@livestar.cis.upenn.edu
+  nikos@lmemstar.cis.upenn.edu
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
@@ -414,3 +418,5 @@ export DISH_PARSER=${DISH_TOP}/parser/parse_to_json.native
 # export PATH=$PATH:/home/nikos/dish/parser
 alias dparse=/home/nikos/dish/parser/parse_to_json.native
 alias demit=/home/nikos/dish/parser/json_to_shell.native
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
