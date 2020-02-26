@@ -412,5 +412,11 @@ fi
 # OPAM configuration
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
+# Dish configuration
+export DISH_TOP=/home/nikos/dish
+export DISH_PARSER=${DISH_TOP}/parser/parse_to_json.native
+# export PATH=$PATH:/home/nikos/dish/parser
+alias dparse=/home/nikos/dish/parser/parse_to_json.native
+alias demit=/home/nikos/dish/parser/json_to_shell.native
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
