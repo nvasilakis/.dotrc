@@ -89,6 +89,13 @@ alias mirgen='java -jar ~/wrk/andromeda/mir/static-analysis/mir-sa.jar . | grep 
 #export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
 #export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib
 
+# NPM non-sudo
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
