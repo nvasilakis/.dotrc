@@ -43,7 +43,15 @@ else
   export PATH="/usr/local/bin:$PATH"
   export PATH="$PATH:/Library/TeX/texbin/"
   # Java
-  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home"
+  JVM_BASE_DIR=/Library/Java/JavaVirtualMachines
+  JVM_VERSION=$(ls $JVM_BASE_DIR | grep -Eo "([0-9]+\.?){3}(_[0-9]+)?" | sort -Vr | head -1)
+
+  if [ -n "$JVM_VERSION" ]; then
+    export JAVA_HOME="$(find $JVM_BASE_DIR -maxdepth 1 -name "*${JVM_VERSION}*")/Contents/Home"
+    # echo "Setting JAVA_HOME to $JAVA_HOME."
+  else
+#   echo 1>&2 "No JDK installation found in ${JVM_BASE_DIR}!"
+  fi
 fi
 
 lab=$HOME/wrk
