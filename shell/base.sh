@@ -96,6 +96,9 @@ export PATH="$PATH:$NPM_PACKAGES/bin"
 # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
+# https://unix.stackexchange.com/questions/163872/sharing-a-terminal-with-multiple-users-with-screen-or-otherwise
+alias scrfor='screen -S $screen_id -X multiuser on, screen -S $screen_id -X acladd' # authorized_user
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
