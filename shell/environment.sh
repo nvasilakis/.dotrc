@@ -31,6 +31,9 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
   "
 
 HOSTNAME=`hostname`
+if [[ $(hostname) == 'helios' ]]; then
+  PATH="$PATH:/usr/local/opt/python@3.8/bin"
+fi
 if [[ `uname` == 'Linux' ]]; then
   # OCaml
   . /home/$(whoami)/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
@@ -53,6 +56,19 @@ else
 #   echo 1>&2 "No JDK installation found in ${JVM_BASE_DIR}!"
   fi
 fi
+
+stars=$(cat <<'STARLIST'
+alpha.ndr.md
+beta.ndr.md
+gamma.ndr.md
+delta.ndr.md
+deathstar.cis.upenn.edu
+livestar.cis.upenn.edu
+memstar.cis.upenn.edu
+STARLIST
+)
+
+export stars
 
 lab=$HOME/wrk
 
@@ -82,4 +98,8 @@ export PATH="$PATH:$HOME/.local/bin" # andromeda node
 export PATH=~/.npm-global/bin:$PATH
 
 export NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$NPM_PACKAGES/bin:$PATH"
+# export PATH="$NPM_PACKAGES/bin:$PATH"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+# NPM non-sudo
+NPM_PACKAGES="${HOME}/.npm-packages"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
