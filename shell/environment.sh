@@ -40,6 +40,7 @@ if [[ `uname` == 'Linux' ]]; then
   # emacs on Gnome
   alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
   export PATH=~/.npm-global/bin:$PATH
+  export JAVA_HOME=/usr/lib/jvm/default-java
 else
   # Haskell
   export PATH="$PATH:/Users/$(whoami)/Library/Haskell/bin"
@@ -52,8 +53,6 @@ else
   if [ -n "$JVM_VERSION" ]; then
     export JAVA_HOME="$(find $JVM_BASE_DIR -maxdepth 1 -name "*${JVM_VERSION}*")/Contents/Home"
     # echo "Setting JAVA_HOME to $JAVA_HOME."
-  else
-#   echo 1>&2 "No JDK installation found in ${JVM_BASE_DIR}!"
   fi
 fi
 
@@ -85,6 +84,11 @@ alias andromeda="node $andromeda/andromeda.js"
 function andromeda1 {
   andromeda '{"nodes": 1}'
 }
+
+showpipeline() {
+  grep '|' $1 | sed 's/#.*$//' | awk '{$1=$1};1' | sed '/^$/d'
+}
+
 
 # DCP
 # dcp=$lab/dcp
