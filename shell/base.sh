@@ -2,6 +2,8 @@
 
 # Based on Environment
 if [[ `uname` == 'Linux' ]]; then 
+  andromeda=~
+
   if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
@@ -22,6 +24,15 @@ if [[ `uname` == 'Linux' ]]; then
   #alias w3m='w3m www.google.com'
   alias ctags='/usr/bin/ctags-exuberant'
 else 
+  lab=$HOME/wrk
+  andromeda=$lab/andromeda
+  doc=$andromeda/doc
+  alias desk="cd $andromeda/doc"
+  alias a="cd $andromeda"
+  alias pt="cd $andromeda/doc/thesis/proposal/tex"
+  alias dt="cd $andromeda/doc/thesis/defense/tex"
+  alias andromeda="node $andromeda/andromeda/andromeda.js"
+
   export CLICOLOR=1
   alias ls='ls -G'
   export GREP_OPTIONS='--color=auto';
@@ -92,18 +103,18 @@ alias scrfor='screen -S $screen_id -X multiuser on, screen -S $screen_id -X acla
 
 mir-sa() {
   f=${1:-.}
-  java -jar /Users/nv/wrk/andromeda/mir/static-analysis/mir-sa.jar $f | grep "^{" | jq . | tee static.json
+  MIR_BASE=$andromeda/mir/static-analysis/mir-sa.jar
+  java -jar $MIR_BASE $f | grep "^{" | jq . | tee static.json
 }
 
 patch_with_lya() {
-  pwd
   PRE="_"
   m=$1
   nm="$(dirname $m)/$PRE$(basename $m)"
   [ ! -f $nm ] && cp $m $nm
 
   GROUND_TRUTH="static"
-  LYA_BASE=${LYA_BASE:-"/Users/nv/wrk/andromeda/lya/core/src/txfm.js"}
+  LYA_BASE=${LYA_BASE:-"$andromeda/lya/core/src/txfm.js"}
 
   read -r -d '' PLG <<-PROLOGUE
 	/* eslint-disable */
@@ -112,7 +123,7 @@ patch_with_lya() {
 	  analysis: lya.preset.RWX_CHECKING,
 	  rules: require("path").join(__dirname, "$GROUND_TRUTH.json"),
 	  modules: {
-	    includes: [require.resolve("$nm")]
+	    include: [require.resolve("$nm")]
 	  },
 	  printResults: true,
 	};
@@ -128,7 +139,13 @@ mir-da() {
 }
 
 mir-check() {
-  mir-sa $1
+  echo "v0.1"
+  PRE="_"
+  m=$1
+  nm="$(dirname $m)/$PRE$(basename $m)"
+  [ ! -f $nm ] && cp $m $nm
+
+  mir-sa "$nm"
   patch_with_lya $1
 }
 
