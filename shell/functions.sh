@@ -35,7 +35,7 @@ function show-git-status {
 	if [ "$IN_GIT" ]; then
     CGR=$(git rev-parse --show-toplevel)
     if [[ "$LGR" != "$CGR" ]]; then
-      git status -sb --show-stash
+      git status -sb # --show-stash
       git branch
       LGR="$CGR"
     fi
