@@ -101,11 +101,11 @@ alias mirgen=''
 # https://unix.stackexchange.com/questions/163872/sharing-a-terminal-with-multiple-users-with-screen-or-otherwise
 alias scrfor='screen -S $screen_id -X multiuser on, screen -S $screen_id -X acladd' # authorized_user
 
-mir-sa() {
-  f=${1:-.}
-  MIR_BASE=$andromeda/mir/static-analysis/mir-sa.jar
-  java -jar $MIR_BASE $f | grep "^{" | jq . | tee static.json
-}
+# mir-sa() {
+#   f=${1:-.}
+#   MIR_BASE=$andromeda/mir/static-analysis/mir-sa.jar
+#   java -jar $MIR_BASE $f | grep "^{" | jq . | tee static.json
+# }
 
 patch_with_lya() {
   PRE="_"
@@ -134,9 +134,9 @@ PROLOGUE
   echo "$PLG" | tee $m
 }
   
-mir-da() {
-  patch_with_lya $*
-}
+# mir-da() {
+#   patch_with_lya $*
+# }
 
 mir-check() {
   echo "v0.1"
