@@ -2,6 +2,8 @@
 
 # Based on Environment
 if [[ `uname` == 'Linux' ]]; then 
+  andromeda=~
+
   if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
@@ -22,6 +24,15 @@ if [[ `uname` == 'Linux' ]]; then
   #alias w3m='w3m www.google.com'
   alias ctags='/usr/bin/ctags-exuberant'
 else 
+  lab=$HOME/wrk
+  andromeda=$lab/andromeda
+  doc=$andromeda/doc
+  alias desk="cd $andromeda/doc"
+  alias a="cd $andromeda"
+  alias pt="cd $andromeda/doc/thesis/proposal/tex"
+  alias dt="cd $andromeda/doc/thesis/defense/tex"
+  alias andromeda="node $andromeda/andromeda/andromeda.js"
+
   export CLICOLOR=1
   alias ls='ls -G'
   export GREP_OPTIONS='--color=auto';
@@ -81,10 +92,62 @@ alias breeze='/media/w7/Projects/UPenn/SAFE/SAFE/breeze/breeze-interpreter/src/d
 alias jhf='cd ~/Work/oceanus/handsfree/git/'
 alias jto='cd ~/Work/apache-tomcat-6.0.35/'
 alias jbuild='cd ~/handsfree/Handsfree/; svn update; ant build-beta; mv distribution/Handsfree-beta.war /oceanus/www/webapps;'
+alias gkallas='GIT_COMMITTER_NAME="Konstantinos Kallas" GIT_COMMITTER_EMAIL="konstantinos.kallas@hotmail.com" git commit --author="Konstantinos Kallas <konstantinos.kallas@hotmail.com>"'
+alias mirgen=''
 
 #PATH="${PATH}:/scratch/safe/usr/modelsim/modeltech/bin:/scratch/safe/usr/Bluespec-2013.05.beta2/bin/"
 #export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
 #export BLUESPECDIR=/scratch/safe/usr/Bluespec-2013.05.beta2/lib
+# https://unix.stackexchange.com/questions/163872/sharing-a-terminal-with-multiple-users-with-screen-or-otherwise
+alias scrfor='screen -S $screen_id -X multiuser on, screen -S $screen_id -X acladd' # authorized_user
+
+# mir-sa() {
+#   f=${1:-.}
+#   MIR_BASE=$andromeda/mir/static-analysis/mir-sa.jar
+#   java -jar $MIR_BASE $f | grep "^{" | jq . | tee static.json
+# }
+
+patch_with_lya() {
+  PRE="_"
+  m=$1
+  nm="$(dirname $m)/$PRE$(basename $m)"
+  [ ! -f $nm ] && cp $m $nm
+
+  GROUND_TRUTH="static"
+  LYA_BASE=${LYA_BASE:-"$andromeda/lya/core/src/txfm.js"}
+
+  read -r -d '' PLG <<-PROLOGUE
+	/* eslint-disable */
+	let lya = require("$LYA_BASE");
+	let conf = {
+	  analysis: lya.preset.RWX_CHECKING,
+	  rules: require("path").join(__dirname, "$GROUND_TRUTH.json"),
+	  modules: {
+	    include: [require.resolve("$nm")]
+	  },
+	  printResults: true,
+	};
+	lya.configRequire(require, conf);
+	module.exports = require("$nm");
+PROLOGUE
+
+  echo "$PLG" | tee $m
+}
+  
+# mir-da() {
+#   patch_with_lya $*
+# }
+
+mir-check() {
+  echo "v0.1"
+  PRE="_"
+  m=$1
+  nm="$(dirname $m)/$PRE$(basename $m)"
+  [ ! -f $nm ] && cp $m $nm
+
+  mir-sa "$nm"
+  patch_with_lya $1
+}
 
 ###-begin-npm-completion-###
 #

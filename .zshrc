@@ -136,8 +136,10 @@ hosts=(
   alpha.ndr.md
   beta.ndr.md
   gamma.ndr.md
+  delta.ndr.md
   deathstar.cis.upenn.edu
   livestar.cis.upenn.edu
+  memstar.cis.upenn.edu
 )
 
 zstyle ':completion:*' hosts $hosts
@@ -169,8 +171,10 @@ my_accounts=(
   nikos@alpha.ndr.md
   nikos@beta.ndr.md
   nikos@gamma.ndr.md
+  nikos@delta.ndr.md
   nikos@deathstar.cis.upenn.edu
   nikos@livestar.cis.upenn.edu
+  nikos@lmemstar.cis.upenn.edu
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
@@ -408,18 +412,26 @@ fi
 # OPAM configuration
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/nv/.anaconda2/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/nv/.anaconda2/etc/profile.d/conda.sh" ]; then
-        . "/Users/nv/.anaconda2/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/nv/.anaconda2/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/nv/.anaconda2/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/nv/.anaconda2/etc/profile.d/conda.sh" ]; then
+#         . "/Users/nv/.anaconda2/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/nv/.anaconda2/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
+# Dish configuration
+export DISH_TOP=/home/nikos/dish
+export DISH_PARSER=${DISH_TOP}/parser/parse_to_json.native
+# export PATH=$PATH:/home/nikos/dish/parser
+alias dparse=/home/nikos/dish/parser/parse_to_json.native
+alias demit=/home/nikos/dish/parser/json_to_shell.native
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

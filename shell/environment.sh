@@ -31,36 +31,52 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
   "
 
 HOSTNAME=`hostname`
+if [[ $(hostname) == 'helios' ]]; then
+  PATH="$PATH:/usr/local/opt/python@3.8/bin"
+fi
 if [[ `uname` == 'Linux' ]]; then
   # OCaml
   . /home/$(whoami)/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   # emacs on Gnome
   alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
   export PATH=~/.npm-global/bin:$PATH
+  export JAVA_HOME=/usr/lib/jvm/default-java
 else
   # Haskell
   export PATH="$PATH:/Users/$(whoami)/Library/Haskell/bin"
   export PATH="/usr/local/bin:$PATH"
   export PATH="$PATH:/Library/TeX/texbin/"
   # Java
-  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home"
+  JVM_BASE_DIR=/Library/Java/JavaVirtualMachines
+  JVM_VERSION=$(ls $JVM_BASE_DIR | grep -Eo "([0-9]+\.?){3}(_[0-9]+)?" | sort -Vr | head -1)
+
+  if [ -n "$JVM_VERSION" ]; then
+    export JAVA_HOME="$(find $JVM_BASE_DIR -maxdepth 1 -name "*${JVM_VERSION}*")/Contents/Home"
+    # echo "Setting JAVA_HOME to $JAVA_HOME."
+  fi
 fi
 
-lab=$HOME/wrk
+stars=$(cat <<'STARLIST'
+alpha.ndr.md
+beta.ndr.md
+gamma.ndr.md
+delta.ndr.md
+deathstar.cis.upenn.edu
+livestar.cis.upenn.edu
+memstar.cis.upenn.edu
+STARLIST
+)
 
-# Andromeda
-androdev=$lab/andromeda
-andromeda=$lab/andromeda/andromeda
-doc=$lab/andromeda/doc
-alias desk="cd $lab/andromeda/doc"
-alias a="cd $lab/andromeda"
-alias pt="cd $lab/andromeda/doc/thesis/proposal/tex"
-alias dt="cd $lab/andromeda/doc/thesis/defense/tex"
-alias research="cd $lab/andromeda/doc/research"
-alias andromeda="node $andromeda/andromeda.js"
-function andromeda1 {
+export stars
+
+andromeda1() {
   andromeda '{"nodes": 1}'
 }
+
+showpipeline() {
+  grep '|' $1 | sed 's/#.*$//' | awk '{$1=$1};1' | sed '/^$/d'
+}
+
 
 # DCP
 # dcp=$lab/dcp
@@ -74,4 +90,8 @@ export PATH="$PATH:$HOME/.local/bin" # andromeda node
 export PATH=~/.npm-global/bin:$PATH
 
 export NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$NPM_PACKAGES/bin:$PATH"
+# export PATH="$NPM_PACKAGES/bin:$PATH"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+# NPM non-sudo
+NPM_PACKAGES="${HOME}/.npm-packages"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
