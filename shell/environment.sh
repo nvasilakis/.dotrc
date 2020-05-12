@@ -1,89 +1,130 @@
-DOTRC=~/.dotrc
+HISTFILE=~/.histfile
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILESIZE=100000
+HISTCONTROL=ignoredups:ignorespace
 
-# Emscripten
-# export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable:$PATH"
-# export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/clang/e1.37.28_64bit:$PATH"
-# export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/node/4.1.1_64bit/bin:$PATH"
-# export PATH="/Users/nvasilakis/lab/emscripten/emsdk-portable/emscripten/1.37.28:$PATH"
-
-#Setting environment variables:
-# export EMSDK="/Users/nvasilakis/lab/emscripten/emsdk-portable"
-# export EM_CONFIG="/Users/nvasilakis/.emscripten"
-# export BINARYEN_ROOT="/Users/nvasilakis/lab/emscripten/emsdk-portable/clang/e1.37.28_64bit/binaryen"
-# export EMSCRIPTEN="/Users/nvasilakis/lab/emscripten/emsdk-portable/emscripten/1.37.28"
-
-#Nice Exports
 export EDITOR="vim"
 export SVN_EDITOR="vim"
-export PYTHONSTARTUP=~/.pythonrc
-export PATH="$PATH:$HOME/scripts" # include home-grown tools
-export LACONIC="false"
 
-## My own man page viewer. If I need to remap K, add also:
+## Use vim as man page viewer. If I need to remap K, add also:
 #-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\"\
 ## or
 #export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 #    vim -R -c 'set ft=man nomod modified nonumber nolist autoread' -c 'map q :q<CR>' \
 #    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' -\" \
 export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-  vim -R -c 'set ft=man nomod nonumber nolist' -c 'noremap q ZQ' \
-  -c 'map <SPACE> <C-D>' -\" \
-  "
+  vim -R -c 'set ft=man nomod nonumber nolist' -c 'noremap q ZQ' -c 'map <SPACE> <C-D>' -\" "
 
-HOSTNAME=`hostname`
-if [[ `uname` == 'Linux' ]]; then
-  # OCaml
-  . /home/$(whoami)/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-  # emacs on Gnome
-  alias emacs='XLIB_SKIP_ARGB_VISUALS=1 emacs'
-  export PATH=~/.npm-global/bin:$PATH
-  export JAVA_HOME=/usr/lib/jvm/default-java
-else
-  # Haskell
-  export PATH="$PATH:/Users/$(whoami)/Library/Haskell/bin"
-  export PATH="/usr/local/bin:$PATH"
-  export PATH="$PATH:/Library/TeX/texbin/"
-  # Java
-  JVM_BASE_DIR=/Library/Java/JavaVirtualMachines
-  JVM_VERSION=$(ls $JVM_BASE_DIR | grep -Eo "([0-9]+\.?){3}(_[0-9]+)?" | sort -Vr | head -1)
+lab=$HOME/wrk
+# FIXME: define tools
 
-  if [ -n "$JVM_VERSION" ]; then
-    export JAVA_HOME="$(find $JVM_BASE_DIR -maxdepth 1 -name "*${JVM_VERSION}*")/Contents/Home"
-    # echo "Setting JAVA_HOME to $JAVA_HOME."
+# JavaScript: Emscripten
+if [ -d "$tools/emscripten/emsdk-portable" ]; then
+  export PATH="$tools/emscripten/emsdk-portable:$PATH"
+  export PATH="$tools/emscripten/emsdk-portable/clang/e1.37.28_64bit:$PATH"
+  export PATH="$tools/emscripten/emsdk-portable/node/4.1.1_64bit/bin:$PATH"
+  export PATH="$tools/emscripten/emsdk-portable/emscripten/1.37.28:$PATH"
+  export EMSDK="$tools/emsdk-portable"
+  export EM_CONFIG=~/.emscripten
+  export BINARYEN_ROOT="$tools/emscripten/emsdk-portable/clang/e1.37.28_64bit/binaryen"
+  export EMSCRIPTEN="$tools/emscripten/emsdk-portable/emscripten/1.37.28"
+fi 
+
+export PYTHONSTARTUP=~/.pythonrc # decide if it's the same for python2 python3
+
+# Haskell: Cabal
+if [ -d "$HOME/ghcup/bin" ]; then
+  export PATH="$HOME/.ghcup/bin:$PATH"
+  export PATH="$HOME/.cabal/bin:$PATH"
+fi
+
+# Node: npm
+if [ -d "$HOME/npm-packages" ]; then
+  export NPM_PACKAGES="$HOME/npm-packages"
+  export PATH="$NPM_PACKAGES/bin:$PATH"
+  # Preserve MANPATH if you already defined it somewhere in your config.
+  # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+  export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+fi
+
+# Ocaml: OPAM
+if [ -d "$HOME/opam/opam-init" ]; then
+  if [ $SHELL = "zsh" ]; then
+    . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+  else
+    . ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
   fi
 fi
 
-lab=$HOME/wrk
+if [ -d "$tools/dish-parser" ]; then
+  alias dparse=$tools/dish-parser/parse_to_json.native
+  alias demit=$tools/dish-parser/json_to_shell.native
+fi
+
+# Java: Oracle's JDK 8
+if [[ $(uname) == 'Linux' ]]; then
+  # OpenJDK: /usr/lib/jvm/default-java
+  export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_251
+else
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_251/Contents/Home
+fi
+
+# Hadoop
+alias hfs='hadoop fs'
+alias hls='hfs -ls'
+
+# If Hadoop logs are LZOP'd, inspect w/ lzohead /hdfs/path/to/lzop/file.lzo
+lzohead () {
+    hadoop fs -cat $1 | lzop -dc | head -1000 | less
+}
+
+if [[ `uname` == 'Linux' ]]; then 
+  if [ -x /usr/bin/dircolors ]; then
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+  fi
+  alias ai='sudo apt-get install'
+  alias au='sudo apt-get update && sudo apt-get upgrade -y'
+  alias open='nautilus --no-desktop --browser .'
+  #alias w3m='w3m www.google.com'
+  # alias ctags='/usr/bin/ctags-exuberant'
+else 
+  export CLICOLOR=1
+  alias ls='ls -G'
+  export GREP_OPTIONS='--color=auto';
+  export GREP_COLOR='00;31;5;157';
+  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+  #alias emacs='emacs -nw' #terminal-only emacs
+  # alias ctags='/usr/local/bin/ctags'
+fi
+
+alias chrome-uni='ssh nvas@eniac.seas.upenn.edu -X "google-chrome"'
+alias syn='rsync -av --progress'
+alias ll='ls -lhF'
+alias la='ls -A'
+alias l='ls -CF'
+alias j='jobs -l'
+alias m='make'
+alias mc='make clean && make'
+alias vim='vim -p'
+alias rseas='rdesktop vlab-rdp.seas.upenn.edu'
+# alias mirgen='java -jar ~/wrk/andromeda/mir/static-analysis/mir-sa.jar . | grep "^{" | jq .'
+alias to='dirs -v; echo -n "..>"; read n; cd ~$n'
 
 # Andromeda
-androdev=$lab/andromeda
-andromeda=$lab/andromeda/andromeda
+a=$lab/andromeda
+core=$lab/andromeda/andromeda
 doc=$lab/andromeda/doc
-alias desk="cd $lab/andromeda/doc"
-alias a="cd $lab/andromeda"
-alias pt="cd $lab/andromeda/doc/thesis/proposal/tex"
-alias dt="cd $lab/andromeda/doc/thesis/defense/tex"
+alias ad="cd $a/doc"
+alias a="cd  $a"
+alias pt="cd $a/doc/thesis/proposal/tex"
+alias dt="cd $a/doc/thesis/defense/tex"
 alias research="cd $lab/andromeda/doc/research"
-alias andromeda="node $andromeda/andromeda.js"
-function andromeda1 {
-  andromeda '{"nodes": 1}'
-}
+alias a1='andromeda \{\"nodes\": 1\}'
 
-showpipeline() {
-  grep '|' $1 | sed 's/#.*$//' | awk '{$1=$1};1' | sed '/^$/d'
-}
-
-
-# DCP
-# dcp=$lab/dcp
-# alias lh="http://localhost:8000/"
-# l="http://localhost:8000/"
-
-LC_CTYPE=en_US.UTF-8
-LC_ALL=en_US.UTF-8
-
-export PATH="$PATH:$HOME/.local/bin" # andromeda node
-export PATH=~/.npm-global/bin:$PATH
-
-export NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$NPM_PACKAGES/bin:$PATH"
+alias gkallas='GIT_COMMITTER_NAME="Konstantinos Kallas" GIT_COMMITTER_EMAIL="konstantinos.kallas@hotmail.com" git commit --author="Konstantinos Kallas <konstantinos.kallas@hotmail.com>"'

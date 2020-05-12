@@ -1,12 +1,7 @@
 . ~/.dotrc/shell/environment.sh
-. ${DOTRC}/shell/base.sh
-. ${DOTRC}/shell/extra.sh
-. ${DOTRC}/shell/functions.sh
+. ~/.dotrc/shell/functions.sh
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
 DIRSTACKSIZE=10
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -51,7 +46,6 @@ zstyle ':completion:*:killall:*' force-list always
 # Some functions, like _apt and _dpkg, are very slow, so we cache them 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-
 
 # Setting options
 # Advanced spell-checking
@@ -305,23 +299,19 @@ function +vi-svn-info() {
  
 # Creating prompts
 PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%# '
-if [[ "${LACONIC}" != "true" ]]; then
-  RPS1=$'${vcs_info_msg_0_}$(show-jobs)'  #%($(ena).[%{$bold_color$fg[blue]%}%j%{$reset_color%}].)
-else
-  RPS1=$'$(show-jobs)'
-fi  
+RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
 PS4=$'+%N:%i:%_>'
 
 parse_git_branch() {
-    git_status="$(git status 2> /dev/null)"
-    pattern="^# On branch ([^[:space:]]*)"
-    if [[ ! ${git_status} =~ "working directory clean" ]]; then
-        state="*"
-    fi
-    if [[ ${git_status} =~ ${pattern} ]]; then
-      branch=${match[1]}
-      echo -n "(${branch}${state})"
-    fi
+  git_status="$(git status 2> /dev/null)"
+  pattern="^# On branch ([^[:space:]]*)"
+  if [[ ! ${git_status} =~ "working directory clean" ]]; then
+    state="*"
+  fi
+  if [[ ${git_status} =~ ${pattern} ]]; then
+    branch=${match[1]}
+    echo -n "(${branch}${state})"
+  fi
 }
 
 # Functions for killing text
@@ -408,15 +398,3 @@ if [[ $TERM =~ "screen" ]]; then
     fi
   }
 fi
-
-# OPAM configuration
-. ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-# Dish configuration
-export DISH_TOP=/home/nikos/dish
-export DISH_PARSER=${DISH_TOP}/parser/parse_to_json.native
-# export PATH=$PATH:/home/nikos/dish/parser
-alias dparse=/home/nikos/dish/parser/parse_to_json.native
-alias demit=/home/nikos/dish/parser/json_to_shell.native
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
