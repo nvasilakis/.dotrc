@@ -17,7 +17,7 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
   vim -R -c 'set ft=man nomod nonumber nolist' -c 'noremap q ZQ' -c 'map <SPACE> <C-D>' -\" "
 
 lab=$HOME/wrk
-tools=$lab/tools
+tools=$HOME/tools
 
 # JavaScript: Emscripten
 if [ -d "$tools/emscripten/emsdk-portable" ]; then
@@ -30,6 +30,14 @@ if [ -d "$tools/emscripten/emsdk-portable" ]; then
   export BINARYEN_ROOT="$tools/emscripten/emsdk-portable/clang/e1.37.28_64bit/binaryen"
   export EMSCRIPTEN="$tools/emscripten/emsdk-portable/emscripten/1.37.28"
 fi 
+
+if [ -d "$tools/hadoop-3.2.1" ]; then
+  export PATH="$PATH:$tools/hadoop-3.2.1/bin"
+fi
+
+if [ -d "$tools/spark-2.4.5-bin-hadoop2.7" ]; then
+  export PATH="$PATH:$tools/spark-2.4.5-bin-hadoop2.7/bin"
+fi
 
 # Python
 if [ -d "/usr/local/opt/python@3.8/bin" ]; then
@@ -131,13 +139,4 @@ alias dt="cd $a/doc/thesis/defense/tex"
 alias research="cd $lab/andromeda/doc/research"
 alias a1='andromeda \{\"nodes\": 1\}'
 
-<<<<<<< HEAD
 alias gkallas='GIT_COMMITTER_NAME="Konstantinos Kallas" GIT_COMMITTER_EMAIL="konstantinos.kallas@hotmail.com" git commit --author="Konstantinos Kallas <konstantinos.kallas@hotmail.com>"'
-=======
-export NPM_PACKAGES="${HOME}/.npm-packages"
-# export PATH="$NPM_PACKAGES/bin:$PATH"
-export PATH="$PATH:$NPM_PACKAGES/bin"
-# NPM non-sudo
-NPM_PACKAGES="${HOME}/.npm-packages"
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
->>>>>>> 45970e22c4eff5e973e93b672694380c96b5f3c1
