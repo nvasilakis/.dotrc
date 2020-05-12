@@ -17,7 +17,7 @@ export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
   vim -R -c 'set ft=man nomod nonumber nolist' -c 'noremap q ZQ' -c 'map <SPACE> <C-D>' -\" "
 
 lab=$HOME/wrk
-# FIXME: define tools
+tools=$lab/tools
 
 # JavaScript: Emscripten
 if [ -d "$tools/emscripten/emsdk-portable" ]; then
@@ -31,6 +31,10 @@ if [ -d "$tools/emscripten/emsdk-portable" ]; then
   export EMSCRIPTEN="$tools/emscripten/emsdk-portable/emscripten/1.37.28"
 fi 
 
+# Python
+if [ -d "/usr/local/opt/python@3.8/bin" ]; then
+  PATH="$PATH:/usr/local/opt/python@3.8/bin"
+fi
 export PYTHONSTARTUP=~/.pythonrc # decide if it's the same for python2 python3
 
 # Haskell: Cabal
@@ -127,4 +131,13 @@ alias dt="cd $a/doc/thesis/defense/tex"
 alias research="cd $lab/andromeda/doc/research"
 alias a1='andromeda \{\"nodes\": 1\}'
 
+<<<<<<< HEAD
 alias gkallas='GIT_COMMITTER_NAME="Konstantinos Kallas" GIT_COMMITTER_EMAIL="konstantinos.kallas@hotmail.com" git commit --author="Konstantinos Kallas <konstantinos.kallas@hotmail.com>"'
+=======
+export NPM_PACKAGES="${HOME}/.npm-packages"
+# export PATH="$NPM_PACKAGES/bin:$PATH"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+# NPM non-sudo
+NPM_PACKAGES="${HOME}/.npm-packages"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+>>>>>>> 45970e22c4eff5e973e93b672694380c96b5f3c1
