@@ -47,6 +47,8 @@ zstyle ':completion:*:killall:*' force-list always
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
+setopt interactivecomments
+
 # Setting options
 # Advanced spell-checking
 setopt CORRECTALL

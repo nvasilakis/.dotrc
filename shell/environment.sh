@@ -32,6 +32,7 @@ if [ -d "$tools/emscripten/emsdk-portable" ]; then
 fi 
 
 if [ -d "$tools/hadoop-3.2.1" ]; then
+  export HADOOP_HOME="$tools/hadoop-3.2.1"
   export PATH="$PATH:$tools/hadoop-3.2.1/bin"
 fi
 
