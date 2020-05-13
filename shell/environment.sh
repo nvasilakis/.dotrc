@@ -80,7 +80,7 @@ if [[ $(uname) == 'Linux' ]]; then
   # OpenJDK: /usr/lib/jvm/default-java
   export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_251
 else
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_251/Contents/Home
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home
 fi
 
 # Hadoop

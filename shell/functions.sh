@@ -139,6 +139,7 @@ pull-all() {
 }
 
 alias gga='git add'
+alias ggr='git reset HEAD'
 alias ggc='git commit -v'
 alias ggs='git status -sb'
 alias ggp='git push'
