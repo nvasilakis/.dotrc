@@ -47,14 +47,14 @@ fi
 export PYTHONSTARTUP=~/.pythonrc # decide if it's the same for python2 python3
 
 # Haskell: Cabal
-if [ -d "$HOME/ghcup/bin" ]; then
+if [ -d "$HOME/.ghcup/bin" ]; then
   export PATH="$HOME/.ghcup/bin:$PATH"
   export PATH="$HOME/.cabal/bin:$PATH"
 fi
 
 # Node: npm
-if [ -d "$HOME/npm-packages" ]; then
-  export NPM_PACKAGES="$HOME/npm-packages"
+if [ -d "$HOME/.npm-packages" ]; then
+  export NPM_PACKAGES="$HOME/.npm-packages"
   export PATH="$NPM_PACKAGES/bin:$PATH"
   # Preserve MANPATH if you already defined it somewhere in your config.
   # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
@@ -62,7 +62,7 @@ if [ -d "$HOME/npm-packages" ]; then
 fi
 
 # Ocaml: OPAM
-if [ -d "$HOME/opam/opam-init" ]; then
+if [ -d "$HOME/.opam/opam-init" ]; then
   if [ $SHELL = "zsh" ]; then
     . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
   else
