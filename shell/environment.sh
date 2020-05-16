@@ -53,8 +53,8 @@ if [ -d "$HOME/.ghcup/bin" ]; then
 fi
 
 # Node: npm
-if [ -d "$HOME/.npm-packages" ]; then
-  export NPM_PACKAGES="$HOME/.npm-packages"
+if [ -f ~/.npmrc ]; then
+  export NPM_PACKAGES=$(cat ~/.npmrc | grep 'prefix=' | sed 's;prefix=;;')
   export PATH="$NPM_PACKAGES/bin:$PATH"
   # Preserve MANPATH if you already defined it somewhere in your config.
   # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
