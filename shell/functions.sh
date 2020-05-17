@@ -156,7 +156,24 @@ function mem {
 
 # When a system does not have tac
 TAC=$(which tac)
-function tac {
+tac() {
   $TAC 2> /dev/null $* || tail -r $*
+}
+
+ec2-ssh() {
+  ssh -i "${HOME}/Dropbox/keys/ec2.pem" ubuntu@$1
+}
+
+ec2-rsync() {
+  rsync --progress -rave "ssh -i ${HOME}/Dropbox/keys/ec2.pem" $@
+}
+
+ec2-sync-slaves() {
+  SRV="ubuntu@ec2-3-15-201-13.us-east-2.compute.amazonaws.com:~ ubuntu@ec2-3-15-20-212.us-east-2.compute.amazonaws.com:~ ubuntu@ec2-18-217-56-181.us-east-2.compute.amazonaws.com:~"
+  
+  for s in $SRV; do
+    echo $1 '===>' $s
+    rsync --progress -rave "ssh -i ${HOME}/Dropbox/keys/ec2.pem" $1 $s
+  done
 }
 

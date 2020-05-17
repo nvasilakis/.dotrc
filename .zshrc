@@ -25,6 +25,10 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# https://stackoverflow.com/a/23157823
+# this can be unset by saying: unsetopt shwordsplit
+setopt shwordsplit      
+
 setopt complete_in_word
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
