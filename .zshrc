@@ -166,15 +166,14 @@ my_accounts=(
   nikos@antikythera.vasilak.is
   nikos@centaurus.vasilak.is
   nikos@cassiopeia.vasilak.is
-  nikos@qubit0.cis.upenn.edu
-  nikos@qubit1.cis.upenn.edu
+  nikos@qubit0.ndr.md
   nikos@alpha.ndr.md
   nikos@beta.ndr.md
   nikos@gamma.ndr.md
   nikos@delta.ndr.md
-  nikos@deathstar.cis.upenn.edu
-  nikos@livestar.cis.upenn.edu
-  nikos@lmemstar.cis.upenn.edu
+  nikos@deathstar.ndr.md   # 158.130.4.212
+  nikos@livestar.ndr.md    # 158.130.4.61
+  nikos@memstar.ndr.md     # 158.130.4.25
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
