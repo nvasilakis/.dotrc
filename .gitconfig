@@ -35,6 +35,6 @@
   p = pull --rebase
   ctags = !.git/hooks/ctags
 [init]
-  templatedir = ~/.dotrc/.git_template
+# templatedir = ~/.dotrc/git_template
 [push]
 	default = simple
