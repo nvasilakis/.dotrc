@@ -131,13 +131,15 @@ alias to='dirs -v; echo -n "..>"; read n; cd ~$n'
 
 # Andromeda
 a=$lab/andromeda
-core=$lab/andromeda/andromeda
-doc=$lab/andromeda/doc
+core=$a/andromeda
+doc=$a/doc
 alias ad="cd $a/doc"
 alias a="cd  $a"
 alias pt="cd $a/doc/thesis/proposal/tex"
 alias dt="cd $a/doc/thesis/defense/tex"
 alias research="cd $lab/andromeda/doc/research"
 alias a1='andromeda \{\"nodes\": 1\}'
+
+alias lya-dev="$a/lya/lya.js"
 
 alias gkallas='GIT_COMMITTER_NAME="Konstantinos Kallas" GIT_COMMITTER_EMAIL="konstantinos.kallas@hotmail.com" git commit --author="Konstantinos Kallas <konstantinos.kallas@hotmail.com>"'
