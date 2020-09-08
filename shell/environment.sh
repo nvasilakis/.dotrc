@@ -141,5 +141,6 @@ alias research="cd $lab/andromeda/doc/research"
 alias a1='andromeda \{\"nodes\": 1\}'
 
 alias lya-dev="$a/lya/lya.js"
+alias lr="cd $a/lya/"
 
 alias gkallas='GIT_COMMITTER_NAME="Konstantinos Kallas" GIT_COMMITTER_EMAIL="konstantinos.kallas@hotmail.com" git commit --author="Konstantinos Kallas <konstantinos.kallas@hotmail.com>"'
