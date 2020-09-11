@@ -46,6 +46,11 @@ if [ -d "/usr/local/opt/python@3.8/bin" ]; then
 fi
 export PYTHONSTARTUP=~/.pythonrc # decide if it's the same for python2 python3
 
+# Racket
+if [ -d "/Applications/Racket v7.8/bin" ]; then
+  export PATH="/Applications/Racket v7.8/bin:$PATH"
+fi
+
 # Haskell: Cabal
 if [ -d "$HOME/.ghcup/bin" ]; then
   export PATH="$HOME/.ghcup/bin:$PATH"
