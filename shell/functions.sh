@@ -177,3 +177,14 @@ ec2-sync-slaves() {
   done
 }
 
+
+get-pash-path() {
+  PASH_TOP=${PASH_TOP:-$(git rev-parse --show-toplevel)}
+  if [ "$#" -eq 1 ]; then
+    builtin cd $1 && $(pwd | sed "s;$PASH_TOP;\$PASH_TOP;") && builtin cd -
+  else 
+    # run it locally
+    pwd | sed "s;$PASH_TOP;\$PASH_TOP;"
+  fi
+}
+
