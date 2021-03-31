@@ -140,6 +140,7 @@ hosts=(
   deathstar.cis.upenn.edu
   livestar.cis.upenn.edu
   memstar.cis.upenn.edu
+  bowie.csail.mit.edu
 )
 
 zstyle ':completion:*' hosts $hosts
@@ -174,6 +175,7 @@ my_accounts=(
   nikos@deathstar.ndr.md   # 158.130.4.212
   nikos@livestar.ndr.md    # 158.130.4.61
   nikos@memstar.ndr.md     # 158.130.4.25
+  nikos@bowie.csail.mit.edu
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
@@ -403,3 +405,4 @@ if [[ $TERM =~ "screen" ]]; then
     fi
   }
 fi
+
