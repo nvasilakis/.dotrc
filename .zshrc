@@ -128,7 +128,7 @@ hosts=(
   icsafe07.seas.upenn.edu
   icsafe08.seas.upenn.edu
   icsafe09.seas.upenn.edu
-  antikythera.vasilak.is
+# antikythera.vasilak.is
   centaurus.vasilak.is
   cassiopeia.vasilak.is
   qubit0.cis.upenn.edu
@@ -140,6 +140,8 @@ hosts=(
   deathstar.cis.upenn.edu
   livestar.cis.upenn.edu
   memstar.cis.upenn.edu
+  bowie.csail.mit.edu
+  antikythera.csail.mit.edu
 )
 
 zstyle ':completion:*' hosts $hosts
@@ -163,7 +165,7 @@ my_accounts=(
   nvas@icsafe07.seas.upenn.edu
   nvas@icsafe08.seas.upenn.edu
   nvas@icsafe09.seas.upenn.edu
-  nikos@antikythera.vasilak.is
+# nikos@antikythera.vasilak.is
   nikos@centaurus.vasilak.is
   nikos@cassiopeia.vasilak.is
   nikos@qubit0.ndr.md
@@ -174,6 +176,8 @@ my_accounts=(
   nikos@deathstar.ndr.md   # 158.130.4.212
   nikos@livestar.ndr.md    # 158.130.4.61
   nikos@memstar.ndr.md     # 158.130.4.25
+  nikos@bowie.csail.mit.edu
+  nikos@antikythera.csail.mit.edu
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 # tab completion for ssh
@@ -403,3 +407,4 @@ if [[ $TERM =~ "screen" ]]; then
     fi
   }
 fi
+
