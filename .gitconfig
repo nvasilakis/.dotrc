@@ -8,10 +8,11 @@
 #  compression = 9
 #  loosecompression = 9
 [color]
-  diff = always
-  status = always
-  branch = always
-  interactive = always
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+	ui = false
 #[color "branch"]
 #  current = yellow reverse
 #  local = yellow
