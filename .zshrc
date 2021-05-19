@@ -307,7 +307,7 @@ function +vi-svn-info() {
 }
  
 # Creating prompts
-PS1=$'%{$bold_color$fg[green]%}%n@%m%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%# '
+PS1=$'%{$bold_color$fg[green]%}%n@multiprocessor%{$reset_color%}:%{$bold_color$fg[blue]%}%2~%{$reset_color%}%# '
 RPS1=$'${vcs_info_msg_0_}$(show-jobs)'
 PS4=$'+%N:%i:%_>'
 
