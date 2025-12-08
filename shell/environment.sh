@@ -108,7 +108,7 @@ if [[ `uname` == 'Linux' ]]; then
   fi
   alias ai='sudo apt-get install'
   alias au='sudo apt-get update && sudo apt-get upgrade -y'
-  alias open='nautilus --no-desktop --browser .'
+  #alias open='nautilus --no-desktop --browser .'
   #alias w3m='w3m www.google.com'
   # alias ctags='/usr/bin/ctags-exuberant'
 else 
