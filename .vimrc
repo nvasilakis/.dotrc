@@ -145,7 +145,8 @@ if has("unix")
   if uname == "Darwin"
       " this is weird: /usr/bin/ctags points to emacs..
       " https://github.com/Homebrew/legacy-homebrew/issues/8859
-    let Tlist_Ctags_Cmd = "/usr/local/Cellar/ctags/5.8_1/bin/ctags"
+      " let Tlist_Ctags_Cmd = "/usr/local/Cellar/ctags/5.8_1/bin/ctags"
+    let Tlist_Ctags_Cmd = "/opt/homebrew/bin/ctags"
   else
     let Tlist_Ctags_Cmd = "/usr/bin/ctags-exuberant"
   endif

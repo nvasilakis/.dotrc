@@ -39,3 +39,5 @@
 # templatedir = ~/.dotrc/git_template
 [push]
 	default = simple
+[pull]
+	rebase = true

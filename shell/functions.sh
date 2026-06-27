@@ -64,10 +64,10 @@ showpipeline() {
   grep '|' $1 | sed 's/#.*$//' | awk '{$1=$1};1' | sed '/^$/d'
 }
 
-cd() {
-  builtin cd $* && ls
-  show-git-status
-}
+# cd() {
+#   builtin cd $* && ls
+#   show-git-status
+# }
 
 mkd() {
   mkdir -p $* && cd $*
